@@ -94,24 +94,37 @@ a:active {
   min-height: var(--height);
 }
 .write .markDownContainer {
-  margin: 0 20px;
-  display: flex;
-  min-height: var(--height);
+  margin: 0 10px;
+  display: grid;
+  grid-template-rows: minmax(var(--height), auto);
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  grid-gap: 20px;
 }
 .write .markDownContainer .textarea {
-  margin: 0 20px;
+  margin: 10px 10px 0 10px;
+  padding: 5px 20px;
   border: none;
-  width: 50%;
   height: auto;
-  padding: 0 20px;
-  font-size: 1.5rem;
   resize: none;
+  grid-column: span 2;
 }
 .write .markDownContainer .output {
-  width: 50%;
-  min-height: var(--height);
-  padding: 0 50px;
-  margin: 0 20px;
-  font-size: 1.5rem;
+  background-color: #fae6db;
+  margin: 10px 10px 0 10px;
+  padding: 5px 20px;
   outline: none;
+  grid-column: span 2;
+}
+.write .markDownContainer .markDownButton {
+  margin: 15px 0;
+  padding: 5px;
+  border-style: none;
+  cursor: pointer;
+  border-radius: 25px;
+  background-color: var(--third-color);
+  color: #fff;
+  font-size: 1.75rem;
+  grid-column-start: 2;
+  grid-column-end: 4;
 }/*# sourceMappingURL=style.css.map */
