@@ -1,0 +1,45 @@
+.navContainer {
+    background-color: var(--first-color);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    div {
+        width: 1200px;
+        margin: 30px 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        a {
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+                width: 70px;
+                height: 70px;
+            }
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 2rem;
+            ul {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                list-style-type: none;
+                li {
+                    margin-left: 50px;
+                    text-decoration: none;
+                    a {
+                        // margin: 10px;
+                        font-size: 1.3rem;
+                        font-weight: 300;
+                    }
+                }
+            }
+        }
+    }
+}

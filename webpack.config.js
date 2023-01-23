@@ -11,7 +11,9 @@ module.exports = {
     },
     devServer: {
         compress: true,
-        port: 9000,
+        port: 3000,
+        allowedHosts: ["all"],
+        historyApiFallback: true,
         static: {
             directory: path.join(__dirname, "dist"),
         },
@@ -22,6 +24,29 @@ module.exports = {
                 test: /\.m?jsx?$/,
                 exclude: /node_modules/,
                 use: "babel-loader",
+            },
+            {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader", "sass-loader"],
+            },
+            {
+                test: /\.(png|jpg|gif|jpe?g|svg)$/,
+                use: [
+                    {
+                        loader: "file-loader",
+                        options: {
+                            name: "[name].[ext]",
+                            publicPath: "./img",
+                            outputPath: "./img",
+                        },
+                    },
+                    {
+                        loader: "image-webpack-loader",
+                        options: {
+                            bypassOnDebug: true,
+                        },
+                    },
+                ],
             },
         ],
     },

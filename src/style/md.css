@@ -1,0 +1,6 @@
+/* md.css */
+blockquote p {
+	border-left: 5px gray solid;
+	padding-left: 30px;
+	font-weight: bold;
+}

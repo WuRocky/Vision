@@ -1,0 +1,26 @@
+.write {
+    background-color: var(--second-color);
+    min-height: var(--height);
+    .markDownContainer {
+        margin: 0 20px;
+        display: flex;
+        min-height: var(--height);
+        .textarea {
+            margin: 0 20px;
+            border: none;
+            width: 50%;
+            height: auto;
+            padding: 0 20px;
+            font-size: 1.5rem;
+            resize: none;
+        }
+        .output {
+            width: 50%;
+            min-height: var(--height);
+            padding: 0 50px;
+            margin: 0 20px;
+            font-size: 1.5rem;
+            outline: none;
+        }
+    }
+}

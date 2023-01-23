@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Merriweather", serif;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+:root {
+  --first-color: #f2e4d9;
+  --second-color: #fff4eb;
+  --third-color: #222222;
+  --height: 100vh;
+}
+
+#root {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  font-weight: 600;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+.navContainer {
+  background-color: var(--first-color);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.navContainer div {
+  width: 1200px;
+  margin: 30px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navContainer div a {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navContainer div a img {
+  width: 70px;
+  height: 70px;
+}
+.navContainer div nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2rem;
+}
+.navContainer div nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+}
+.navContainer div nav ul li {
+  margin-left: 50px;
+  text-decoration: none;
+}
+.navContainer div nav ul li a {
+  font-size: 1.3rem;
+  font-weight: 300;
+}
+
+.homepage {
+  min-height: var(--height);
+  background-color: var(--second-color);
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--first-color);
+  min-height: 10vh;
+}
+
+.write {
+  background-color: var(--second-color);
+  min-height: var(--height);
+}
+.write .markDownContainer {
+  margin: 0 20px;
+  display: flex;
+  min-height: var(--height);
+}
+.write .markDownContainer .textarea {
+  margin: 0 20px;
+  border: none;
+  width: 50%;
+  height: auto;
+  padding: 0 20px;
+  font-size: 1.5rem;
+  resize: none;
+}
+.write .markDownContainer .output {
+  width: 50%;
+  min-height: var(--height);
+  padding: 0 50px;
+  margin: 0 20px;
+  font-size: 1.5rem;
+  outline: none;
+}/*# sourceMappingURL=style.css.map */
