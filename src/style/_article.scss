@@ -1,0 +1,17 @@
+.article {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-height: var(--height);
+    background-color: var(--second-color);
+    .articleTitle {
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin: 10px;
+    }
+    .articleMarkdown {
+        width: 50%;
+        margin: 1rem;
+        // margin: ;
+    }
+}

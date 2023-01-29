@@ -31,7 +31,15 @@ a:active {
 }
 
 @import "./nav";
+
 @import "./homepage";
+@import "./homePageContent";
+
+@import "./message";
+
+@import "./singIn";
+@import "./article";
+
 @import "./footer";
 
-@import "./write";
+@import "./markdown/write";

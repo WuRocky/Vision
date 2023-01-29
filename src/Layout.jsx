@@ -20,7 +20,7 @@ const Layout = () => {
                                 <Link to="/write">Write</Link>
                             </li>
                             <li>
-                                <Link to="/">Sign in</Link>
+                                <Link to="/singIn">Sign in</Link>
                             </li>
                         </ul>
                     </nav>

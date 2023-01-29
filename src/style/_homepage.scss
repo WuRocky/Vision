@@ -1,4 +1,6 @@
 .homepage {
     min-height: var(--height);
     background-color: var(--second-color);
+    display: flex;
+    justify-content: center;
 }

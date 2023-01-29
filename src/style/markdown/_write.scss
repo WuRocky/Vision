@@ -1,17 +1,39 @@
 .write {
     background-color: var(--second-color);
     min-height: var(--height);
-
     .markDownContainer {
         margin: 0 10px;
         display: grid;
+        // grid-template-rows: minmax(var(--height), auto);
+        grid-template-rows: auto minmax(var(--height), auto) auto;
 
-        grid-template-rows: minmax(var(--height), auto);
+        // grid-auto-rows: 150px;
+        // grid-template-rows: minmax(150px, auto);
+
         grid-template-columns: repeat(4, 1fr);
-
         justify-content: center;
+        grid-gap: 10px;
+        .markDownTitle {
+            margin: 15px 0;
+            font-size: 1.5rem;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 1.05rem;
+        }
+        .markDownInput {
+            margin: 15px 0;
+            height: 50px;
+            padding: 5px;
+            font-size: 1.25rem;
+            border-style: none;
+            grid-column-start: 2;
+            grid-column-end: 4;
+        }
 
-        grid-gap: 20px;
         .textarea {
             margin: 10px 10px 0 10px;
             padding: 5px 20px;
