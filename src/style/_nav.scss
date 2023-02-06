@@ -6,7 +6,7 @@
 
     div {
         width: 1200px;
-        margin: 30px 10px;
+        margin: 20px 15px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -15,9 +15,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
+
             img {
-                width: 70px;
-                height: 70px;
+                width: 50px;
+                height: 50px;
             }
         }
         nav {
@@ -34,9 +35,12 @@
                     margin-left: 50px;
                     text-decoration: none;
                     a {
-                        // margin: 10px;
-                        font-size: 1.3rem;
+                        color: rgba(0, 0, 0, 0.5);
+                        // font-size: 1.3rem;
                         font-weight: 300;
+                    }
+                    a:hover {
+                        color: rgba(0, 0, 0, 1);
                     }
                 }
             }

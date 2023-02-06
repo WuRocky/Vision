@@ -4,14 +4,36 @@
     flex-direction: column;
     min-height: var(--height);
     background-color: var(--second-color);
-    .articleTitle {
+    .article-author {
+        width: 50%;
+        // height: 40%;
+        display: flex;
+        // justify-content: center;
+        align-items: center;
+        div {
+            margin: 20px 20px;
+        }
+    }
+    .article-title {
         font-size: 0.95rem;
         font-weight: 600;
         margin: 10px;
     }
-    .articleMarkdown {
+    .article-markdown {
         width: 50%;
         margin: 1rem;
-        // margin: ;
+    }
+    .article-feel {
+        display: flex;
+        align-items: center;
+        width: 80%;
+        div {
+            margin: 25px;
+        }
+        img {
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+        }
     }
 }

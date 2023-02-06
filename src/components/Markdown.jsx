@@ -1,5 +1,6 @@
 // react
-import { useState } from "react";
+import { useState, useContext, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 // markdown
 import ReactMarkdown from "react-markdown";
@@ -9,91 +10,172 @@ import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 
 // firebase
-import { db } from "../lib/firebase/initialize";
-import { collection, addDoc } from "firebase/firestore";
+import { addData, updateArticle } from "../hooks/useFireStore";
+import { addStorage } from "../hooks/useFireStorage";
 
-// uuid
-import { v4 as uuidv4 } from "uuid";
+import Message from "./Message";
 
+import { AppContext } from "../Layout";
 const Markdown = () => {
-    const [markDown, setMarkdown] = useState();
-    const [markDownTitel, setMarkDownTitle] = useState();
+    const { topics } = useContext(AppContext);
+    const [markDownTitel, setMarkDownTitle] = useState("");
+    const [markDownClass, setMarkDownClass] = useState("");
+    const [markDown, setMarkdown] = useState("");
+    const [markDownFile, setMarkDownFile] = useState(null);
 
+    const [message, setMessage] = useState(null);
+    ///* 標題 *///
     const inputMarkDownTitel = (e) => {
         setMarkDownTitle(e.target.value);
     };
+
+    ///* 分類 *///
+    const inputMarkDownClass = (e) => {
+        setMarkDownClass(e.target.value);
+    };
+
+    ///* 上傳圖片 *///
+    const markDownFileHandle = (e) => {
+        e.preventDefault();
+        fileInput.current.click();
+    };
+
+    const previeUrl = markDownFile
+        ? URL.createObjectURL(markDownFile)
+        : "https://react.semantic-ui.com/images/wireframe/image.png";
+
+    ///* 寫入文章 *///
     const markDonwHandler = (e) => {
         setMarkdown(e.target.value);
     };
-    const buttonHandler = (e) => {
+    const navigate = useNavigate();
+
+    const buttonHandler = async (e) => {
         e.preventDefault();
-        if (markDown === "" && markDownTitel === "") {
-            alert("請輸入文字");
+
+        if (markDown === "" || markDownTitel === "" || markDownClass === "") {
+            setMessage("請輸入內容");
             return;
         }
-        let uid = uuidv4();
-        const addData = async () => {
-            try {
-                const docRef = await addDoc(collection(db, "article"), {
-                    content: markDown,
-                    title: markDownTitel,
-                    id: uid,
-                });
-                console.log("Document written with ID: ", docRef.id);
-            } catch (e) {
-                console.error("Error adding document: ", e);
-            }
-        };
 
-        addData();
+        const success = await addData(
+            markDownTitel,
+            markDown,
+            markDownClass,
+            setMessage
+        );
+        const fileId = success.id;
+        const fileType = markDownFile.type;
+        addStorage(fileId, markDownFile, fileType);
+
         setMarkdown("");
         setMarkDownTitle("");
+        setMarkDownFile(null);
+
+        if (success) {
+            setTimeout(() => {
+                navigate("/");
+            }, 2000);
+        }
     };
+    const fileInput = useRef(null);
+
     return (
-        <form className="markDownContainer">
-            <label htmlFor="markDownTitle" className="markDownTitle">
-                標題
-            </label>
-            <input
-                id="markDownTitle"
-                type="text"
-                onChange={inputMarkDownTitel}
-                value={markDownTitel}
-                className="markDownInput"
-            />
-            <textarea
-                className="textarea"
-                value={markDown}
-                onChange={markDonwHandler}
-            />
-            <ReactMarkdown
-                className="output"
-                children={markDown}
-                remarkPlugins={[remarkGfm]}
-                rehypePlugins={[rehypeRaw]}
-                components={{
-                    code({ node, inline, className, children, ...props }) {
-                        const match = /language-(\w+)/.exec(className || "");
-                        return !inline && match ? (
-                            <SyntaxHighlighter
-                                children={String(children).replace(/\n$/, "")}
-                                style={tomorrowNightBlue}
-                                language={match[1]}
-                                PreTag="div"
-                                {...props}
-                            />
-                        ) : (
-                            <code className={className} {...props}>
-                                {children}
-                            </code>
-                        );
-                    },
-                }}
-            />
-            <button onClick={buttonHandler} className="markDownButton">
-                送出文章
-            </button>
-        </form>
+        <div>
+            <div onClick={() => setMessage()}>
+                <Message message={message} />
+            </div>
+            <form className="markDownContainer">
+                {/* 標題 */}
+                <label htmlFor="markDownTitle" className="markDownTitle">
+                    標題
+                </label>
+                <input
+                    id="markDownTitle"
+                    type="text"
+                    onChange={inputMarkDownTitel}
+                    value={markDownTitel}
+                    className="markDownTitelInput"
+                />
+                {/* 分類 */}
+                <label htmlFor="markDownClass" className="markDownClass">
+                    分類
+                </label>
+
+                <select
+                    id="markDownClass"
+                    onChange={inputMarkDownClass}
+                    value={markDownClass}
+                    className="markDownClassInput"
+                >
+                    <option value="" disabled defaultValue>
+                        請選擇分類
+                    </option>
+
+                    {topics.map((data, index) => {
+                        return <option key={index}>{data.name}</option>;
+                    })}
+                </select>
+
+                {/* 寫入文章 */}
+                <textarea
+                    className="textarea"
+                    onChange={markDonwHandler}
+                    value={markDown}
+                />
+                <ReactMarkdown
+                    className="output"
+                    children={markDown}
+                    remarkPlugins={[remarkGfm]}
+                    rehypePlugins={[rehypeRaw]}
+                    components={{
+                        code({ node, inline, className, children, ...props }) {
+                            const match = /language-(\w+)/.exec(
+                                className || ""
+                            );
+                            return !inline && match ? (
+                                <SyntaxHighlighter
+                                    children={String(children).replace(
+                                        /\n$/,
+                                        ""
+                                    )}
+                                    style={tomorrowNightBlue}
+                                    language={match[1]}
+                                    PreTag="div"
+                                    {...props}
+                                />
+                            ) : (
+                                <code className={className} {...props}>
+                                    {children}
+                                </code>
+                            );
+                        },
+                    }}
+                />
+
+                {/* 上傳圖片 */}
+                <img src={previeUrl} className="markDownFile" />
+                <div className="markDownFileButton">
+                    <button htmlFor="markDownFile" onClick={markDownFileHandle}>
+                        上傳圖片
+                    </button>
+                </div>
+
+                <input
+                    id="markDownFile"
+                    ref={fileInput}
+                    type="file"
+                    className="markDownFileInput"
+                    onChange={(e) => {
+                        setMarkDownFile(e.target.files[0]);
+                    }}
+                />
+
+                <button onClick={buttonHandler} className="markDownButton">
+                    送出文章
+                </button>
+            </form>
+        </div>
     );
 };
 

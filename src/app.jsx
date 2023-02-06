@@ -7,7 +7,7 @@ import HomePage from "./pages/HomePage";
 import Write from "./pages/Write";
 import Article from "./pages/Article";
 
-import SingIn from "./components/user/SingIn";
+import SignIn from "./components/user/SignIn";
 
 import "./style/style.css";
 
@@ -18,9 +18,8 @@ const App = () => {
                 <Route path="/" element={<Layout />}>
                     <Route index element={<HomePage />}></Route>
                     <Route path="write" element={<Write />}></Route>
-                    <Route path="singIn" element={<SingIn />}></Route>
+                    <Route path="signIn" element={<SignIn />}></Route>
                     <Route path="article/:id" element={<Article />}></Route>
-                    {/* <Route path="*" element={<Page404 />}></Route> */}
                 </Route>
             </Routes>
         </BrowserRouter>

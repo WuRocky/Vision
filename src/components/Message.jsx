@@ -12,8 +12,6 @@ const Message = ({ message }) => {
                 </div>
             )}
         </div>
-
-        // <div>{message && <div className="singInMessage">{message}</div>}</div>
     );
 };
 

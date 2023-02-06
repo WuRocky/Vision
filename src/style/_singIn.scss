@@ -1,10 +1,10 @@
-.singInMain {
+.signInMain {
     min-height: var(--height);
     background-color: var(--second-color);
     display: flex;
     justify-content: center;
     align-items: center;
-    .singInContainer {
+    .signInContainer {
         width: 350px;
         height: 500px;
         overflow: hidden;
@@ -70,7 +70,7 @@
         color: #573b8a;
         transform: scale(0.6);
     }
-    .singInMessage {
+    .signInMessage {
         display: flex;
         justify-content: center;
         align-items: center;

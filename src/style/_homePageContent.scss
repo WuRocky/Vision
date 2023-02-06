@@ -1,8 +1,72 @@
-.homePageContent {
-    font-size: 1.25rem;
+.homepage-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 25px 0;
-    cursor: pointer;
+    flex-direction: column;
+    // padding: 0 25px;
+    .homepage-content-item {
+        font-size: 1.25rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 25px 0;
+        height: 250px;
+        width: 70%;
+        border-bottom: 1px solid #c2c2c2;
+
+        .homepage-content-item-1 {
+            display: flex;
+            // justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px;
+            div {
+                display: flex;
+                margin: 0 25px;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+        .homepage-content-item-2 {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: auto auto;
+            grid-gap: 15px;
+            cursor: pointer;
+            grid-template-areas:
+                " item-2-title item-2-title item-2-title item-2-title item-2-title item-2-img"
+                " item-2-article item-2-article item-2-article item-2-article item-2-article item-2-img ";
+            .homepage-content-item-2-title {
+                grid-area: item-2-title;
+            }
+            .homepage-content-item-2-article {
+                grid-area: item-2-article;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                overflow: hidden;
+                font-size: 16px;
+                font-weight: 300;
+            }
+            .homepage-content-item-2-img {
+                grid-area: item-2-img;
+                width: 100px;
+                height: 100px;
+                object-fit: fill;
+            }
+        }
+        .homepage-content-item-3 {
+            display: flex;
+            width: 100%;
+            // justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            div {
+                margin: 0 25px;
+            }
+        }
+    }
 }

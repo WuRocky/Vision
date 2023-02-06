@@ -1,32 +1,26 @@
-import React, { useState, useEffect } from "react";
-import HomePageContent from "../components/HomePageContent";
+import React from "react";
+import HomePageContent from "../components/home/HomePageContent";
 
-import { db } from "../lib/firebase/initialize";
-import { collection, getDocs } from "firebase/firestore";
-const AppContext = React.createContext();
-
+import Topics from "../components/home/Topics";
+import Authors from "../components/home/Authors";
+import Featured from "../components/home/Featured";
 const HomePage = () => {
-    const [firebaseData, setFirebaseData] = useState([]);
-    const [authToken, setAuthToken] = useState(null);
-    useEffect(() => {
-        const getData = async () => {
-            const querySnapshot = await getDocs(collection(db, "article"));
-            const data = querySnapshot.docs.map((doc) => doc.data());
-
-            setFirebaseData(data);
-        };
-        getData();
-    }, []);
-
     return (
         <div className="homepage">
-            <AppContext.Provider
-                value={{ firebaseData, authToken, setAuthToken }}
-            >
+            <div className="homepage-grid-item-1">
+                <Featured />
+            </div>
+            <div className="homepage-grid-item-2">
                 <HomePageContent />
-            </AppContext.Provider>
+            </div>
+            <div className="homepage-grid-item-3">
+                <Topics />
+            </div>
+            <div className="homepage-grid-item-4">
+                <Authors />
+            </div>
         </div>
     );
 };
-export { AppContext };
+
 export default HomePage;

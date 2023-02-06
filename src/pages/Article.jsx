@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
+// import userPhoto from "../../img/user.png";
+import userPhoto from "../img/user.png";
 // markdown
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -8,30 +9,41 @@ import { tomorrowNightBlue } from "react-syntax-highlighter/dist/esm/styles/hljs
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 
-import { db } from "../lib/firebase/initialize";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import good from "../img/good.png";
+import messages from "../img/messages.png";
+
+import { getArticle } from "../hooks/useFireStore";
 
 const Article = () => {
     const { id } = useParams();
-
-    const [writeData, setWriteData] = useState([]);
+    const [writeData, setWriteData] = useState({
+        author: {},
+        // time: {},
+    });
 
     useEffect(() => {
-        const getData = async () => {
-            const q = query(collection(db, "article"), where("id", "==", id));
-            const querySnapshot = await getDocs(q);
-            if (querySnapshot.docs.length > 0) {
-                setWriteData(querySnapshot.docs[0].data());
-            }
-        };
-        getData();
+        getArticle(id, setWriteData);
     }, []);
+
     return (
         <div className="article">
-            <div className="articleTitle">
+            <div className="article-author">
+                <div>
+                    {writeData.author.photoURL ? (
+                        <img src="writeData.author.photoURL" />
+                    ) : (
+                        <img src={userPhoto} />
+                    )}
+                </div>
+                <div>{writeData.topic}</div>
+                <div>{writeData.author.displayName || "匿名"}</div>
+                {/* <p>{result2}</p> */}
+                <p>{writeData.time?.toDate().toLocaleDateString("zh-TW")}</p>
+            </div>
+            <div className="article-title">
                 <h1>{writeData.title}</h1>
             </div>
-            <div className="articleMarkdown">
+            <div className="article-markdown">
                 <ReactMarkdown
                     children={writeData.content}
                     remarkPlugins={[remarkGfm]}
@@ -60,6 +72,14 @@ const Article = () => {
                         },
                     }}
                 />
+            </div>
+            <div className="article-feel">
+                <div>
+                    <img src={good} />
+                </div>
+                <div>
+                    <img src={messages} />
+                </div>
             </div>
         </div>
     );

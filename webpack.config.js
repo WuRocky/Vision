@@ -5,19 +5,25 @@ module.exports = {
     output: {
         filename: "bundle.js",
         path: path.resolve(__dirname, "dist"),
+        publicPath: "/", // required for font loading on historyApiFallback
     },
     resolve: {
         extensions: [".jsx", ".js"],
     },
+
     devServer: {
         compress: true,
         port: 3000,
         allowedHosts: ["all"],
         historyApiFallback: true,
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+        },
         static: {
             directory: path.join(__dirname, "dist"),
         },
     },
+
     module: {
         rules: [
             {
@@ -36,8 +42,8 @@ module.exports = {
                         loader: "file-loader",
                         options: {
                             name: "[name].[ext]",
-                            publicPath: "./img",
-                            outputPath: "./img",
+                            publicPath: "/img",
+                            outputPath: "/img",
                         },
                     },
                     {

@@ -1,36 +1,76 @@
 import { Outlet, Link } from "react-router-dom";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "./components/Footer";
 import Notes from "./img/notes2.png";
-const Layout = () => {
-    return (
-        <div>
-            <div className="navContainer">
-                <div>
-                    <Link to="/">
-                        <img src={Notes} alt="Vision" />
-                        <h1>Vision</h1>
-                    </Link>
-                    <nav>
-                        <ul>
-                            <li>
-                                <Link to="/">Member</Link>
-                            </li>
-                            <li>
-                                <Link to="/write">Write</Link>
-                            </li>
-                            <li>
-                                <Link to="/singIn">Sign in</Link>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
 
-            <Outlet />
-            <Footer />
-        </div>
+import { getData } from "./hooks/useFireStore";
+
+import { getUser, userSignOut } from "./hooks/useFireAuthentication";
+import { getTopicsData } from "./hooks/useFireStore";
+
+const AppContext = React.createContext();
+
+const Layout = () => {
+    const [firebaseData, setFirebaseData] = useState([]);
+
+    const [user, setUser] = useState(null);
+
+    const [topics, setTopics] = useState([]);
+
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        getData().then((data) => {
+            setFirebaseData(data);
+            setIsLoading(false);
+        });
+        getUser(setUser);
+        getTopicsData().then((data) => {
+            setTopics(data);
+            setIsLoading(false);
+        });
+    }, []);
+    if (isLoading) return <div>Loading...</div>;
+
+    return (
+        <AppContext.Provider value={{ firebaseData, user, setUser, topics }}>
+            <div>
+                <div className="navContainer">
+                    <div>
+                        <Link to="/">
+                            <img src={Notes} alt="Vision" />
+                            <p>Vision</p>
+                        </Link>
+                        <nav>
+                            <ul>
+                                {user ? (
+                                    <>
+                                        <li>
+                                            <Link to="/">Member</Link>
+                                        </li>
+                                        <li>
+                                            <Link to="/write">Write</Link>
+                                        </li>
+                                        <li>
+                                            <Link onClick={() => userSignOut()}>
+                                                Sign out
+                                            </Link>
+                                        </li>
+                                    </>
+                                ) : (
+                                    <li>
+                                        <Link to="/signIn">註冊/登入</Link>
+                                    </li>
+                                )}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <Outlet />
+                <Footer />
+            </div>
+        </AppContext.Provider>
     );
 };
-
+export { AppContext };
 export default Layout;
