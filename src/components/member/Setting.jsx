@@ -4,11 +4,59 @@ import {
     updataUserEmail,
     updataUserName,
     updataUserPhoto,
+    updataUserPassword,
 } from "../../hooks/useFireAuthentication";
 
 import { addUserPhoto } from "../../hooks/useFireStorage";
 
 import pencil from "../../img/pencil.png";
+
+// function Email({ setMessage }) {
+//     const { user } = useContext(AppContext);
+//     const email = user.email;
+//     const [editingEmail, setEditingEmail] = useState(false);
+//     const [emailValue, setEmailValue] = useState("");
+
+//     const emailValueHandler = (e) => {
+//         setEmailValue(e.target.value);
+//     };
+//     const emailEditHandler = (e) => {
+//         e.preventDefault();
+//         setEditingEmail(true);
+//     };
+//     const emailSaveHandler = (e) => {
+//         e.preventDefault();
+//         updataUserEmail(emailValue, setMessage);
+//         setEditingEmail(false);
+//     };
+
+//     const emailCancelHandler = (e) => {
+//         e.preventDefault();
+//         setEditingEmail(false);
+//     };
+//     return (
+//         <div className="setting-other-email">
+//             <div>會員信箱</div>
+//             {editingEmail ? (
+//                 <input
+//                     type="text"
+//                     onChange={emailValueHandler}
+//                     placeholder="輸入新的信箱"
+//                 />
+//             ) : (
+//                 <div>{email}</div>
+//             )}
+//             {editingEmail ? (
+//                 <div className="setting-other-email-change">
+//                     <button onClick={emailSaveHandler}>儲存</button>
+//                     <button onClick={emailCancelHandler}>取消</button>
+//                 </div>
+//             ) : (
+//                 <button onClick={emailEditHandler}>修改</button>
+//             )}
+//         </div>
+//     );
+// }
 
 function Name({ setMessage }) {
     const { user } = useContext(AppContext);
@@ -29,93 +77,105 @@ function Name({ setMessage }) {
         updataUserName(nameValue, setMessage);
         seteditingName(false);
     };
+
+    const nameCancelHandler = (e) => {
+        e.preventDefault();
+        seteditingName(false);
+    };
+
     return (
         <div className="setting-other-name">
-            <div>會員名稱</div>
+            <div className="setting-other-name-title">會員名稱</div>
             {editingName ? (
-                <input
-                    type="text"
-                    onChange={nameValueHandler}
-                    placeholder="輸入新的姓名"
-                />
+                <div className="setting-other-name-change-input">
+                    <input
+                        type="text"
+                        onChange={nameValueHandler}
+                        placeholder="輸入新的姓名"
+                    />
+                </div>
             ) : (
-                <div>{name}</div>
+                <div className="setting-other-name-input">{name}</div>
             )}
             {editingName ? (
-                <button onClick={nameSaveHandler}>儲存</button>
+                <div className="setting-other-name-change-button">
+                    <button onClick={nameSaveHandler}>儲存</button>
+                    <button onClick={nameCancelHandler}>取消</button>
+                </div>
             ) : (
-                <button onClick={nameEditHandler}>修改</button>
+                <button
+                    className="setting-other-name-button"
+                    onClick={nameEditHandler}
+                >
+                    修改
+                </button>
             )}
         </div>
     );
 }
 
-function Email({ setMessage }) {
+function Password({ setMessage }) {
     const { user } = useContext(AppContext);
     const email = user.email;
-    const [editingEmail, setEditingEmail] = useState(false);
-    const [emailValue, setEmailValue] = useState("");
-
-    const emailValueHandler = (e) => {
-        setEmailValue(e.target.value);
-    };
-    const emailEditHandler = (e) => {
-        e.preventDefault();
-        setEditingEmail(true);
-    };
-    const emailSaveHandler = (e) => {
-        e.preventDefault();
-
-        updataUserEmail(emailValue, setMessage);
-        setEditingEmail(false);
-    };
-    return (
-        <div className="setting-other-email">
-            <div>會員信箱</div>
-            {editingEmail ? (
-                <input
-                    type="text"
-                    onChange={emailValueHandler}
-                    placeholder="輸入新的信箱"
-                />
-            ) : (
-                <div>{email}</div>
-            )}
-            {editingEmail ? (
-                <button onClick={emailSaveHandler}>儲存</button>
-            ) : (
-                <button onClick={emailEditHandler}>修改</button>
-            )}
-        </div>
-    );
-}
-
-function Password() {
-    const { user } = useContext(AppContext);
-    // const password = user.password;
-
+    // console.log(email);
     const [editingPassword, setEditingPassword] = useState(false);
+
+    const [oldPasswird, setOldePasswird] = useState("");
+    const [newPasswird, setNewPasswird] = useState("");
+
+    const oldPasswirdHandler = (e) => {
+        setOldePasswird(e.target.value);
+    };
+
+    const newPasswirdHandler = (e) => {
+        setNewPasswird(e.target.value);
+    };
+
     const passwordEditHandler = (e) => {
         e.preventDefault();
         setEditingPassword(true);
     };
     const PasswordSaveHandler = (e) => {
         e.preventDefault();
+        updataUserPassword(email, oldPasswird, newPasswird, setMessage);
         setEditingPassword(false);
     };
 
+    const PasswordCancelHandler = (e) => {
+        e.preventDefault();
+        setEditingPassword(false);
+    };
     return (
         <div className="setting-other-password">
-            <div>會員密碼</div>
+            <div className="setting-other-password-title">會員密碼</div>
             {editingPassword ? (
-                <input type="text" placeholder="輸入新的信箱" />
+                <div className="setting-other-password-change-input">
+                    <input
+                        onChange={oldPasswirdHandler}
+                        type="text"
+                        placeholder="輸入目前的密碼"
+                    />
+                    <input
+                        onChange={newPasswirdHandler}
+                        type="text"
+                        placeholder="輸入新的密碼"
+                    />
+                </div>
             ) : (
-                <div>*******</div>
+                <div className="setting-other-password-input">*******</div>
             )}
             {editingPassword ? (
-                <button onClick={PasswordSaveHandler}>儲存</button>
+                <div className="setting-other-password-change-button">
+                    <button onClick={PasswordSaveHandler}>儲存</button>
+                    <button onClick={PasswordCancelHandler}>取消</button>
+                </div>
             ) : (
-                <button onClick={passwordEditHandler}>修改</button>
+                <button
+                    className="setting-other-password-button"
+                    onClick={passwordEditHandler}
+                >
+                    修改
+                </button>
             )}
         </div>
     );
@@ -124,6 +184,10 @@ function Password() {
 function Image({ setMessage }) {
     const { user } = useContext(AppContext);
     const [file, seFile] = useState(null);
+    const previewUrl = file
+        ? URL.createObjectURL(file)
+        : user.photoURL ||
+          "https://react.semantic-ui.com/images/wireframe/image.png";
     const imageEditHandler = (e) => {
         e.preventDefault();
         fileInput.current.click();
@@ -136,9 +200,7 @@ function Image({ setMessage }) {
         const fileType = file.type;
         addUserPhoto(uid, file, fileType, setMessage);
     };
-    const previeUrl = file
-        ? URL.createObjectURL(file)
-        : "https://react.semantic-ui.com/images/wireframe/image.png";
+
     const fileInput = useRef(null);
     return (
         <div className="setting-img-content">
@@ -151,7 +213,7 @@ function Image({ setMessage }) {
                 }}
             />
 
-            <img className="userPhoto" src={user.photoURL || previeUrl} />
+            <img className="userPhoto" src={previewUrl} />
 
             <button
                 htmlFor="file"
@@ -175,8 +237,8 @@ function Setting({ setMessage }) {
             </div>
             <div className="setting-other">
                 <Name setMessage={setMessage} />
-                <Email setMessage={setMessage} />
-                <Password />
+                {/* <Email setMessage={setMessage} /> */}
+                <Password setMessage={setMessage} />
             </div>
         </div>
     );

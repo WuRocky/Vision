@@ -138,6 +138,9 @@ a:active {
   align-items: center;
   flex-direction: column;
 }
+.homepage-content .borderTop {
+  border-top: 1px solid #c2c2c2;
+}
 .homepage-content .homepage-content-item {
   font-size: 1.25rem;
   display: flex;
@@ -147,7 +150,6 @@ a:active {
   margin: 25px 0;
   height: 250px;
   width: 70%;
-  border-bottom: 1px solid #c2c2c2;
 }
 .homepage-content .homepage-content-item .homepage-content-item-1 {
   display: flex;
@@ -535,98 +537,81 @@ a:active {
 .member {
   min-height: var(--height);
   background-color: var(--second-color);
+}
+.member .member-item {
   display: flex;
   justify-content: center;
 }
-.member .member-container {
+.member .member-item .member-container {
   display: grid;
-  grid-template-columns: minmax(auto, 100px) minmax(auto, 1100px);
+  grid-template-columns: minmax(auto, 1200px);
   width: 100%;
   max-width: 1200px;
   grid-template-rows: 50px auto auto;
-  grid-template-areas: "menu title" "menu content";
+  grid-template-areas: "title" "content";
 }
-.member .member-container .member-title {
+.member .member-item .member-container .member-title {
   display: flex;
   justify-content: center;
   align-items: center;
   grid-area: title;
   font-size: 1.25rem;
 }
-.member .member-container .member-content {
+.member .member-item .member-container .member-content {
   display: flex;
   align-items: center;
   flex-direction: column;
   grid-area: content;
 }
-
-.menu {
+.member .member-item .member-container .member-content .member-content-change-components {
   display: flex;
   align-items: center;
-  flex-direction: column;
-  grid-area: menu;
+  justify-content: center;
+  border-bottom: 1px solid #c2c2c2;
 }
-.menu .menu-item {
-  margin: 10px 0;
-  color: rgba(0, 0, 0, 0.5);
-  font-weight: 300;
-}
-.menu .menu-item2 {
-  margin: 10px 0;
-  color: rgb(0, 0, 0);
-  font-weight: 300;
+.member .member-item .member-container .member-content .member-content-change-components div {
+  font-size: 1.3rem;
+  margin: 20px;
+  cursor: pointer;
 }
 
 .track {
-  min-height: var(--height);
   background-color: var(--second-color);
   display: flex;
   justify-content: center;
 }
 .track .track-container {
   display: grid;
-  grid-template-columns: minmax(auto, 100px) minmax(auto, 1100px);
-  width: 100%;
+  grid-template-columns: minmax(auto, 1200px);
+  width: 50%;
   max-width: 1200px;
-  grid-template-rows: 50px auto auto;
-  grid-template-areas: "menu title" "menu content";
+  grid-template-rows: auto auto;
 }
-.track .track-container .track-title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  grid-area: title;
-  font-size: 1.25rem;
+.track .track-container .borderTop {
+  border-top: 1px solid #c2c2c2;
 }
-.track .track-container .track-content {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  grid-area: content;
-}
-.track .track-container .track-content .track-content-item {
+.track .track-container .track-content-item {
   font-size: 1.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   height: 250px;
-  width: 70%;
-  border-bottom: 1px solid #c2c2c2;
+  width: 100%;
 }
-.track .track-container .track-content .track-content-item .track-content-item-1 {
+.track .track-container .track-content-item .track-content-item-1 {
   display: flex;
   align-items: center;
   width: 100%;
   margin: 10px;
 }
-.track .track-container .track-content .track-content-item .track-content-item-1 div {
+.track .track-container .track-content-item .track-content-item-1 div {
   display: flex;
   margin: 0 25px;
   justify-content: center;
   align-items: center;
 }
-.track .track-container .track-content .track-content-item .track-content-item-2 {
+.track .track-container .track-content-item .track-content-item-2 {
   display: grid;
   align-items: center;
   grid-template-columns: repeat(6, 1fr);
@@ -636,10 +621,10 @@ a:active {
   cursor: pointer;
   grid-template-areas: " item-2-title item-2-title item-2-title item-2-title item-2-title item-2-img" " item-2-article item-2-article item-2-article item-2-article item-2-article item-2-img ";
 }
-.track .track-container .track-content .track-content-item .track-content-item-2 .track-content-item-2-title {
+.track .track-container .track-content-item .track-content-item-2 .track-content-item-2-title {
   grid-area: item-2-title;
 }
-.track .track-container .track-content .track-content-item .track-content-item-2 .track-content-item-2-article {
+.track .track-container .track-content-item .track-content-item-2 .track-content-item-2-article {
   grid-area: item-2-article;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -648,79 +633,66 @@ a:active {
   font-size: 16px;
   font-weight: 300;
 }
-.track .track-container .track-content .track-content-item .track-content-item-2 .track-content-item-2-img {
+.track .track-container .track-content-item .track-content-item-2 .track-content-item-2-img {
   grid-area: item-2-img;
   width: 100px;
   height: 100px;
   -o-object-fit: fill;
      object-fit: fill;
 }
-.track .track-container .track-content .track-content-item .track-content-item-3 {
+.track .track-container .track-content-item .track-content-item-3 {
   display: flex;
   width: 100%;
   align-items: center;
   margin-top: 20px;
 }
-.track .track-container .track-content .track-content-item .track-content-item-3 .track-content-item-3-like {
+.track .track-container .track-content-item .track-content-item-3 .track-content-item-3-like {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 25px;
 }
-.track .track-container .track-content .track-content-item .track-content-item-3 div {
+.track .track-container .track-content-item .track-content-item-3 div {
   margin: 0 25px;
 }
 
 .post {
-  min-height: var(--height);
   background-color: var(--second-color);
   display: flex;
   justify-content: center;
 }
 .post .post-container {
   display: grid;
-  grid-template-columns: minmax(auto, 100px) minmax(auto, 1100px);
-  width: 100%;
+  grid-template-columns: minmax(auto, 1200px);
+  width: 50%;
   max-width: 1200px;
-  grid-template-rows: 50px auto auto;
-  grid-template-areas: "menu title" "menu content";
+  grid-template-rows: auto auto;
 }
-.post .post-container .post-title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  grid-area: title;
-  font-size: 1.25rem;
+.post .post-container .borderTop {
+  border-top: 1px solid #c2c2c2;
 }
-.post .post-container .post-content {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  grid-area: content;
-}
-.post .post-container .post-content .post-content-item {
+.post .post-container .post-content-item {
   font-size: 1.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   height: 250px;
-  width: 70%;
-  border-bottom: 1px solid #c2c2c2;
+  width: 100%;
 }
-.post .post-container .post-content .post-content-item .post-content-item-1 {
+.post .post-container .post-content-item .post-content-item-1 {
   display: flex;
   align-items: center;
   width: 100%;
   margin: 10px;
 }
-.post .post-container .post-content .post-content-item .post-content-item-1 div {
+.post .post-container .post-content-item .post-content-item-1 div {
   display: flex;
   margin: 0 25px;
   justify-content: center;
   align-items: center;
 }
-.post .post-container .post-content .post-content-item .post-content-item-2 {
+.post .post-container .post-content-item .post-content-item-2 {
   display: grid;
   align-items: center;
   grid-template-columns: repeat(6, 1fr);
@@ -730,10 +702,10 @@ a:active {
   cursor: pointer;
   grid-template-areas: " item-2-title item-2-title item-2-title item-2-title item-2-title item-2-img" " item-2-article item-2-article item-2-article item-2-article item-2-article item-2-img ";
 }
-.post .post-container .post-content .post-content-item .post-content-item-2 .post-content-item-2-title {
+.post .post-container .post-content-item .post-content-item-2 .post-content-item-2-title {
   grid-area: item-2-title;
 }
-.post .post-container .post-content .post-content-item .post-content-item-2 .post-content-item-2-article {
+.post .post-container .post-content-item .post-content-item-2 .post-content-item-2-article {
   grid-area: item-2-article;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -742,26 +714,26 @@ a:active {
   font-size: 16px;
   font-weight: 300;
 }
-.post .post-container .post-content .post-content-item .post-content-item-2 .post-content-item-2-img {
+.post .post-container .post-content-item .post-content-item-2 .post-content-item-2-img {
   grid-area: item-2-img;
   width: 100px;
   height: 100px;
   -o-object-fit: fill;
      object-fit: fill;
 }
-.post .post-container .post-content .post-content-item .post-content-item-3 {
+.post .post-container .post-content-item .post-content-item-3 {
   display: flex;
   width: 100%;
   align-items: center;
   margin-top: 20px;
 }
-.post .post-container .post-content .post-content-item .post-content-item-3 .post-content-item-3-like {
+.post .post-container .post-content-item .post-content-item-3 .post-content-item-3-like {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 25px;
 }
-.post .post-container .post-content .post-content-item .post-content-item-3 div {
+.post .post-container .post-content-item .post-content-item-3 div {
   margin: 0 25px;
 }
 
@@ -770,7 +742,7 @@ a:active {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  width: 80%;
+  width: 100%;
   height: 30vh;
 }
 .setting .setting-img {
@@ -784,6 +756,7 @@ a:active {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 20px 0;
   position: relative;
 }
 .setting .setting-img .setting-img-content input {
@@ -820,7 +793,7 @@ a:active {
   border-style: none;
 }
 .setting .setting-other {
-  flex-grow: 3;
+  flex-grow: 2;
   flex-basis: 0;
   display: flex;
   justify-content: center;
@@ -829,33 +802,100 @@ a:active {
 .setting .setting-other .setting-other-email,
 .setting .setting-other .setting-other-name,
 .setting .setting-other .setting-other-password {
-  margin: 5px 0;
+  margin: 10px 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-}
-.setting .setting-other .setting-other-email div,
-.setting .setting-other .setting-other-name div,
-.setting .setting-other .setting-other-password div {
-  margin: 10px;
-}
-.setting .setting-other .setting-other-email input,
-.setting .setting-other .setting-other-name input,
-.setting .setting-other .setting-other-password input {
+  justify-content: center;
   height: 25px;
-  width: 45%;
-  cursor: pointer;
 }
-.setting .setting-other .setting-other-email button,
-.setting .setting-other .setting-other-name button,
-.setting .setting-other .setting-other-password button {
-  margin: 5px;
+.setting .setting-other .setting-other-email .setting-other-name-title,
+.setting .setting-other .setting-other-email .setting-other-password-title,
+.setting .setting-other .setting-other-name .setting-other-name-title,
+.setting .setting-other .setting-other-name .setting-other-password-title,
+.setting .setting-other .setting-other-password .setting-other-name-title,
+.setting .setting-other .setting-other-password .setting-other-password-title {
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.setting .setting-other .setting-other-email .setting-other-name-input,
+.setting .setting-other .setting-other-email .setting-other-password-input,
+.setting .setting-other .setting-other-name .setting-other-name-input,
+.setting .setting-other .setting-other-name .setting-other-password-input,
+.setting .setting-other .setting-other-password .setting-other-name-input,
+.setting .setting-other .setting-other-password .setting-other-password-input {
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.setting .setting-other .setting-other-email .setting-other-name-button,
+.setting .setting-other .setting-other-email .setting-other-password-button,
+.setting .setting-other .setting-other-name .setting-other-name-button,
+.setting .setting-other .setting-other-name .setting-other-password-button,
+.setting .setting-other .setting-other-password .setting-other-name-button,
+.setting .setting-other .setting-other-password .setting-other-password-button {
   padding: 0.3rem 0.7rem;
   border-radius: 1rem;
   background-color: black;
   color: white;
   cursor: pointer;
   border-style: none;
+  width: 70px;
+}
+.setting .setting-other .setting-other-email .setting-other-name-change-button,
+.setting .setting-other .setting-other-email .setting-other-email-change-button,
+.setting .setting-other .setting-other-email .setting-other-password-change-button,
+.setting .setting-other .setting-other-name .setting-other-name-change-button,
+.setting .setting-other .setting-other-name .setting-other-email-change-button,
+.setting .setting-other .setting-other-name .setting-other-password-change-button,
+.setting .setting-other .setting-other-password .setting-other-name-change-button,
+.setting .setting-other .setting-other-password .setting-other-email-change-button,
+.setting .setting-other .setting-other-password .setting-other-password-change-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+}
+.setting .setting-other .setting-other-email .setting-other-name-change-button button,
+.setting .setting-other .setting-other-email .setting-other-email-change-button button,
+.setting .setting-other .setting-other-email .setting-other-password-change-button button,
+.setting .setting-other .setting-other-name .setting-other-name-change-button button,
+.setting .setting-other .setting-other-name .setting-other-email-change-button button,
+.setting .setting-other .setting-other-name .setting-other-password-change-button button,
+.setting .setting-other .setting-other-password .setting-other-name-change-button button,
+.setting .setting-other .setting-other-password .setting-other-email-change-button button,
+.setting .setting-other .setting-other-password .setting-other-password-change-button button {
+  margin: 0 2px;
+  padding: 0.3rem 0.7rem;
+  border-radius: 1rem;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  border-style: none;
+}
+.setting .setting-other .setting-other-email .setting-other-password-change-input,
+.setting .setting-other .setting-other-email .setting-other-name-change-input,
+.setting .setting-other .setting-other-name .setting-other-password-change-input,
+.setting .setting-other .setting-other-name .setting-other-name-change-input,
+.setting .setting-other .setting-other-password .setting-other-password-change-input,
+.setting .setting-other .setting-other-password .setting-other-name-change-input {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 25px;
+  width: 200px;
+}
+.setting .setting-other .setting-other-email .setting-other-password-change-input .input,
+.setting .setting-other .setting-other-email .setting-other-name-change-input .input,
+.setting .setting-other .setting-other-name .setting-other-password-change-input .input,
+.setting .setting-other .setting-other-name .setting-other-name-change-input .input,
+.setting .setting-other .setting-other-password .setting-other-password-change-input .input,
+.setting .setting-other .setting-other-password .setting-other-name-change-input .input {
+  margin: 0;
+  width: 200px;
+  cursor: pointer;
 }
 
 .footer {

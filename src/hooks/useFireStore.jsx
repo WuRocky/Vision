@@ -7,6 +7,7 @@ import {
     query,
     setDoc,
     WithFieldValue,
+    where,
     onSnapshot,
     Timestamp,
     updateDoc,
@@ -106,23 +107,6 @@ const addData = async (title, content, topic, setFindMessage) => {
     }
 };
 
-// const getData = async () => {
-//     try {
-//         const querySnapshot = await getDocs(collection(db, "article"));
-//         return querySnapshot.docs.map((doc) => {
-//             const id = doc.id;
-//             const data = {
-//                 ...doc.data(),
-//                 id,
-//             };
-
-//             return data;
-//         });
-//     } catch (e) {
-//         console.error("Error getting documents: ", e);
-//     }
-// };
-
 const getTopicsData = async () => {
     try {
         const querySnapshot = await getDocs(collection(db, "topics"));
@@ -156,10 +140,28 @@ const getData = (setFirebaseData) => {
             })
         );
     });
-
-    // console.log(unsub);
-    // return unsub;
 };
+
+// const getData = (setFirebaseData, currentTopics) => {
+//     const documents = query(
+//         collection(db, "article"),
+//         where("topic", "==", currentTopics)
+//     );
+
+//     onSnapshot(documents, (doc) => {
+//         setFirebaseData(
+//             doc.docs.map((doc) => {
+//                 const id = doc.id;
+//                 const data = {
+//                     ...doc.data(),
+//                     id,
+//                 };
+
+//                 return data;
+//             })
+//         );
+//     });
+// };
 
 export {
     addData,

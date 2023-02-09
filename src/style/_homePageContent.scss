@@ -4,6 +4,9 @@
     align-items: center;
     flex-direction: column;
     // padding: 0 25px;
+    .borderTop {
+        border-top: 1px solid #c2c2c2;
+    }
     .homepage-content-item {
         font-size: 1.25rem;
         display: flex;
@@ -13,7 +16,7 @@
         margin: 25px 0;
         height: 250px;
         width: 70%;
-        border-bottom: 1px solid #c2c2c2;
+        // border-bottom: 1px solid #c2c2c2;
 
         .homepage-content-item-1 {
             display: flex;

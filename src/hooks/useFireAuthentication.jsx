@@ -5,10 +5,12 @@ import {
     signInWithEmailAndPassword,
     onAuthStateChanged,
     sendPasswordResetEmail,
+    updatePassword,
     updateProfile,
     signOut,
     updateEmail,
     reauthenticateWithCredential,
+    EmailAuthProvider,
 } from "firebase/auth";
 
 const createUser = async (email, password, setMessage, setRegisterError) => {
@@ -115,6 +117,34 @@ const updataUserName = (name, setMessage) => {
         });
 };
 
+const updataUserPassword = (email, oldPassword, newPassword, setMessage) => {
+    const user = auth.currentUser;
+    const credential = EmailAuthProvider.credential(email, oldPassword);
+
+    reauthenticateWithCredential(user, credential)
+        .then(() => {
+            updatePassword(user, newPassword).then(() => {
+                setMessage("更新密碼成功");
+            });
+        })
+        .catch((error) => {
+            console.log(error);
+            setMessage("更新密碼失敗");
+        });
+};
+
+const monitorUser = (setUser) => {
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const uid = user.uid;
+            setUser(user);
+            // console.log(uid);
+        } else {
+            console.log("還沒登入");
+        }
+    });
+};
+
 export {
     createUser,
     signInUser,
@@ -123,4 +153,6 @@ export {
     updataUserEmail,
     updataUserName,
     updataUserPhoto,
+    updataUserPassword,
+    monitorUser,
 };

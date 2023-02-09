@@ -13,30 +13,45 @@
 .member {
     min-height: var(--height);
     background-color: var(--second-color);
-    display: flex;
-    justify-content: center;
-    .member-container {
-        display: grid;
-        grid-template-columns: minmax(auto, 100px) minmax(auto, 1100px);
-        width: 100%;
-        max-width: 1200px;
-        grid-template-rows: 50px auto auto;
-        grid-template-areas:
-            "menu title"
-            "menu content";
 
-        .member-title {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            grid-area: title;
-            font-size: 1.25rem;
-        }
-        .member-content {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            grid-area: content;
+    .member-item {
+        display: flex;
+        justify-content: center;
+
+        .member-container {
+            display: grid;
+            grid-template-columns: minmax(auto, 1200px);
+            width: 100%;
+            max-width: 1200px;
+            grid-template-rows: 50px auto auto;
+            grid-template-areas:
+                "title"
+                "content";
+
+            .member-title {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                grid-area: title;
+                font-size: 1.25rem;
+            }
+            .member-content {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                grid-area: content;
+                .member-content-change-components {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-bottom: 1px solid #c2c2c2;
+                    div {
+                        font-size: 1.3rem;
+                        margin: 20px;
+                        cursor: pointer;
+                    }
+                }
+            }
         }
     }
 }

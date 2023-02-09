@@ -11,7 +11,6 @@ import { getTopicsData } from "./hooks/useFireStore";
 const AppContext = React.createContext();
 
 const Layout = () => {
-    const location = useLocation();
     const [firebaseData, setFirebaseData] = useState([]);
 
     const [user, setUser] = useState(null);
@@ -19,6 +18,10 @@ const Layout = () => {
     const [topics, setTopics] = useState([]);
 
     const [isLoading, setIsLoading] = useState(true);
+    const logout = () => {
+        userSignOut();
+        window.location.reload();
+    };
 
     useEffect(() => {
         getData(setFirebaseData);
@@ -31,7 +34,9 @@ const Layout = () => {
     if (isLoading) return <div>Loading...</div>;
 
     return (
-        <AppContext.Provider value={{ firebaseData, user, setUser, topics }}>
+        <AppContext.Provider
+            value={{ firebaseData, setFirebaseData, user, setUser, topics }}
+        >
             <div>
                 <div className="navContainer">
                     <div>
@@ -50,7 +55,7 @@ const Layout = () => {
                                             <Link to="/member">Member</Link>
                                         </li>
                                         <li>
-                                            <Link onClick={() => userSignOut()}>
+                                            <Link onClick={logout}>
                                                 Sign out
                                             </Link>
                                         </li>
