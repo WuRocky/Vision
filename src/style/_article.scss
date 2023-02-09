@@ -4,36 +4,58 @@
     flex-direction: column;
     min-height: var(--height);
     background-color: var(--second-color);
-    .article-author {
+
+    .article-content {
         width: 50%;
-        // height: 40%;
-        display: flex;
-        // justify-content: center;
-        align-items: center;
-        div {
-            margin: 20px 20px;
+        .article-author {
+            display: flex;
+            align-items: center;
+            div {
+                margin: 20px 20px;
+            }
         }
-    }
-    .article-title {
-        font-size: 0.95rem;
-        font-weight: 600;
-        margin: 10px;
-    }
-    .article-markdown {
-        width: 50%;
-        margin: 1rem;
-    }
-    .article-feel {
-        display: flex;
-        align-items: center;
-        width: 80%;
-        div {
-            margin: 25px;
+        .article-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin: 10px;
         }
-        img {
-            width: 25px;
-            height: 25px;
-            cursor: pointer;
+        .article-markdown {
+            font-size: small;
+            margin: 1rem;
+        }
+        .article-feel {
+            display: flex;
+            align-items: center;
+            margin: 25px 15px;
+            .article-feel-like {
+                display: flex;
+                align-items: center;
+                // margin: 0 25px;
+                div {
+                    margin: 0 10px;
+                }
+            }
+            .article-feel-messages {
+                display: flex;
+                align-items: center;
+                margin: 0 25px;
+                div {
+                    margin: 0 10px;
+                }
+            }
+            .article-feel-tags {
+                display: flex;
+                align-items: center;
+                margin: 0 25px;
+                div {
+                    margin: 0 10px;
+                }
+            }
+            img {
+                width: 25px;
+                height: 25px;
+                cursor: pointer;
+            }
         }
     }
 }

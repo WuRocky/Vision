@@ -1,0 +1,86 @@
+.setting {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 80%;
+    height: 30vh;
+    // flex: 2 1;
+    .setting-img {
+        flex-grow: 3;
+        flex-basis: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .setting-img-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            input {
+                display: none;
+            }
+            .userPhoto {
+                width: 15vh;
+                height: 15vh;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+            .setting-img-button {
+                top: -50px;
+                right: 10px;
+                position: relative;
+                border-style: none;
+                background-color: #fff4eb;
+                cursor: pointer;
+                .setting-img-button-content {
+                    width: 80%;
+                    height: 100%;
+                    color: white;
+                    background-color: #fff4eb;
+                }
+            }
+            .setting-find {
+                margin: 5px;
+                padding: 0.3rem 0.7rem;
+                border-radius: 1rem;
+                background-color: black;
+                color: white;
+                cursor: pointer;
+                border-style: none;
+            }
+        }
+    }
+    .setting-other {
+        flex-grow: 3;
+        flex-basis: 0;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        .setting-other-email,
+        .setting-other-name,
+        .setting-other-password {
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            div {
+                margin: 10px;
+            }
+            input {
+                height: 25px;
+                width: 45%;
+                cursor: pointer;
+            }
+            button {
+                margin: 5px;
+                padding: 0.3rem 0.7rem;
+                border-radius: 1rem;
+                background-color: black;
+                color: white;
+                cursor: pointer;
+                border-style: none;
+            }
+        }
+    }
+}

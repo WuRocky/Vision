@@ -7,9 +7,11 @@ import {
     query,
     setDoc,
     WithFieldValue,
-    QueryConstraint,
+    onSnapshot,
     Timestamp,
     updateDoc,
+    arrayUnion,
+    arrayRemove,
 } from "firebase/firestore";
 
 import { db, auth } from "../lib/firebase/initialize";
@@ -19,6 +21,58 @@ const updateArticle = async (storeId, imageUrl) => {
         const washingtonRef = doc(db, "article", storeId);
         const imageUrlDate = {
             imageUrl: imageUrl,
+        };
+
+        await updateDoc(washingtonRef, imageUrlDate);
+    } catch (e) {
+        console.error("Error getting documents: ", e);
+    }
+};
+
+const addTrackUserId = async (id, uid) => {
+    try {
+        const washingtonRef = doc(db, "article", id);
+        const imageUrlDate = {
+            trackUserId: arrayUnion(uid),
+        };
+
+        await updateDoc(washingtonRef, imageUrlDate);
+    } catch (e) {
+        console.error("Error getting documents: ", e);
+    }
+};
+
+const reTrackUserId = async (id, uid) => {
+    try {
+        const washingtonRef = doc(db, "article", id);
+        const imageUrlDate = {
+            trackUserId: arrayRemove(uid),
+        };
+
+        await updateDoc(washingtonRef, imageUrlDate);
+    } catch (e) {
+        console.error("Error getting documents: ", e);
+    }
+};
+
+const addLikeUserId = async (id, uid) => {
+    try {
+        const washingtonRef = doc(db, "article", id);
+        const imageUrlDate = {
+            likeUserId: arrayUnion(uid),
+        };
+
+        await updateDoc(washingtonRef, imageUrlDate);
+    } catch (e) {
+        console.error("Error getting documents: ", e);
+    }
+};
+
+const reLikeUserId = async (id, uid) => {
+    try {
+        const washingtonRef = doc(db, "article", id);
+        const imageUrlDate = {
+            likeUserId: arrayRemove(uid),
         };
 
         await updateDoc(washingtonRef, imageUrlDate);
@@ -52,21 +106,22 @@ const addData = async (title, content, topic, setFindMessage) => {
     }
 };
 
-const getData = async () => {
-    try {
-        const querySnapshot = await getDocs(collection(db, "article"));
-        return querySnapshot.docs.map((doc) => {
-            const id = doc.id;
+// const getData = async () => {
+//     try {
+//         const querySnapshot = await getDocs(collection(db, "article"));
+//         return querySnapshot.docs.map((doc) => {
+//             const id = doc.id;
+//             const data = {
+//                 ...doc.data(),
+//                 id,
+//             };
 
-            return {
-                ...doc.data(),
-                id,
-            };
-        });
-    } catch (e) {
-        console.error("Error getting documents: ", e);
-    }
-};
+//             return data;
+//         });
+//     } catch (e) {
+//         console.error("Error getting documents: ", e);
+//     }
+// };
 
 const getTopicsData = async () => {
     try {
@@ -78,20 +133,42 @@ const getTopicsData = async () => {
     }
 };
 
-const getArticle = async (id, setWriteData) => {
-    try {
-        const docRef = doc(db, "article", id);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-            return setWriteData(docSnap.data());
-            // console.log("Document data:", docSnap.data());
-        } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-        }
-    } catch (e) {
-        console.error("Error getting documents: ", e);
-    }
+const getArticle = (id, setWriteData) => {
+    const docRef = doc(db, "article", id);
+    const unsub = onSnapshot(docRef, (doc) => {
+        setWriteData(doc.data());
+    });
+    return unsub;
 };
 
-export { addData, getData, getTopicsData, updateArticle, getArticle };
+const getData = (setFirebaseData) => {
+    const documents = collection(db, "article");
+    onSnapshot(documents, (doc) => {
+        setFirebaseData(
+            doc.docs.map((doc) => {
+                const id = doc.id;
+                const data = {
+                    ...doc.data(),
+                    id,
+                };
+
+                return data;
+            })
+        );
+    });
+
+    // console.log(unsub);
+    // return unsub;
+};
+
+export {
+    addData,
+    getData,
+    getTopicsData,
+    updateArticle,
+    getArticle,
+    addTrackUserId,
+    reTrackUserId,
+    addLikeUserId,
+    reLikeUserId,
+};

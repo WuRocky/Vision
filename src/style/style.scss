@@ -40,6 +40,13 @@ a:active {
 @import "./singIn";
 @import "./article";
 
-@import "./footer";
-
 @import "./markdown/write";
+
+@import "./member/member";
+@import "./member/menu";
+
+@import "./member/track";
+@import "./member/post";
+@import "./member/setting";
+
+@import "./footer";

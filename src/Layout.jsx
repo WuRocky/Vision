@@ -1,4 +1,4 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Footer from "./components/Footer";
 import Notes from "./img/notes2.png";
@@ -11,6 +11,7 @@ import { getTopicsData } from "./hooks/useFireStore";
 const AppContext = React.createContext();
 
 const Layout = () => {
+    const location = useLocation();
     const [firebaseData, setFirebaseData] = useState([]);
 
     const [user, setUser] = useState(null);
@@ -20,10 +21,7 @@ const Layout = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        getData().then((data) => {
-            setFirebaseData(data);
-            setIsLoading(false);
-        });
+        getData(setFirebaseData);
         getUser(setUser);
         getTopicsData().then((data) => {
             setTopics(data);
@@ -46,10 +44,10 @@ const Layout = () => {
                                 {user ? (
                                     <>
                                         <li>
-                                            <Link to="/">Member</Link>
+                                            <Link to="/write">Write</Link>
                                         </li>
                                         <li>
-                                            <Link to="/write">Write</Link>
+                                            <Link to="/member">Member</Link>
                                         </li>
                                         <li>
                                             <Link onClick={() => userSignOut()}>

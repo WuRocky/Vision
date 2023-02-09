@@ -196,6 +196,12 @@ a:active {
   align-items: center;
   margin-top: 20px;
 }
+.homepage-content .homepage-content-item .homepage-content-item-3 .homepage-content-item-3-like {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 25px;
+}
 .homepage-content .homepage-content-item .homepage-content-item-3 div {
   margin: 0 25px;
 }
@@ -343,43 +349,57 @@ a:active {
   min-height: var(--height);
   background-color: var(--second-color);
 }
-.article .article-author {
+.article .article-content {
   width: 50%;
+}
+.article .article-content .article-author {
   display: flex;
   align-items: center;
 }
-.article .article-author div {
+.article .article-content .article-author div {
   margin: 20px 20px;
 }
-.article .article-title {
+.article .article-content .article-title {
   font-size: 0.95rem;
   font-weight: 600;
   margin: 10px;
 }
-.article .article-markdown {
-  width: 50%;
+.article .article-content .article-markdown {
+  font-size: small;
   margin: 1rem;
 }
-.article .article-feel {
+.article .article-content .article-feel {
   display: flex;
   align-items: center;
-  width: 80%;
+  margin: 25px 15px;
 }
-.article .article-feel div {
-  margin: 25px;
+.article .article-content .article-feel .article-feel-like {
+  display: flex;
+  align-items: center;
 }
-.article .article-feel img {
+.article .article-content .article-feel .article-feel-like div {
+  margin: 0 10px;
+}
+.article .article-content .article-feel .article-feel-messages {
+  display: flex;
+  align-items: center;
+  margin: 0 25px;
+}
+.article .article-content .article-feel .article-feel-messages div {
+  margin: 0 10px;
+}
+.article .article-content .article-feel .article-feel-tags {
+  display: flex;
+  align-items: center;
+  margin: 0 25px;
+}
+.article .article-content .article-feel .article-feel-tags div {
+  margin: 0 10px;
+}
+.article .article-content .article-feel img {
   width: 25px;
   height: 25px;
   cursor: pointer;
-}
-
-.footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--first-color);
-  min-height: 10vh;
 }
 
 .write {
@@ -510,4 +530,338 @@ a:active {
   color: #fff;
   font-size: 1.15rem;
   grid-area: markDownButton;
+}
+
+.member {
+  min-height: var(--height);
+  background-color: var(--second-color);
+  display: flex;
+  justify-content: center;
+}
+.member .member-container {
+  display: grid;
+  grid-template-columns: minmax(auto, 100px) minmax(auto, 1100px);
+  width: 100%;
+  max-width: 1200px;
+  grid-template-rows: 50px auto auto;
+  grid-template-areas: "menu title" "menu content";
+}
+.member .member-container .member-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-area: title;
+  font-size: 1.25rem;
+}
+.member .member-container .member-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  grid-area: content;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  grid-area: menu;
+}
+.menu .menu-item {
+  margin: 10px 0;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 300;
+}
+.menu .menu-item2 {
+  margin: 10px 0;
+  color: rgb(0, 0, 0);
+  font-weight: 300;
+}
+
+.track {
+  min-height: var(--height);
+  background-color: var(--second-color);
+  display: flex;
+  justify-content: center;
+}
+.track .track-container {
+  display: grid;
+  grid-template-columns: minmax(auto, 100px) minmax(auto, 1100px);
+  width: 100%;
+  max-width: 1200px;
+  grid-template-rows: 50px auto auto;
+  grid-template-areas: "menu title" "menu content";
+}
+.track .track-container .track-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-area: title;
+  font-size: 1.25rem;
+}
+.track .track-container .track-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  grid-area: content;
+}
+.track .track-container .track-content .track-content-item {
+  font-size: 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 250px;
+  width: 70%;
+  border-bottom: 1px solid #c2c2c2;
+}
+.track .track-container .track-content .track-content-item .track-content-item-1 {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 10px;
+}
+.track .track-container .track-content .track-content-item .track-content-item-1 div {
+  display: flex;
+  margin: 0 25px;
+  justify-content: center;
+  align-items: center;
+}
+.track .track-container .track-content .track-content-item .track-content-item-2 {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(6, 1fr);
+  width: 100%;
+  grid-template-rows: auto auto;
+  grid-gap: 15px;
+  cursor: pointer;
+  grid-template-areas: " item-2-title item-2-title item-2-title item-2-title item-2-title item-2-img" " item-2-article item-2-article item-2-article item-2-article item-2-article item-2-img ";
+}
+.track .track-container .track-content .track-content-item .track-content-item-2 .track-content-item-2-title {
+  grid-area: item-2-title;
+}
+.track .track-container .track-content .track-content-item .track-content-item-2 .track-content-item-2-article {
+  grid-area: item-2-article;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  font-size: 16px;
+  font-weight: 300;
+}
+.track .track-container .track-content .track-content-item .track-content-item-2 .track-content-item-2-img {
+  grid-area: item-2-img;
+  width: 100px;
+  height: 100px;
+  -o-object-fit: fill;
+     object-fit: fill;
+}
+.track .track-container .track-content .track-content-item .track-content-item-3 {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-top: 20px;
+}
+.track .track-container .track-content .track-content-item .track-content-item-3 .track-content-item-3-like {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 25px;
+}
+.track .track-container .track-content .track-content-item .track-content-item-3 div {
+  margin: 0 25px;
+}
+
+.post {
+  min-height: var(--height);
+  background-color: var(--second-color);
+  display: flex;
+  justify-content: center;
+}
+.post .post-container {
+  display: grid;
+  grid-template-columns: minmax(auto, 100px) minmax(auto, 1100px);
+  width: 100%;
+  max-width: 1200px;
+  grid-template-rows: 50px auto auto;
+  grid-template-areas: "menu title" "menu content";
+}
+.post .post-container .post-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-area: title;
+  font-size: 1.25rem;
+}
+.post .post-container .post-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  grid-area: content;
+}
+.post .post-container .post-content .post-content-item {
+  font-size: 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 250px;
+  width: 70%;
+  border-bottom: 1px solid #c2c2c2;
+}
+.post .post-container .post-content .post-content-item .post-content-item-1 {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 10px;
+}
+.post .post-container .post-content .post-content-item .post-content-item-1 div {
+  display: flex;
+  margin: 0 25px;
+  justify-content: center;
+  align-items: center;
+}
+.post .post-container .post-content .post-content-item .post-content-item-2 {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(6, 1fr);
+  width: 100%;
+  grid-template-rows: auto auto;
+  grid-gap: 15px;
+  cursor: pointer;
+  grid-template-areas: " item-2-title item-2-title item-2-title item-2-title item-2-title item-2-img" " item-2-article item-2-article item-2-article item-2-article item-2-article item-2-img ";
+}
+.post .post-container .post-content .post-content-item .post-content-item-2 .post-content-item-2-title {
+  grid-area: item-2-title;
+}
+.post .post-container .post-content .post-content-item .post-content-item-2 .post-content-item-2-article {
+  grid-area: item-2-article;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  font-size: 16px;
+  font-weight: 300;
+}
+.post .post-container .post-content .post-content-item .post-content-item-2 .post-content-item-2-img {
+  grid-area: item-2-img;
+  width: 100px;
+  height: 100px;
+  -o-object-fit: fill;
+     object-fit: fill;
+}
+.post .post-container .post-content .post-content-item .post-content-item-3 {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-top: 20px;
+}
+.post .post-container .post-content .post-content-item .post-content-item-3 .post-content-item-3-like {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 25px;
+}
+.post .post-container .post-content .post-content-item .post-content-item-3 div {
+  margin: 0 25px;
+}
+
+.setting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 80%;
+  height: 30vh;
+}
+.setting .setting-img {
+  flex-grow: 3;
+  flex-basis: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.setting .setting-img .setting-img-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.setting .setting-img .setting-img-content input {
+  display: none;
+}
+.setting .setting-img .setting-img-content .userPhoto {
+  width: 15vh;
+  height: 15vh;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.setting .setting-img .setting-img-content .setting-img-button {
+  top: -50px;
+  right: 10px;
+  position: relative;
+  border-style: none;
+  background-color: #fff4eb;
+  cursor: pointer;
+}
+.setting .setting-img .setting-img-content .setting-img-button .setting-img-button-content {
+  width: 80%;
+  height: 100%;
+  color: white;
+  background-color: #fff4eb;
+}
+.setting .setting-img .setting-img-content .setting-find {
+  margin: 5px;
+  padding: 0.3rem 0.7rem;
+  border-radius: 1rem;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  border-style: none;
+}
+.setting .setting-other {
+  flex-grow: 3;
+  flex-basis: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.setting .setting-other .setting-other-email,
+.setting .setting-other .setting-other-name,
+.setting .setting-other .setting-other-password {
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.setting .setting-other .setting-other-email div,
+.setting .setting-other .setting-other-name div,
+.setting .setting-other .setting-other-password div {
+  margin: 10px;
+}
+.setting .setting-other .setting-other-email input,
+.setting .setting-other .setting-other-name input,
+.setting .setting-other .setting-other-password input {
+  height: 25px;
+  width: 45%;
+  cursor: pointer;
+}
+.setting .setting-other .setting-other-email button,
+.setting .setting-other .setting-other-name button,
+.setting .setting-other .setting-other-password button {
+  margin: 5px;
+  padding: 0.3rem 0.7rem;
+  border-radius: 1rem;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  border-style: none;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--first-color);
+  min-height: 10vh;
 }/*# sourceMappingURL=style.css.map */

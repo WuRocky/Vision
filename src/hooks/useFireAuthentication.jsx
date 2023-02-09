@@ -4,9 +4,11 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     onAuthStateChanged,
-    sendEmailVerification,
+    sendPasswordResetEmail,
     updateProfile,
     signOut,
+    updateEmail,
+    reauthenticateWithCredential,
 } from "firebase/auth";
 
 const createUser = async (email, password, setMessage, setRegisterError) => {
@@ -74,4 +76,51 @@ const userSignOut = () => {
     signOut(auth);
 };
 
-export { createUser, signInUser, getUser, userSignOut };
+const updataUserEmail = (email, setMessage) => {
+    updateEmail(auth.currentUser, email)
+        .then(() => {
+            setMessage("更新信箱成功");
+            console.log("更新信箱成功");
+        })
+        .catch((error) => {
+            // console.log(error);
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorMessage);
+            setMessage("更新信箱失敗 :" + errorMessage);
+        });
+};
+
+const updataUserPhoto = (photo, setMessage) => {
+    updateProfile(auth.currentUser, {
+        photoURL: photo,
+    })
+        .then(() => {
+            setMessage("更新照片成功");
+        })
+        .catch((error) => {
+            setMessage("更新照片失敗 :", error);
+        });
+};
+
+const updataUserName = (name, setMessage) => {
+    updateProfile(auth.currentUser, {
+        displayName: name,
+    })
+        .then(() => {
+            setMessage("更新姓名成功");
+        })
+        .catch((error) => {
+            setMessage("更新姓名失敗 :", error);
+        });
+};
+
+export {
+    createUser,
+    signInUser,
+    getUser,
+    userSignOut,
+    updataUserEmail,
+    updataUserName,
+    updataUserPhoto,
+};

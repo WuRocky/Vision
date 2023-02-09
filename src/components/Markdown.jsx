@@ -65,8 +65,10 @@ const Markdown = () => {
             setMessage
         );
         const fileId = success.id;
-        const fileType = markDownFile.type;
-        addStorage(fileId, markDownFile, fileType);
+        if (markDownFile) {
+            const fileType = markDownFile.type;
+            addStorage(fileId, markDownFile, fileType);
+        }
 
         setMarkdown("");
         setMarkDownTitle("");
