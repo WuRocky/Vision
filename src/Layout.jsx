@@ -1,12 +1,10 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Footer from "./components/Footer";
 import Notes from "./img/notes2.png";
-
-import { getData } from "./hooks/useFireStore";
+import { getData, getDataAfter, getTopicsData } from "./hooks/useFireStore";
 
 import { getUser, userSignOut } from "./hooks/useFireAuthentication";
-import { getTopicsData } from "./hooks/useFireStore";
 
 const AppContext = React.createContext();
 
@@ -22,15 +20,20 @@ const Layout = () => {
         userSignOut();
         window.location.reload();
     };
+    const location = useLocation();
+    const urlSearchParams = new URLSearchParams(location.search);
+    const currentTopics = urlSearchParams.get("topics");
+    const articleRef = useRef();
 
+    const [lastArticleRef, setLastArticleRef] = useState(articleRef.current);
     useEffect(() => {
-        getData(setFirebaseData);
+        getData(setFirebaseData, currentTopics, setLastArticleRef);
         getUser(setUser);
         getTopicsData().then((data) => {
             setTopics(data);
             setIsLoading(false);
         });
-    }, []);
+    }, [currentTopics]);
     if (isLoading) return <div>Loading...</div>;
 
     return (

@@ -13,6 +13,9 @@ import {
     updateDoc,
     arrayUnion,
     arrayRemove,
+    orderBy,
+    limit,
+    startAfter,
 } from "firebase/firestore";
 
 import { db, auth } from "../lib/firebase/initialize";
@@ -125,11 +128,85 @@ const getArticle = (id, setWriteData) => {
     return unsub;
 };
 
-const getData = (setFirebaseData) => {
-    const documents = collection(db, "article");
-    onSnapshot(documents, (doc) => {
-        setFirebaseData(
-            doc.docs.map((doc) => {
+const getData = (setArticleData, currentTopics, setLastArticleRef) => {
+    if (currentTopics) {
+        const documents = query(
+            collection(db, "article"),
+            where("topic", "==", currentTopics),
+            orderBy("time", "desc"),
+            limit(2)
+        );
+        onSnapshot(documents, (doc) => {
+            const data = doc.docs.map((doc) => {
+                const id = doc.id;
+                const data = {
+                    ...doc.data(),
+                    id,
+                };
+                return data;
+            });
+            setLastArticleRef(doc.docs[doc.docs.length - 1]);
+            setArticleData(data);
+        });
+    } else {
+        const documents = query(
+            collection(db, "article"),
+            orderBy("time", "desc"),
+            limit(2)
+        );
+        onSnapshot(documents, (doc) => {
+            const data = doc.docs.map((doc) => {
+                const id = doc.id;
+                const data = {
+                    ...doc.data(),
+                    id,
+                };
+                return data;
+            });
+            setLastArticleRef(doc.docs[doc.docs.length - 1]);
+            setArticleData(data);
+
+            // setLastArticleRef(doc.docs[doc.docs.length - 1]);
+        });
+    }
+};
+
+const getDataAfter = (
+    setArticleData,
+    currentTopics,
+    lastArticleRef,
+    articleData,
+    setLastArticleRef
+) => {
+    if (currentTopics) {
+        const documents = query(
+            collection(db, "article"),
+            where("topic", "==", currentTopics),
+            orderBy("time", "desc"),
+            startAfter(lastArticleRef),
+            limit(2)
+        );
+        onSnapshot(documents, (doc) => {
+            const data = doc.docs.map((doc) => {
+                const id = doc.id;
+                const data = {
+                    ...doc.data(),
+                    id,
+                };
+                return data;
+            });
+            setLastArticleRef(doc.docs[doc.docs.length - 1]);
+            setArticleData([...articleData, ...data]);
+        });
+    } else {
+        const documents = query(
+            collection(db, "article"),
+            orderBy("time", "desc"),
+            startAfter(lastArticleRef),
+            limit(2)
+        );
+        onSnapshot(documents, (doc) => {
+            const data = doc.docs.map((doc) => {
                 const id = doc.id;
                 const data = {
                     ...doc.data(),
@@ -137,31 +214,13 @@ const getData = (setFirebaseData) => {
                 };
 
                 return data;
-            })
-        );
-    });
+            });
+            setLastArticleRef(doc.docs[doc.docs.length - 1]);
+            // setArticleData([...articleData, ...data]);
+            setArticleData([...articleData, ...data]);
+        });
+    }
 };
-
-// const getData = (setFirebaseData, currentTopics) => {
-//     const documents = query(
-//         collection(db, "article"),
-//         where("topic", "==", currentTopics)
-//     );
-
-//     onSnapshot(documents, (doc) => {
-//         setFirebaseData(
-//             doc.docs.map((doc) => {
-//                 const id = doc.id;
-//                 const data = {
-//                     ...doc.data(),
-//                     id,
-//                 };
-
-//                 return data;
-//             })
-//         );
-//     });
-// };
 
 export {
     addData,
@@ -173,4 +232,5 @@ export {
     reTrackUserId,
     addLikeUserId,
     reLikeUserId,
+    getDataAfter,
 };

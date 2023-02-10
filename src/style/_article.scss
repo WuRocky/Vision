@@ -12,6 +12,12 @@
             align-items: center;
             div {
                 margin: 20px 20px;
+                .article-author-photo {
+                    width: 10vh;
+                    height: 10vh;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
             }
         }
         .article-title {

@@ -59,9 +59,15 @@ const Article = () => {
                 <div className="article-author">
                     <div>
                         {writeData.author.photoURL ? (
-                            <img src={writeData.author.photoURL} />
+                            <img
+                                className="article-author-photo"
+                                src={writeData.author.photoURL}
+                            />
                         ) : (
-                            <img src={userPhoto} />
+                            <img
+                                // className="article-author-photo"
+                                src={userPhoto}
+                            />
                         )}
                     </div>
                     <div>{writeData.topic}</div>

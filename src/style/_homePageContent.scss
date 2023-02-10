@@ -20,7 +20,7 @@
 
         .homepage-content-item-1 {
             display: flex;
-            // justify-content: center;
+
             align-items: center;
             width: 100%;
             margin: 10px;
@@ -29,6 +29,12 @@
                 margin: 0 25px;
                 justify-content: center;
                 align-items: center;
+                .homepage-content-item-1-userPhoto {
+                    width: 6vh;
+                    height: 6vh;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
             }
         }
         .homepage-content-item-2 {

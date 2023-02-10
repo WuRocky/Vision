@@ -13,6 +13,18 @@ const Topics = () => {
             <div className="topicsTitle">分類</div>
             <div className="topicsContainer">
                 <ul>
+                    <li>
+                        <Link
+                            style={
+                                currentTopics === null
+                                    ? { color: "black" }
+                                    : { color: "gray" }
+                            }
+                            to="/"
+                        >
+                            全部
+                        </Link>
+                    </li>
                     {topics.map((data, index) => {
                         return (
                             <li key={index}>
