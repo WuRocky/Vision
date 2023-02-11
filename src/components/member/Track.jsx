@@ -33,14 +33,19 @@ const Track = () => {
                                 <div className="track-content-item-1">
                                     <div>
                                         {data.author.photoURL ? (
-                                            <img src="data.author.photoURL" />
+                                            <img
+                                                className="track-content-item-1-userPhoto"
+                                                src={data.author.photoURL}
+                                            />
                                         ) : (
                                             <img src={userPhoto} />
                                         )}
                                     </div>
                                     <div>{data.topic}</div>
                                     <div>
-                                        {data.author.displayName || "匿名"}
+                                        {data.author.displayName
+                                            ? data.author.displayName
+                                            : "匿名"}
                                     </div>
                                 </div>
                                 <div className="track-content-item-2">

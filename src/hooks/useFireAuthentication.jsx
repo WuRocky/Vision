@@ -13,6 +13,7 @@ import {
     EmailAuthProvider,
 } from "firebase/auth";
 
+///* 註冊帳號 *///
 const createUser = async (email, password, setMessage, setRegisterError) => {
     try {
         const response = await createUserWithEmailAndPassword(
@@ -39,7 +40,7 @@ const createUser = async (email, password, setMessage, setRegisterError) => {
         return false;
     }
 };
-
+///* 登入帳號 *///
 const signInUser = async (email, password, setMessage, setLoginError) => {
     try {
         const response = await signInWithEmailAndPassword(
@@ -68,16 +69,19 @@ const signInUser = async (email, password, setMessage, setLoginError) => {
     }
 };
 
+///* 得到用戶資訊 *///
 const getUser = (setUser) => {
     onAuthStateChanged(auth, (user) => {
         setUser(user);
     });
 };
 
+///* 登出帳號 *///
 const userSignOut = () => {
     signOut(auth);
 };
 
+///* 更新信箱 *///
 const updataUserEmail = (email, setMessage) => {
     updateEmail(auth.currentUser, email)
         .then(() => {
@@ -93,6 +97,7 @@ const updataUserEmail = (email, setMessage) => {
         });
 };
 
+///* 更信照片 *///
 const updataUserPhoto = (photo, setMessage) => {
     updateProfile(auth.currentUser, {
         photoURL: photo,
@@ -105,6 +110,7 @@ const updataUserPhoto = (photo, setMessage) => {
         });
 };
 
+///* 更新姓名 *///
 const updataUserName = (name, setMessage) => {
     updateProfile(auth.currentUser, {
         displayName: name,
@@ -117,6 +123,7 @@ const updataUserName = (name, setMessage) => {
         });
 };
 
+///* 更新密碼 *///
 const updataUserPassword = (email, oldPassword, newPassword, setMessage) => {
     const user = auth.currentUser;
     const credential = EmailAuthProvider.credential(email, oldPassword);
@@ -133,6 +140,7 @@ const updataUserPassword = (email, oldPassword, newPassword, setMessage) => {
         });
 };
 
+///* 沒有登入 *///
 const monitorUser = (setUser) => {
     onAuthStateChanged(auth, (user) => {
         if (user) {

@@ -2,7 +2,7 @@ import { Outlet, Link, useLocation } from "react-router-dom";
 import React, { useState, useEffect, useRef } from "react";
 import Footer from "./components/Footer";
 import Notes from "./img/notes2.png";
-import { getData, getDataAfter, getTopicsData } from "./hooks/useFireStore";
+import { getData, getTopicsData } from "./hooks/useFireStore";
 
 import { getUser, userSignOut } from "./hooks/useFireAuthentication";
 
@@ -36,9 +36,21 @@ const Layout = () => {
     }, [currentTopics]);
     if (isLoading) return <div>Loading...</div>;
 
+    // console.log(user.displayName);
+    // console.log(user.uid);
+    // console.log(user.photoURL);
+
     return (
         <AppContext.Provider
-            value={{ firebaseData, setFirebaseData, user, setUser, topics }}
+            value={{
+                firebaseData,
+                setFirebaseData,
+                lastArticleRef,
+                setLastArticleRef,
+                user,
+                setUser,
+                topics,
+            }}
         >
             <div>
                 <div className="navContainer">

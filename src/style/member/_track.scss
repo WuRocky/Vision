@@ -32,6 +32,12 @@
                     margin: 0 25px;
                     justify-content: center;
                     align-items: center;
+                    .track-content-item-1-userPhoto {
+                        width: 6vh;
+                        height: 6vh;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
                 }
             }
             .track-content-item-2 {

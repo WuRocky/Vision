@@ -1,11 +1,11 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
 import { AppContext } from "../../Layout";
 import {
-    updataUserEmail,
     updataUserName,
-    updataUserPhoto,
     updataUserPassword,
 } from "../../hooks/useFireAuthentication";
+
+import { updateArticleUserName } from "../../hooks/useFireStore";
 
 import { addUserPhoto } from "../../hooks/useFireStorage";
 
@@ -59,9 +59,10 @@ import pencil from "../../img/pencil.png";
 // }
 
 function Name({ setMessage }) {
-    const { user } = useContext(AppContext);
+    const { user, firebaseData } = useContext(AppContext);
     const name = user.displayName;
     const [nameValue, setNameValue] = useState("");
+    const userId = user.uid;
 
     const [editingName, seteditingName] = useState(false);
 
@@ -75,11 +76,13 @@ function Name({ setMessage }) {
     const nameSaveHandler = (e) => {
         e.preventDefault();
         updataUserName(nameValue, setMessage);
+        updateArticleUserName(userId, nameValue);
         seteditingName(false);
     };
 
     const nameCancelHandler = (e) => {
         e.preventDefault();
+
         seteditingName(false);
     };
 
@@ -117,7 +120,6 @@ function Name({ setMessage }) {
 function Password({ setMessage }) {
     const { user } = useContext(AppContext);
     const email = user.email;
-    // console.log(email);
     const [editingPassword, setEditingPassword] = useState(false);
 
     const [oldPasswird, setOldePasswird] = useState("");

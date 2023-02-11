@@ -16,7 +16,6 @@ const Member = () => {
             </div>
             <div className="member-item">
                 <div className="member-container">
-                    {/* <Menu /> */}
                     <div className="member-title">會員資料</div>
                     <div className="member-content">
                         <Setting setMessage={setMessage} />

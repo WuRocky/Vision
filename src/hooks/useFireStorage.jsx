@@ -4,6 +4,8 @@ import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 
 import { updateArticle } from "./useFireStore";
 import { updataUserPhoto } from "./useFireAuthentication";
+
+///* 儲存相片 *///
 const addStorage = async (articleID, file, fileType) => {
     try {
         const storageRef = ref(storage, "images/" + articleID);
@@ -27,6 +29,7 @@ const addStorage = async (articleID, file, fileType) => {
     }
 };
 
+///* 儲存大頭照 *///
 const addUserPhoto = async (userId, file, fileType, setMessage) => {
     try {
         const storageRef = ref(storage, "images-userPhoto/" + userId);

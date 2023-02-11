@@ -34,7 +34,10 @@ const Post = () => {
                                 <div className="post-content-item-1">
                                     <div>
                                         {data.author.photoURL ? (
-                                            <img src="data.author.photoURL" />
+                                            <img
+                                                className="post-content-item-1-userPhoto"
+                                                src={data.author.photoURL}
+                                            />
                                         ) : (
                                             <img src={userPhoto} />
                                         )}

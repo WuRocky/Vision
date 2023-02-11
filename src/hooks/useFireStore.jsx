@@ -20,6 +20,7 @@ import {
 
 import { db, auth } from "../lib/firebase/initialize";
 
+///* 更新文章圖片 *///
 const updateArticle = async (storeId, imageUrl) => {
     try {
         const washingtonRef = doc(db, "article", storeId);
@@ -33,6 +34,23 @@ const updateArticle = async (storeId, imageUrl) => {
     }
 };
 
+const updateArticleUserName = async (userId, userName) => {
+    try {
+        const q = query(collection(db, "article"));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            if (doc.data().author.uid == userId) {
+                updateDoc(doc.ref, {
+                    "author.displayName": userName,
+                });
+            }
+        });
+    } catch (e) {
+        console.error("Error getting documents: ", e);
+    }
+};
+
+///* 新增追蹤人數 *///
 const addTrackUserId = async (id, uid) => {
     try {
         const washingtonRef = doc(db, "article", id);
@@ -46,6 +64,7 @@ const addTrackUserId = async (id, uid) => {
     }
 };
 
+///* 移除追蹤人數 *///
 const reTrackUserId = async (id, uid) => {
     try {
         const washingtonRef = doc(db, "article", id);
@@ -59,6 +78,7 @@ const reTrackUserId = async (id, uid) => {
     }
 };
 
+///* 新增喜歡人數 *///
 const addLikeUserId = async (id, uid) => {
     try {
         const washingtonRef = doc(db, "article", id);
@@ -72,6 +92,7 @@ const addLikeUserId = async (id, uid) => {
     }
 };
 
+///* 移除喜歡人數 *///
 const reLikeUserId = async (id, uid) => {
     try {
         const washingtonRef = doc(db, "article", id);
@@ -85,6 +106,7 @@ const reLikeUserId = async (id, uid) => {
     }
 };
 
+///* 新增文章 *///
 const addData = async (title, content, topic, setFindMessage) => {
     try {
         const firebaseDB = collection(db, "article");
@@ -110,6 +132,7 @@ const addData = async (title, content, topic, setFindMessage) => {
     }
 };
 
+///* 得到分類 *///
 const getTopicsData = async () => {
     try {
         const querySnapshot = await getDocs(collection(db, "topics"));
@@ -120,6 +143,7 @@ const getTopicsData = async () => {
     }
 };
 
+///* 得到文章 *///
 const getArticle = (id, setWriteData) => {
     const docRef = doc(db, "article", id);
     const unsub = onSnapshot(docRef, (doc) => {
@@ -128,7 +152,8 @@ const getArticle = (id, setWriteData) => {
     return unsub;
 };
 
-const getData = (setArticleData, currentTopics, setLastArticleRef) => {
+///* 得到前兩個文章 *///
+const getData = (setFirebaseData, currentTopics, setLastArticleRef) => {
     if (currentTopics) {
         const documents = query(
             collection(db, "article"),
@@ -146,7 +171,7 @@ const getData = (setArticleData, currentTopics, setLastArticleRef) => {
                 return data;
             });
             setLastArticleRef(doc.docs[doc.docs.length - 1]);
-            setArticleData(data);
+            setFirebaseData(data);
         });
     } else {
         const documents = query(
@@ -164,18 +189,17 @@ const getData = (setArticleData, currentTopics, setLastArticleRef) => {
                 return data;
             });
             setLastArticleRef(doc.docs[doc.docs.length - 1]);
-            setArticleData(data);
-
-            // setLastArticleRef(doc.docs[doc.docs.length - 1]);
+            setFirebaseData(data);
         });
     }
 };
 
+///* 得到後兩個文章 *///
 const getDataAfter = (
-    setArticleData,
+    setFirebaseData,
     currentTopics,
     lastArticleRef,
-    articleData,
+    firebaseData,
     setLastArticleRef
 ) => {
     if (currentTopics) {
@@ -196,7 +220,7 @@ const getDataAfter = (
                 return data;
             });
             setLastArticleRef(doc.docs[doc.docs.length - 1]);
-            setArticleData([...articleData, ...data]);
+            setFirebaseData([...firebaseData, ...data]);
         });
     } else {
         const documents = query(
@@ -216,8 +240,7 @@ const getDataAfter = (
                 return data;
             });
             setLastArticleRef(doc.docs[doc.docs.length - 1]);
-            // setArticleData([...articleData, ...data]);
-            setArticleData([...articleData, ...data]);
+            setFirebaseData([...firebaseData, ...data]);
         });
     }
 };
@@ -233,4 +256,5 @@ export {
     addLikeUserId,
     reLikeUserId,
     getDataAfter,
+    updateArticleUserName,
 };

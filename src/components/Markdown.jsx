@@ -10,7 +10,7 @@ import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 
 // firebase
-import { addData, updateArticle } from "../hooks/useFireStore";
+import { addData } from "../hooks/useFireStore";
 import { addStorage } from "../hooks/useFireStorage";
 
 import Message from "./Message";

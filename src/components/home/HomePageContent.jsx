@@ -1,21 +1,16 @@
-import React, {
-    useContext,
-    useCallback,
-    useEffect,
-    useState,
-    useRef,
-} from "react";
+import React, { useContext, useCallback } from "react";
 import userPhoto from "../../img/user.png";
-// import { AppContext } from "../../Layout";
+import { AppContext } from "../../Layout";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { Waypoint } from "react-waypoint";
 import likeGray from "../../img/like-gray.png";
 import tagsGray from "../../img/price-tag-gray.png";
 import tagsBlack from "../../img/price-tag-black.png";
-import { getData, getDataAfter } from "../../hooks/useFireStore";
+import { getDataAfter } from "../../hooks/useFireStore";
 
 const HomePageContent = () => {
-    // const { firebaseData } = useContext(AppContext);
+    const { firebaseData, setFirebaseData, lastArticleRef, setLastArticleRef } =
+        useContext(AppContext);
     const navigate = useNavigate();
     const handleClick = useCallback((id) => {
         navigate(`/article/${id}`);
@@ -24,20 +19,11 @@ const HomePageContent = () => {
     const location = useLocation();
     const urlSearchParams = new URLSearchParams(location.search);
     const currentTopics = urlSearchParams.get("topics");
-    const articleRef = useRef();
 
-    const [articleData, setArticleData] = useState([]);
-    const [lastArticleRef, setLastArticleRef] = useState(articleRef.current);
-    useEffect(() => {
-        // getData(setArticleData, currentTopics, setLastArticleRef);
-        getData(setArticleData, currentTopics, setLastArticleRef);
-    }, [currentTopics]);
-    // console.log(lastArticleRef);
-    // console.log(articleRef.current);
     return (
         <>
             <div className="homepage-content">
-                {articleData.map((data, index) => {
+                {firebaseData.map((data, index) => {
                     return (
                         <Link
                             key={data.id}
@@ -60,6 +46,7 @@ const HomePageContent = () => {
                                 </div>
                                 <div>{data.topic}</div>
                                 <div>{data.author.displayName || "匿名"}</div>
+                                {/* {console.log(data.author)} */}
                             </div>
                             <div className="homepage-content-item-2">
                                 <div className="homepage-content-item-2-title">
@@ -100,10 +87,10 @@ const HomePageContent = () => {
                 onEnter={() => {
                     if (lastArticleRef) {
                         getDataAfter(
-                            setArticleData,
+                            setFirebaseData,
                             currentTopics,
                             lastArticleRef,
-                            articleData,
+                            firebaseData,
                             setLastArticleRef
                         );
                     }
