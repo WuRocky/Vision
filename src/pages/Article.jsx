@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
-// import userPhoto from "../../img/user.png";
+import { useParams, useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import userPhoto from "../img/user.png";
 // markdown
 import ReactMarkdown from "react-markdown";
@@ -35,8 +35,12 @@ const Article = () => {
     useEffect(() => {
         getArticle(id, setWriteData);
     }, []);
-
+    const navigate = useNavigate();
     const toggleImageTrackHandler = (e) => {
+        if (user == null) {
+            navigate("/signIn");
+            return;
+        }
         if (isStore) {
             reTrackUserId(id, user.uid);
         } else {
@@ -44,15 +48,18 @@ const Article = () => {
         }
     };
     const toggleImageLikeHandler = (e) => {
+        if (user == null) {
+            navigate("/signIn");
+            return;
+        }
         if (isLike) {
             reLikeUserId(id, user.uid);
         } else {
             addLikeUserId(id, user.uid);
         }
     };
-
-    const isStore = writeData.trackUserId?.includes(auth.currentUser.uid);
-    const isLike = writeData.likeUserId?.includes(auth.currentUser.uid);
+    const isStore = writeData.trackUserId?.includes(auth.currentUser?.uid);
+    const isLike = writeData.likeUserId?.includes(auth.currentUser?.uid);
     return (
         <div className="article">
             <div className="article-content">

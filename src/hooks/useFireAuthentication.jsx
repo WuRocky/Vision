@@ -148,7 +148,7 @@ const monitorUser = (setUser) => {
             setUser(user);
             // console.log(uid);
         } else {
-            console.log("還沒登入");
+            // console.log("還沒登入");
         }
     });
 };
