@@ -153,7 +153,7 @@ const getArticle = (id, setWriteData) => {
 };
 
 ///* 得到前兩個文章 *///
-const getData = (setFirebaseData, currentTopics, setLastArticleRef) => {
+const getData = (setFirebaseTwoDoc, currentTopics, setLastArticleRef) => {
     if (currentTopics) {
         const documents = query(
             collection(db, "article"),
@@ -171,7 +171,7 @@ const getData = (setFirebaseData, currentTopics, setLastArticleRef) => {
                 return data;
             });
             setLastArticleRef(doc.docs[doc.docs.length - 1]);
-            setFirebaseData(data);
+            setFirebaseTwoDoc(data);
         });
     } else {
         const documents = query(
@@ -189,17 +189,17 @@ const getData = (setFirebaseData, currentTopics, setLastArticleRef) => {
                 return data;
             });
             setLastArticleRef(doc.docs[doc.docs.length - 1]);
-            setFirebaseData(data);
+            setFirebaseTwoDoc(data);
         });
     }
 };
 
 ///* 得到後兩個文章 *///
 const getDataAfter = (
-    setFirebaseData,
+    setFirebaseTwoDoc,
     currentTopics,
     lastArticleRef,
-    firebaseData,
+    firebaseTwoDoc,
     setLastArticleRef
 ) => {
     if (currentTopics) {
@@ -220,7 +220,7 @@ const getDataAfter = (
                 return data;
             });
             setLastArticleRef(doc.docs[doc.docs.length - 1]);
-            setFirebaseData([...firebaseData, ...data]);
+            setFirebaseTwoDoc([...firebaseTwoDoc, ...data]);
         });
     } else {
         const documents = query(
@@ -240,9 +240,43 @@ const getDataAfter = (
                 return data;
             });
             setLastArticleRef(doc.docs[doc.docs.length - 1]);
-            setFirebaseData([...firebaseData, ...data]);
+            setFirebaseTwoDoc([...firebaseTwoDoc, ...data]);
         });
     }
+};
+
+const getPopularData = (setPopularArticles) => {
+    const documents = query(
+        collection(db, "article"),
+        orderBy("likeUserId", "desc"),
+        limit(8)
+    );
+    onSnapshot(documents, (doc) => {
+        const data = doc.docs.map((doc) => {
+            const id = doc.id;
+            const data = {
+                ...doc.data(),
+                id,
+            };
+            return data;
+        });
+        setPopularArticles(data);
+    });
+};
+
+const getMyData = (setFirebaseAllDoc) => {
+    const documents = query(collection(db, "article"));
+    onSnapshot(documents, (doc) => {
+        const data = doc.docs.map((doc) => {
+            const id = doc.id;
+            const data = {
+                ...doc.data(),
+                id,
+            };
+            return data;
+        });
+        setFirebaseAllDoc(data);
+    });
 };
 
 export {
@@ -257,4 +291,6 @@ export {
     reLikeUserId,
     getDataAfter,
     updateArticleUserName,
+    getPopularData,
+    getMyData,
 };

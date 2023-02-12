@@ -46,3 +46,31 @@
         }
     }
 }
+@media screen and (max-width: 500px) {
+    .navContainer {
+        div {
+            img {
+                margin-left: 5px;
+                width: 40px;
+                height: 40px;
+            }
+
+            nav {
+                margin-right: 0;
+                ul {
+                    width: 250px;
+                    li {
+                        margin-left: 20px;
+                        a {
+                            width: 50px;
+                            font-size: 0.75rem;
+                        }
+                        .signIn {
+                            width: 100px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

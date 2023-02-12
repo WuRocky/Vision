@@ -59,7 +59,7 @@ import pencil from "../../img/pencil.png";
 // }
 
 function Name({ setMessage }) {
-    const { user, firebaseData } = useContext(AppContext);
+    const { user } = useContext(AppContext);
     const name = user.displayName;
     const [nameValue, setNameValue] = useState("");
     const userId = user.uid;

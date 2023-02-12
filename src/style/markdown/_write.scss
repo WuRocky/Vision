@@ -84,8 +84,8 @@
         // 圖片
         .markDownFile {
             margin: 10px 10px 0 10px;
-            width: 500px;
-            height: 300px;
+            width: 25vh;
+            height: 25vh;
             object-fit: contain;
             display: flex;
             justify-content: center;
@@ -137,6 +137,68 @@
             color: #fff;
             font-size: 1.15rem;
             grid-area: markDownButton;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .write {
+        padding: 10px;
+        .markDownContainer {
+            margin: 0 50px;
+            display: grid;
+            grid-template-rows:
+                auto auto minmax(250px, auto) minmax(250px, auto)
+                10% auto;
+            grid-template-columns: repeat(4, 1fr);
+            justify-content: center;
+            grid-gap: 0px;
+            grid-template-areas:
+                " markDownTitle markDownTitle markDownTitelInput markDownTitelInput"
+                " markDownClass markDownClass markDownClassInput markDownClassInput"
+                "textarea textarea textarea textarea"
+                "output output output output"
+                "markDownFileButton markDownFileButton markDownFile markDownFile"
+                ". markDownButton markDownButton .";
+            .markDownFile {
+                width: 18vh;
+                height: 18vh;
+            }
+            .markDownButton {
+                margin: 10px 0;
+                padding: 5px;
+                font-size: 1rem;
+            }
+        }
+    }
+}
+@media screen and (max-width: 400px) {
+    .write {
+        .markDownContainer {
+            grid-template-rows:
+                auto auto minmax(250px, auto) minmax(250px, auto)
+                10% auto;
+            grid-template-columns: repeat(4, 80px);
+            justify-content: center;
+
+            .markDownFile {
+                width: 15vh;
+                height: 15vh;
+            }
+            .markDownButton {
+                margin: 10px 0;
+                padding: 5px;
+                font-size: 1rem;
+            }
+            .markDownTitelInput {
+                margin: 15px 0;
+                height: 50px;
+                padding: 5px;
+                font-size: 1.25rem;
+                border-style: none;
+                grid-area: markDownTitelInput;
+                cursor: pointer;
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ import tagsBlack from "../../img/price-tag-black.png";
 import { useNavigate, Link } from "react-router-dom";
 
 const Track = () => {
-    const { firebaseData, user } = useContext(AppContext);
+    const { myArticles, user } = useContext(AppContext);
     const navigate = useNavigate();
     const handleClick = useCallback((id) => {
         navigate(`/article/${id}`);
@@ -19,7 +19,7 @@ const Track = () => {
     return (
         <div className="track">
             <div className="track-container">
-                {firebaseData.map((data, index) => {
+                {myArticles.map((data, index) => {
                     if (data.trackUserId == user.uid) {
                         return (
                             <Link

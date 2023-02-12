@@ -50,7 +50,7 @@ const LoginUser = ({ setMessage }) => {
                         setLoginError("");
                     }}
                 >
-                    Login
+                    Sign In
                 </label>
                 <input
                     type="email"

@@ -2,14 +2,23 @@ import { Outlet, Link, useLocation } from "react-router-dom";
 import React, { useState, useEffect, useRef } from "react";
 import Footer from "./components/Footer";
 import Notes from "./img/notes2.png";
-import { getData, getTopicsData } from "./hooks/useFireStore";
+import {
+    getData,
+    getTopicsData,
+    getPopularData,
+    getMyData,
+} from "./hooks/useFireStore";
 
 import { getUser, userSignOut } from "./hooks/useFireAuthentication";
 
 const AppContext = React.createContext();
 
 const Layout = () => {
-    const [firebaseData, setFirebaseData] = useState([]);
+    const [firebaseTwoDoc, setFirebaseTwoDoc] = useState([]);
+
+    const [popularArticles, setPopularArticles] = useState([]);
+
+    const [myArticles, setMyArticles] = useState([]);
 
     const [user, setUser] = useState(null);
 
@@ -27,8 +36,10 @@ const Layout = () => {
 
     const [lastArticleRef, setLastArticleRef] = useState(articleRef.current);
     useEffect(() => {
-        getData(setFirebaseData, currentTopics, setLastArticleRef);
+        getData(setFirebaseTwoDoc, currentTopics, setLastArticleRef);
         getUser(setUser);
+        getPopularData(setPopularArticles);
+        getMyData(setMyArticles);
         getTopicsData().then((data) => {
             setTopics(data);
             setIsLoading(false);
@@ -36,20 +47,19 @@ const Layout = () => {
     }, [currentTopics]);
     if (isLoading) return <div>Loading...</div>;
 
-    // console.log(user.displayName);
-    // console.log(user.uid);
-    // console.log(user.photoURL);
-
     return (
         <AppContext.Provider
             value={{
-                firebaseData,
-                setFirebaseData,
+                firebaseTwoDoc,
+                setFirebaseTwoDoc,
                 lastArticleRef,
                 setLastArticleRef,
                 user,
                 setUser,
                 topics,
+                popularArticles,
+                setPopularArticles,
+                myArticles,
             }}
         >
             <div>
@@ -77,7 +87,9 @@ const Layout = () => {
                                     </>
                                 ) : (
                                     <li>
-                                        <Link to="/signIn">註冊/登入</Link>
+                                        <Link className="signIn" to="/signIn">
+                                            Register/Sign In
+                                        </Link>
                                     </li>
                                 )}
                             </ul>

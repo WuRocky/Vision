@@ -1,0 +1,117 @@
+.featured {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    flex-direction: column;
+    position: relative;
+    .featured-title {
+        font-size: 1.25rem;
+    }
+
+    .featured-popular {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        .featured-popular-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 20px;
+            width: calc(70% / 5);
+            @media (max-width: 767px) {
+                max-width: 100px;
+                width: calc(100% / 3);
+            }
+
+            .featured-popular-content-img {
+                width: 10vh;
+                height: 10vh;
+                margin: 10px 0;
+                object-fit: cover;
+            }
+        }
+    }
+    .featured-arrow {
+        position: absolute;
+        cursor: pointer;
+        width: 90%;
+        img {
+            color: var(--first-color);
+        }
+        .featured-arrow-left {
+            position: absolute;
+            left: 0;
+        }
+        .featured-arrow-right {
+            position: absolute;
+            right: 0;
+        }
+    }
+}
+@media screen and (max-width: 1000px) {
+    .featured {
+        .featured-popular {
+            .featured-popular-content {
+                width: 90px;
+                .featured-popular-content-img {
+                    width: 8vh;
+                    height: 8vh;
+                }
+            }
+        }
+        .featured-arrow {
+            position: absolute;
+            cursor: pointer;
+            width: 80%;
+        }
+    }
+}
+@media screen and (max-width: 900px) {
+    .featured {
+        .featured-popular {
+            .featured-popular-content {
+                width: 60px;
+                .featured-popular-content-title {
+                    font-size: 0.8rem;
+                    overflow: hidden;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 1;
+                }
+                .featured-popular-content-img {
+                    width: 5vh;
+                    height: 5vh;
+                }
+            }
+        }
+        .featured-arrow {
+            position: absolute;
+            cursor: pointer;
+            width: 80%;
+            img {
+                width: 1.7vh;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .featured {
+        .featured-popular {
+            .featured-popular-content {
+                width: 45px;
+            }
+        }
+        .featured-arrow {
+            position: absolute;
+            cursor: pointer;
+            width: 80%;
+            img {
+                width: 1.7vh;
+            }
+        }
+    }
+}

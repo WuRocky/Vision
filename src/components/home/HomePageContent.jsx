@@ -9,8 +9,12 @@ import tagsBlack from "../../img/price-tag-black.png";
 import { getDataAfter } from "../../hooks/useFireStore";
 
 const HomePageContent = () => {
-    const { firebaseData, setFirebaseData, lastArticleRef, setLastArticleRef } =
-        useContext(AppContext);
+    const {
+        firebaseTwoDoc,
+        setFirebaseTwoDoc,
+        lastArticleRef,
+        setLastArticleRef,
+    } = useContext(AppContext);
     const navigate = useNavigate();
     const handleClick = useCallback((id) => {
         navigate(`/article/${id}`);
@@ -23,7 +27,7 @@ const HomePageContent = () => {
     return (
         <>
             <div className="homepage-content">
-                {firebaseData.map((data, index) => {
+                {firebaseTwoDoc.map((data, index) => {
                     return (
                         <Link
                             key={data.id}
@@ -46,7 +50,6 @@ const HomePageContent = () => {
                                 </div>
                                 <div>{data.topic}</div>
                                 <div>{data.author.displayName || "匿名"}</div>
-                                {/* {console.log(data.author)} */}
                             </div>
                             <div className="homepage-content-item-2">
                                 <div className="homepage-content-item-2-title">
@@ -87,10 +90,10 @@ const HomePageContent = () => {
                 onEnter={() => {
                     if (lastArticleRef) {
                         getDataAfter(
-                            setFirebaseData,
+                            setFirebaseTwoDoc,
                             currentTopics,
                             lastArticleRef,
-                            firebaseData,
+                            firebaseTwoDoc,
                             setLastArticleRef
                         );
                     }

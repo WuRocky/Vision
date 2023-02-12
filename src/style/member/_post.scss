@@ -2,6 +2,7 @@
     background-color: var(--second-color);
     display: flex;
     justify-content: center;
+    align-items: center;
     .post-container {
         display: grid;
         grid-template-columns: minmax(auto, 1200px);
@@ -82,6 +83,54 @@
                 }
                 div {
                     margin: 0 25px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .post {
+        .post-container {
+            .post-content-item {
+                height: 220px;
+                .post-content-item-1 {
+                    div {
+                        margin: 0 10px;
+                        .post-content-item-1-userPhoto {
+                            width: 5vh;
+                            height: 5vh;
+                        }
+                    }
+                }
+                .post-content-item-2 {
+                    .post-content-item-2-img {
+                        width: 70px;
+                        height: 70px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 400px) {
+    .post {
+        .post-container {
+            .post-content-item {
+                .post-content-item-1 {
+                    div {
+                        margin: 0 5px;
+                        .post-content-item-1-userPhoto {
+                            width: 5vh;
+                            height: 5vh;
+                        }
+                    }
+                }
+                .post-content-item-2 {
+                    .post-content-item-2-img {
+                        width: 50px;
+                        height: 50px;
+                    }
                 }
             }
         }

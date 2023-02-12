@@ -32,8 +32,10 @@ a:active {
 
 @import "./nav";
 
-@import "./homepage";
-@import "./homePageContent";
+@import "./home/homepage";
+
+@import "./home/homePageContent";
+@import "./home/featured";
 
 @import "./message";
 

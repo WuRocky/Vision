@@ -8,10 +8,9 @@ import tagsGray from "../../img/price-tag-gray.png";
 import tagsBlack from "../../img/price-tag-black.png";
 
 import { useNavigate, Link } from "react-router-dom";
-import style from "react-syntax-highlighter/dist/esm/styles/hljs/a11y-dark";
 
 const Post = () => {
-    const { firebaseData, user } = useContext(AppContext);
+    const { myArticles, user } = useContext(AppContext);
     const navigate = useNavigate();
     const handleClick = useCallback((id) => {
         navigate(`/article/${id}`);
@@ -20,7 +19,7 @@ const Post = () => {
     return (
         <div className="post">
             <div className="post-container">
-                {firebaseData.map((data, index) => {
+                {myArticles.map((data, index) => {
                     if (data.author.uid == user.uid) {
                         return (
                             <Link

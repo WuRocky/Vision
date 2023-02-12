@@ -79,6 +79,29 @@ a:active {
   color: rgb(0, 0, 0);
 }
 
+@media screen and (max-width: 500px) {
+  .navContainer div img {
+    margin-left: 5px;
+    width: 40px;
+    height: 40px;
+  }
+  .navContainer div nav {
+    margin-right: 0;
+  }
+  .navContainer div nav ul {
+    width: 250px;
+  }
+  .navContainer div nav ul li {
+    margin-left: 20px;
+  }
+  .navContainer div nav ul li a {
+    width: 50px;
+    font-size: 0.75rem;
+  }
+  .navContainer div nav ul li .signIn {
+    width: 100px;
+  }
+}
 .homepage {
   min-height: var(--height);
   background-color: var(--second-color);
@@ -92,7 +115,7 @@ a:active {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-flow: row;
-  grid-template-rows: 200px 200px auto auto;
+  grid-template-rows: 250px 200px auto auto;
   grid-gap: 10px;
   padding: 10px;
   grid-template-areas: "Featured Featured Featured " "HomePageContent HomePageContent Topics" "HomePageContent HomePageContent Authors" "HomePageContent HomePageContent .";
@@ -140,6 +163,25 @@ a:active {
   grid-area: Authors;
 }
 
+@media screen and (max-width: 1000px) {
+  .homepage .homepage-container .homepage-container-item {
+    grid-template-rows: 200px 200px auto auto;
+  }
+}
+@media screen and (max-width: 900px) {
+  .homepage .homepage-container .homepage-container-item {
+    grid-template-rows: 150px 200px auto auto;
+  }
+}
+@media screen and (max-width: 600px) {
+  .homepage .homepage-container .homepage-container-item {
+    grid-template-rows: 200px auto auto;
+    grid-template-areas: "HomePageContent HomePageContent Topics" "HomePageContent HomePageContent Authors" "HomePageContent HomePageContent .";
+  }
+  .homepage .homepage-container .homepage-container-item .homepage-grid-item-1 {
+    display: none;
+  }
+}
 .homepage-content {
   display: flex;
   justify-content: center;
@@ -223,6 +265,147 @@ a:active {
   margin: 0 25px;
 }
 
+@media screen and (max-width: 900px) {
+  .homepage-content .homepage-content-item {
+    height: 200px;
+  }
+  .homepage-content .homepage-content-item .homepage-content-item-1 div .homepage-content-item-1-userPhoto {
+    width: 4vh;
+    height: 4vh;
+  }
+}
+@media screen and (max-width: 700px) {
+  .homepage-content .homepage-content-item {
+    height: 200px;
+    margin: 10px 0;
+  }
+  .homepage-content .homepage-content-item .homepage-content-item-1 div {
+    font-size: 1rem;
+    margin: 0 5px;
+  }
+  .homepage-content .homepage-content-item .homepage-content-item-2 .homepage-content-item-2-title {
+    font-size: 1rem;
+  }
+  .homepage-content .homepage-content-item .homepage-content-item-2 .homepage-content-item-2-article {
+    font-size: 0.75rem;
+  }
+  .homepage-content .homepage-content-item .homepage-content-item-2 .homepage-content-item-2-img {
+    width: 50px;
+    height: 50px;
+  }
+  .homepage-content .homepage-content-item .homepage-content-item-3 .homepage-content-item-3-like {
+    margin: 0;
+  }
+  .homepage-content .homepage-content-item .homepage-content-item-3 div {
+    margin: 0 25px;
+  }
+}
+.featured {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  flex-direction: column;
+  position: relative;
+}
+.featured .featured-title {
+  font-size: 1.25rem;
+}
+.featured .featured-popular {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.featured .featured-popular .featured-popular-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px;
+  width: 14%;
+}
+@media (max-width: 767px) {
+  .featured .featured-popular .featured-popular-content {
+    max-width: 100px;
+    width: 33.3333333333%;
+  }
+}
+.featured .featured-popular .featured-popular-content .featured-popular-content-img {
+  width: 10vh;
+  height: 10vh;
+  margin: 10px 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.featured .featured-arrow {
+  position: absolute;
+  cursor: pointer;
+  width: 90%;
+}
+.featured .featured-arrow img {
+  color: var(--first-color);
+}
+.featured .featured-arrow .featured-arrow-left {
+  position: absolute;
+  left: 0;
+}
+.featured .featured-arrow .featured-arrow-right {
+  position: absolute;
+  right: 0;
+}
+
+@media screen and (max-width: 1000px) {
+  .featured .featured-popular .featured-popular-content {
+    width: 90px;
+  }
+  .featured .featured-popular .featured-popular-content .featured-popular-content-img {
+    width: 8vh;
+    height: 8vh;
+  }
+  .featured .featured-arrow {
+    position: absolute;
+    cursor: pointer;
+    width: 80%;
+  }
+}
+@media screen and (max-width: 900px) {
+  .featured .featured-popular .featured-popular-content {
+    width: 60px;
+  }
+  .featured .featured-popular .featured-popular-content .featured-popular-content-title {
+    font-size: 0.8rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+  .featured .featured-popular .featured-popular-content .featured-popular-content-img {
+    width: 5vh;
+    height: 5vh;
+  }
+  .featured .featured-arrow {
+    position: absolute;
+    cursor: pointer;
+    width: 80%;
+  }
+  .featured .featured-arrow img {
+    width: 1.7vh;
+  }
+}
+@media screen and (max-width: 700px) {
+  .featured .featured-popular .featured-popular-content {
+    width: 45px;
+  }
+  .featured .featured-arrow {
+    position: absolute;
+    cursor: pointer;
+    width: 80%;
+  }
+  .featured .featured-arrow img {
+    width: 1.7vh;
+  }
+}
 .message {
   width: 100%;
   height: 100%;
@@ -503,8 +686,8 @@ a:active {
 }
 .write .markDownContainer .markDownFile {
   margin: 10px 10px 0 10px;
-  width: 500px;
-  height: 300px;
+  width: 25vh;
+  height: 25vh;
   -o-object-fit: contain;
      object-fit: contain;
   display: flex;
@@ -556,6 +739,54 @@ a:active {
   grid-area: markDownButton;
 }
 
+@media screen and (max-width: 600px) {
+  .write {
+    padding: 10px;
+  }
+  .write .markDownContainer {
+    margin: 0 50px;
+    display: grid;
+    grid-template-rows: auto auto minmax(250px, auto) minmax(250px, auto) 10% auto;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    grid-gap: 0px;
+    grid-template-areas: " markDownTitle markDownTitle markDownTitelInput markDownTitelInput" " markDownClass markDownClass markDownClassInput markDownClassInput" "textarea textarea textarea textarea" "output output output output" "markDownFileButton markDownFileButton markDownFile markDownFile" ". markDownButton markDownButton .";
+  }
+  .write .markDownContainer .markDownFile {
+    width: 18vh;
+    height: 18vh;
+  }
+  .write .markDownContainer .markDownButton {
+    margin: 10px 0;
+    padding: 5px;
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width: 400px) {
+  .write .markDownContainer {
+    grid-template-rows: auto auto minmax(250px, auto) minmax(250px, auto) 10% auto;
+    grid-template-columns: repeat(4, 80px);
+    justify-content: center;
+  }
+  .write .markDownContainer .markDownFile {
+    width: 15vh;
+    height: 15vh;
+  }
+  .write .markDownContainer .markDownButton {
+    margin: 10px 0;
+    padding: 5px;
+    font-size: 1rem;
+  }
+  .write .markDownContainer .markDownTitelInput {
+    margin: 15px 0;
+    height: 50px;
+    padding: 5px;
+    font-size: 1.25rem;
+    border-style: none;
+    grid-area: markDownTitelInput;
+    cursor: pointer;
+  }
+}
 .member {
   min-height: var(--height);
   background-color: var(--second-color);
@@ -689,6 +920,7 @@ a:active {
   background-color: var(--second-color);
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .post .post-container {
   display: grid;
@@ -773,6 +1005,35 @@ a:active {
   margin: 0 25px;
 }
 
+@media screen and (max-width: 500px) {
+  .post .post-container .post-content-item {
+    height: 220px;
+  }
+  .post .post-container .post-content-item .post-content-item-1 div {
+    margin: 0 10px;
+  }
+  .post .post-container .post-content-item .post-content-item-1 div .post-content-item-1-userPhoto {
+    width: 5vh;
+    height: 5vh;
+  }
+  .post .post-container .post-content-item .post-content-item-2 .post-content-item-2-img {
+    width: 70px;
+    height: 70px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .post .post-container .post-content-item .post-content-item-1 div {
+    margin: 0 5px;
+  }
+  .post .post-container .post-content-item .post-content-item-1 div .post-content-item-1-userPhoto {
+    width: 5vh;
+    height: 5vh;
+  }
+  .post .post-container .post-content-item .post-content-item-2 .post-content-item-2-img {
+    width: 50px;
+    height: 50px;
+  }
+}
 .setting {
   display: flex;
   justify-content: center;
@@ -780,6 +1041,7 @@ a:active {
   flex-wrap: wrap;
   width: 100%;
   height: 30vh;
+  padding: 10px;
 }
 .setting .setting-img {
   flex-grow: 3;
@@ -934,6 +1196,83 @@ a:active {
   cursor: pointer;
 }
 
+@media screen and (max-width: 700px) {
+  .setting {
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+  .setting .setting-img {
+    flex-grow: 5;
+    flex-basis: 0;
+  }
+  .setting .setting-img .setting-img-content .userPhoto {
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  .setting .setting-other {
+    flex-grow: 3;
+    flex-basis: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .setting .setting-other .setting-other-email .setting-other-name-input,
+  .setting .setting-other .setting-other-email .setting-other-password-input,
+  .setting .setting-other .setting-other-name .setting-other-name-input,
+  .setting .setting-other .setting-other-name .setting-other-password-input,
+  .setting .setting-other .setting-other-password .setting-other-name-input,
+  .setting .setting-other .setting-other-password .setting-other-password-input {
+    width: 140px;
+  }
+  .setting .setting-other .setting-other-email .setting-other-password-change-input,
+  .setting .setting-other .setting-other-email .setting-other-name-change-input,
+  .setting .setting-other .setting-other-name .setting-other-password-change-input,
+  .setting .setting-other .setting-other-name .setting-other-name-change-input,
+  .setting .setting-other .setting-other-password .setting-other-password-change-input,
+  .setting .setting-other .setting-other-password .setting-other-name-change-input {
+    width: 90px;
+  }
+  .setting .setting-other .setting-other-email .setting-other-password-change-input .input,
+  .setting .setting-other .setting-other-email .setting-other-name-change-input .input,
+  .setting .setting-other .setting-other-name .setting-other-password-change-input .input,
+  .setting .setting-other .setting-other-name .setting-other-name-change-input .input,
+  .setting .setting-other .setting-other-password .setting-other-password-change-input .input,
+  .setting .setting-other .setting-other-password .setting-other-name-change-input .input {
+    margin: 0;
+    width: 140px;
+    cursor: pointer;
+  }
+}
+@media screen and (max-width: 500px) {
+  .setting {
+    flex-direction: column;
+  }
+  .setting .setting-img .setting-img-content .userPhoto {
+    width: 15vh;
+    height: 15vh;
+  }
+  .setting .setting-other .setting-other-email .setting-other-password-change-input,
+  .setting .setting-other .setting-other-email .setting-other-name-change-input,
+  .setting .setting-other .setting-other-name .setting-other-password-change-input,
+  .setting .setting-other .setting-other-name .setting-other-name-change-input,
+  .setting .setting-other .setting-other-password .setting-other-password-change-input,
+  .setting .setting-other .setting-other-password .setting-other-name-change-input {
+    width: 150px;
+  }
+  .setting .setting-other .setting-other-email .setting-other-password-change-input .input,
+  .setting .setting-other .setting-other-email .setting-other-name-change-input .input,
+  .setting .setting-other .setting-other-name .setting-other-password-change-input .input,
+  .setting .setting-other .setting-other-name .setting-other-name-change-input .input,
+  .setting .setting-other .setting-other-password .setting-other-password-change-input .input,
+  .setting .setting-other .setting-other-password .setting-other-name-change-input .input {
+    margin: 0;
+    width: 150px;
+    cursor: pointer;
+  }
+}
 .footer {
   display: flex;
   justify-content: center;
