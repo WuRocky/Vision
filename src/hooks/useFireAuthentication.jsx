@@ -14,59 +14,46 @@ import {
 } from "firebase/auth";
 
 ///* 註冊帳號 *///
-const createUser = async (email, password, setMessage, setRegisterError) => {
-    try {
-        const response = await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
-        setMessage("註冊成功");
-        return response;
-    } catch (error) {
-        const errorCode = error.code;
-        switch (errorCode) {
-            case "auth/invalid-email":
-                setRegisterError("電子信箱格式不正確");
-                break;
-            case "Firebase: Password should be at least 6 characters (auth/weak-password).":
-                setRegisterError("密碼應至少為 6 個字符");
-                break;
-            case "auth/email-already-in-use":
-                setRegisterError("電子信箱已有存在");
-                break;
-        }
-
-        return false;
-    }
+const createUser = (email, password, setMessage, setRegisterError) => {
+    createUserWithEmailAndPassword(auth, email, password)
+        .then(() => {
+            setMessage("註冊成功");
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            switch (errorCode) {
+                case "auth/invalid-email":
+                    setRegisterError("電子信箱格式不正確");
+                    break;
+                case "Firebase: Password should be at least 6 characters (auth/weak-password).":
+                    setRegisterError("密碼應至少為 6 個字符");
+                    break;
+                case "auth/email-already-in-use":
+                    setRegisterError("電子信箱已有存在");
+                    break;
+            }
+        });
 };
 ///* 登入帳號 *///
-const signInUser = async (email, password, setMessage, setLoginError) => {
-    try {
-        const response = await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
-        setMessage("登入成功");
-        return response;
-    } catch (error) {
-        const errorCode = error.code;
-
-        switch (errorCode) {
-            case "auth/invalid-email":
-                setLoginError("電子信箱無效");
-                break;
-            case "auth/wrong-password":
-                setLoginError("密碼錯誤");
-                break;
-            case "auth/user-not-found":
-                setLoginError("尚未註冊");
-                break;
-        }
-
-        return false;
-    }
+const signInUser = (email, password, setMessage, setLoginError) => {
+    signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+            setMessage("登入成功");
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            switch (errorCode) {
+                case "auth/invalid-email":
+                    setLoginError("電子信箱無效");
+                    break;
+                case "auth/wrong-password":
+                    setLoginError("密碼錯誤");
+                    break;
+                case "auth/user-not-found":
+                    setLoginError("尚未註冊");
+                    break;
+            }
+        });
 };
 
 ///* 得到用戶資訊 *///
@@ -145,7 +132,11 @@ const monitorUser = (setUser) => {
     onAuthStateChanged(auth, (user) => {
         if (user) {
             const uid = user.uid;
-            setUser(user);
+
+            setTimeout(() => {
+                setUser(user);
+                // window.location.href = "/";
+            }, 2000);
             // console.log(uid);
         } else {
             // console.log("還沒登入");

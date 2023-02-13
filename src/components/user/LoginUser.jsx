@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import { signInUser } from "../../hooks/useFireAuthentication";
-import { useNavigate } from "react-router-dom";
 const LoginUser = ({ setMessage }) => {
     const [loginError, setLoginError] = useState("");
     const [loginEmail, setLoginEmail] = useState("");
@@ -14,30 +13,18 @@ const LoginUser = ({ setMessage }) => {
     const loginPasswrodHandler = (e) => {
         setLoginPassword(e.target.value);
     };
-    const navigate = useNavigate();
 
-    const loginButtonHandler = async (e) => {
+    const loginButtonHandler = (e) => {
         e.preventDefault();
 
         if (loginEmail === "" || loginPasswrod === "") {
             setMessage("請輸入信箱和密碼");
-
             return;
         }
 
-        const success = await signInUser(
-            loginEmail,
-            loginPasswrod,
-            setMessage,
-            setLoginError
-        );
+        signInUser(loginEmail, loginPasswrod, setMessage, setLoginError);
         setLoginEmail("");
         setLoginPassword("");
-        if (success) {
-            setTimeout(() => {
-                navigate("/");
-            }, 2000);
-        }
     };
 
     return (

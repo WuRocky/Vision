@@ -14,6 +14,7 @@ const HomePageContent = () => {
         setFirebaseTwoDoc,
         lastArticleRef,
         setLastArticleRef,
+        user,
     } = useContext(AppContext);
     const navigate = useNavigate();
     const handleClick = useCallback((id) => {
@@ -23,7 +24,9 @@ const HomePageContent = () => {
     const location = useLocation();
     const urlSearchParams = new URLSearchParams(location.search);
     const currentTopics = urlSearchParams.get("topics");
-
+    // if (user) {
+    //     const uid = user.uid;
+    // }
     return (
         <>
             <div className="homepage-content">
@@ -72,13 +75,20 @@ const HomePageContent = () => {
                                     <div>{data.likeUserId?.length || 0}</div>
                                 </div>
                                 <div className="homepage-content-item-3-like">
-                                    <img
-                                        src={
-                                            data.trackUserId?.length
-                                                ? tagsBlack
-                                                : tagsGray
-                                        }
-                                    />
+                                    {user ? (
+                                        <img
+                                            src={
+                                                data.trackUserId?.length &&
+                                                data.trackUserId.includes(
+                                                    user?.uid
+                                                )
+                                                    ? tagsBlack
+                                                    : tagsGray
+                                            }
+                                        />
+                                    ) : (
+                                        <img src={tagsGray} />
+                                    )}
                                 </div>
                             </div>
                         </Link>

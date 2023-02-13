@@ -616,11 +616,11 @@ a:active {
 .write .markDownContainer {
   margin: 0 50px;
   display: grid;
-  grid-template-rows: auto auto minmax(var(--height), auto) 10% auto;
+  grid-template-rows: auto auto minmax(var(--height), auto) minmax(200px, auto) auto;
   grid-template-columns: repeat(4, 1fr);
   justify-content: center;
   grid-gap: 10px;
-  grid-template-areas: " markDownTitle markDownTitelInput markDownTitelInput ." " markDownClass markDownClassInput markDownClassInput ." "textarea textarea output output" "markDownFileInput markDownFileButton markDownFile markDownFile" ". markDownButton markDownButton .";
+  grid-template-areas: " markDownTitle markDownTitelInput markDownTitelInput ." " markDownClass markDownClassInput markDownClassInput ." "textarea textarea output output" ". markDownFileButton markDownFile ." ". markDownButton markDownButton .";
 }
 .write .markDownContainer .markDownTitle {
   margin: 15px 0;
@@ -643,7 +643,7 @@ a:active {
   grid-area: markDownTitelInput;
   cursor: pointer;
 }
-.write .markDownContainer .markDownClass {
+.write .markDownContainer .markDownClassLabel {
   margin: 15px 0;
   font-size: 1.25rem;
   height: 50px;
@@ -656,23 +656,23 @@ a:active {
   grid-area: markDownClass;
 }
 .write .markDownContainer .markDownClassInput {
-  margin: 15px 0;
-  height: 50px;
-  padding: 5px;
-  font-size: 1.15rem;
-  cursor: pointer;
-  border-style: none;
-  outline: none;
-  text-align: center;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  background-color: white;
   grid-area: markDownClassInput;
+  display: flex;
+  justify-content: center;
 }
-.write .markDownContainer .markDownClassInput option {
-  font-size: 1.15rem;
-  font-weight: 900;
+.write .markDownContainer .markDownClassInput .form-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  margin: 10px;
+}
+.write .markDownContainer .markDownClassInput .form-check .form-check-input {
+  margin: 10px 10px;
+}
+.write .markDownContainer .markDownClassInput .form-check .form-check-label {
+  margin: 10px;
+  font-size: 1.3rem;
   cursor: pointer;
 }
 .write .markDownContainer .markDownFileInput {
@@ -703,14 +703,14 @@ a:active {
   align-items: center;
 }
 .write .markDownContainer .markDownFileButton button {
-  width: 120px;
-  padding: 5px;
+  width: 15vw;
+  height: 6.5vh;
   border-style: none;
   cursor: pointer;
   border-radius: 25px;
   background-color: var(--third-color);
   color: #fff;
-  font-size: 1.05rem;
+  font-size: 1.15rem;
 }
 .write .markDownContainer .textarea {
   margin: 10px 10px 0 10px;
@@ -730,6 +730,8 @@ a:active {
 .write .markDownContainer .markDownButton {
   margin: 15px 0;
   padding: 5px;
+  width: 50vw;
+  height: 6.5vh;
   border-style: none;
   cursor: pointer;
   border-radius: 25px;
@@ -739,6 +741,12 @@ a:active {
   grid-area: markDownButton;
 }
 
+@media screen and (max-width: 700px) {
+  .write .markDownContainer {
+    grid-template-rows: auto auto minmax(250px, auto) minmax(250px, auto) 10% auto;
+    grid-template-areas: " markDownTitle markDownTitle markDownTitelInput markDownTitelInput" " markDownClass markDownClass markDownClassInput markDownClassInput" "textarea textarea textarea textarea" "output output output output" "markDownFileButton markDownFileButton markDownFile markDownFile" ". markDownButton markDownButton .";
+  }
+}
 @media screen and (max-width: 600px) {
   .write {
     padding: 10px;
@@ -750,19 +758,24 @@ a:active {
     grid-template-columns: repeat(4, 1fr);
     justify-content: center;
     grid-gap: 0px;
-    grid-template-areas: " markDownTitle markDownTitle markDownTitelInput markDownTitelInput" " markDownClass markDownClass markDownClassInput markDownClassInput" "textarea textarea textarea textarea" "output output output output" "markDownFileButton markDownFileButton markDownFile markDownFile" ". markDownButton markDownButton .";
+    grid-template-areas: " markDownTitle markDownTitelInput markDownTitelInput markDownTitelInput" " markDownClass markDownClassInput markDownClassInput markDownClassInput" "textarea textarea textarea textarea" "output output output output" "markDownFileButton markDownFileButton markDownFile markDownFile" ". markDownButton markDownButton .";
   }
   .write .markDownContainer .markDownFile {
     width: 18vh;
     height: 18vh;
   }
   .write .markDownContainer .markDownButton {
-    margin: 10px 0;
-    padding: 5px;
+    height: 5vh;
+    width: 100%;
+    font-size: 1rem;
+  }
+  .write .markDownContainer .markDownFileButton button {
+    width: 20vw;
+    height: 5vh;
     font-size: 1rem;
   }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) {
   .write .markDownContainer {
     grid-template-rows: auto auto minmax(250px, auto) minmax(250px, auto) 10% auto;
     grid-template-columns: repeat(4, 80px);
@@ -1185,14 +1198,34 @@ a:active {
   height: 25px;
   width: 200px;
 }
-.setting .setting-other .setting-other-email .setting-other-password-change-input .input,
-.setting .setting-other .setting-other-email .setting-other-name-change-input .input,
-.setting .setting-other .setting-other-name .setting-other-password-change-input .input,
-.setting .setting-other .setting-other-name .setting-other-name-change-input .input,
-.setting .setting-other .setting-other-password .setting-other-password-change-input .input,
-.setting .setting-other .setting-other-password .setting-other-name-change-input .input {
-  margin: 0;
-  width: 200px;
+.setting .setting-other .setting-other-email .setting-other-password-change-input .setting-other-name-change-input-item,
+.setting .setting-other .setting-other-email .setting-other-password-change-input .setting-other-password-change-input-item,
+.setting .setting-other .setting-other-email .setting-other-password-change-input .setting-other-password-change-input-item-1,
+.setting .setting-other .setting-other-email .setting-other-name-change-input .setting-other-name-change-input-item,
+.setting .setting-other .setting-other-email .setting-other-name-change-input .setting-other-password-change-input-item,
+.setting .setting-other .setting-other-email .setting-other-name-change-input .setting-other-password-change-input-item-1,
+.setting .setting-other .setting-other-name .setting-other-password-change-input .setting-other-name-change-input-item,
+.setting .setting-other .setting-other-name .setting-other-password-change-input .setting-other-password-change-input-item,
+.setting .setting-other .setting-other-name .setting-other-password-change-input .setting-other-password-change-input-item-1,
+.setting .setting-other .setting-other-name .setting-other-name-change-input .setting-other-name-change-input-item,
+.setting .setting-other .setting-other-name .setting-other-name-change-input .setting-other-password-change-input-item,
+.setting .setting-other .setting-other-name .setting-other-name-change-input .setting-other-password-change-input-item-1,
+.setting .setting-other .setting-other-password .setting-other-password-change-input .setting-other-name-change-input-item,
+.setting .setting-other .setting-other-password .setting-other-password-change-input .setting-other-password-change-input-item,
+.setting .setting-other .setting-other-password .setting-other-password-change-input .setting-other-password-change-input-item-1,
+.setting .setting-other .setting-other-password .setting-other-name-change-input .setting-other-name-change-input-item,
+.setting .setting-other .setting-other-password .setting-other-name-change-input .setting-other-password-change-input-item,
+.setting .setting-other .setting-other-password .setting-other-name-change-input .setting-other-password-change-input-item-1 {
+  width: 100%;
+  height: 20px;
+  background: #e0dede;
+  justify-content: center;
+  display: flex;
+  margin: 5px;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -1202,8 +1235,11 @@ a:active {
     padding: 10px;
   }
   .setting .setting-img {
-    flex-grow: 5;
+    flex-grow: 4;
     flex-basis: 0;
+  }
+  .setting .setting-img .setting-img-content {
+    width: 200px;
   }
   .setting .setting-img .setting-img-content .userPhoto {
     width: 10vh;
@@ -1213,7 +1249,7 @@ a:active {
        object-fit: cover;
   }
   .setting .setting-other {
-    flex-grow: 3;
+    flex-grow: 4;
     flex-basis: 0;
     display: flex;
     justify-content: center;
@@ -1225,30 +1261,36 @@ a:active {
   .setting .setting-other .setting-other-name .setting-other-password-input,
   .setting .setting-other .setting-other-password .setting-other-name-input,
   .setting .setting-other .setting-other-password .setting-other-password-input {
-    width: 140px;
+    width: 120px;
   }
-  .setting .setting-other .setting-other-email .setting-other-password-change-input,
-  .setting .setting-other .setting-other-email .setting-other-name-change-input,
-  .setting .setting-other .setting-other-name .setting-other-password-change-input,
-  .setting .setting-other .setting-other-name .setting-other-name-change-input,
-  .setting .setting-other .setting-other-password .setting-other-password-change-input,
-  .setting .setting-other .setting-other-password .setting-other-name-change-input {
-    width: 90px;
-  }
-  .setting .setting-other .setting-other-email .setting-other-password-change-input .input,
-  .setting .setting-other .setting-other-email .setting-other-name-change-input .input,
-  .setting .setting-other .setting-other-name .setting-other-password-change-input .input,
-  .setting .setting-other .setting-other-name .setting-other-name-change-input .input,
-  .setting .setting-other .setting-other-password .setting-other-password-change-input .input,
-  .setting .setting-other .setting-other-password .setting-other-name-change-input .input {
-    margin: 0;
-    width: 140px;
+  .setting .setting-other .setting-other-email .setting-other-password-change-input .setting-other-name-change-input-item,
+  .setting .setting-other .setting-other-email .setting-other-password-change-input .setting-other-password-change-input-item,
+  .setting .setting-other .setting-other-email .setting-other-password-change-input .setting-other-password-change-input-item-1,
+  .setting .setting-other .setting-other-email .setting-other-name-change-input .setting-other-name-change-input-item,
+  .setting .setting-other .setting-other-email .setting-other-name-change-input .setting-other-password-change-input-item,
+  .setting .setting-other .setting-other-email .setting-other-name-change-input .setting-other-password-change-input-item-1,
+  .setting .setting-other .setting-other-name .setting-other-password-change-input .setting-other-name-change-input-item,
+  .setting .setting-other .setting-other-name .setting-other-password-change-input .setting-other-password-change-input-item,
+  .setting .setting-other .setting-other-name .setting-other-password-change-input .setting-other-password-change-input-item-1,
+  .setting .setting-other .setting-other-name .setting-other-name-change-input .setting-other-name-change-input-item,
+  .setting .setting-other .setting-other-name .setting-other-name-change-input .setting-other-password-change-input-item,
+  .setting .setting-other .setting-other-name .setting-other-name-change-input .setting-other-password-change-input-item-1,
+  .setting .setting-other .setting-other-password .setting-other-password-change-input .setting-other-name-change-input-item,
+  .setting .setting-other .setting-other-password .setting-other-password-change-input .setting-other-password-change-input-item,
+  .setting .setting-other .setting-other-password .setting-other-password-change-input .setting-other-password-change-input-item-1,
+  .setting .setting-other .setting-other-password .setting-other-name-change-input .setting-other-name-change-input-item,
+  .setting .setting-other .setting-other-password .setting-other-name-change-input .setting-other-password-change-input-item,
+  .setting .setting-other .setting-other-password .setting-other-name-change-input .setting-other-password-change-input-item-1 {
+    width: 80%;
     cursor: pointer;
   }
 }
 @media screen and (max-width: 500px) {
   .setting {
     flex-direction: column;
+  }
+  .setting .setting-img .setting-img-content {
+    width: 100%;
   }
   .setting .setting-img .setting-img-content .userPhoto {
     width: 15vh;

@@ -100,24 +100,30 @@ const Markdown = () => {
                     className="markDownTitelInput"
                 />
                 {/* 分類 */}
-                <label htmlFor="markDownClass" className="markDownClass">
-                    分類
-                </label>
 
-                <select
-                    id="markDownClass"
-                    onChange={inputMarkDownClass}
-                    value={markDownClass}
-                    className="markDownClassInput"
-                >
-                    <option value="" disabled defaultValue>
-                        請選擇分類
-                    </option>
-
+                <label className="markDownClassLabel">分類</label>
+                <div className="markDownClassInput">
                     {topics.map((data, index) => {
-                        return <option key={index}>{data.name}</option>;
+                        return (
+                            <div className="form-check" key={index}>
+                                <input
+                                    className="form-check-input"
+                                    type="radio"
+                                    name="markDownClass"
+                                    id={data.name}
+                                    value={data.name}
+                                    onChange={inputMarkDownClass}
+                                />
+                                <label
+                                    className="form-check-label"
+                                    htmlFor={data.name}
+                                >
+                                    {data.name}
+                                </label>
+                            </div>
+                        );
                     })}
-                </select>
+                </div>
 
                 {/* 寫入文章 */}
                 <textarea

@@ -16,7 +16,6 @@ const App = () => {
     const [user, setUser] = useState(null);
     useEffect(() => {
         monitorUser(setUser);
-        // window.location.reload();
     }, []);
     return (
         <BrowserRouter>

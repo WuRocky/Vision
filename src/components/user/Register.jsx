@@ -5,15 +5,10 @@ import { useNavigate } from "react-router-dom";
 const Register = ({ setMessage }) => {
     const [registerError, setRegisterError] = useState("");
 
-    // const [userName, setUserName] = useState("");
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPasswrod, setRegisterPassword] = useState("");
 
     const navigate = useNavigate();
-
-    // const registerUserNameHandler = (e) => {
-    //     setUserName(e.target.value);
-    // };
 
     const registerEmailHandler = (e) => {
         setRegisterEmail(e.target.value);
@@ -23,29 +18,21 @@ const Register = ({ setMessage }) => {
         setRegisterPassword(e.target.value);
     };
 
-    const registerButtonHandler = async (e) => {
+    const registerButtonHandler = (e) => {
         e.preventDefault();
 
         if (registerEmail === "" || registerPasswrod === "") {
             setMessage("請輸入姓名、信箱和密碼");
             return;
         }
-        const success = await createUser(
+        createUser(
             registerEmail,
             registerPasswrod,
             setMessage,
             setRegisterError
         );
-
         setRegisterEmail("");
         setRegisterPassword("");
-
-        if (success) {
-            setTimeout(() => {
-                navigate("/");
-            }, 2000);
-        }
-        // setUserName("");
     };
 
     return (

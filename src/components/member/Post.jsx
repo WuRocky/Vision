@@ -69,13 +69,20 @@ const Post = () => {
                                         </div>
                                     </div>
                                     <div className="post-content-item-3-like">
-                                        <img
-                                            src={
-                                                data.trackUserId?.length
-                                                    ? tagsBlack
-                                                    : tagsGray
-                                            }
-                                        />
+                                        {user ? (
+                                            <img
+                                                src={
+                                                    data.trackUserId?.length &&
+                                                    data.trackUserId.includes(
+                                                        user?.uid
+                                                    )
+                                                        ? tagsBlack
+                                                        : tagsGray
+                                                }
+                                            />
+                                        ) : (
+                                            <img src={tagsGray} />
+                                        )}
                                     </div>
                                 </div>
                             </Link>

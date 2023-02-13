@@ -60,9 +60,8 @@ import pencil from "../../img/pencil.png";
 
 function Name({ setMessage }) {
     const { user } = useContext(AppContext);
-    const name = user.displayName;
+
     const [nameValue, setNameValue] = useState("");
-    const userId = user.uid;
 
     const [editingName, seteditingName] = useState(false);
 
@@ -75,6 +74,7 @@ function Name({ setMessage }) {
     };
     const nameSaveHandler = (e) => {
         e.preventDefault();
+        const userId = user.uid;
         updataUserName(nameValue, setMessage);
         updateArticleUserName(userId, nameValue);
         seteditingName(false);
@@ -95,6 +95,7 @@ function Name({ setMessage }) {
                         type="text"
                         onChange={nameValueHandler}
                         placeholder="輸入新的姓名"
+                        className="setting-other-name-change-input-item"
                     />
                 </div>
             ) : (
@@ -119,7 +120,7 @@ function Name({ setMessage }) {
 
 function Password({ setMessage }) {
     const { user } = useContext(AppContext);
-    const email = user.email;
+
     const [editingPassword, setEditingPassword] = useState(false);
 
     const [oldPasswird, setOldePasswird] = useState("");
@@ -139,6 +140,7 @@ function Password({ setMessage }) {
     };
     const PasswordSaveHandler = (e) => {
         e.preventDefault();
+        const email = user.email;
         updataUserPassword(email, oldPasswird, newPasswird, setMessage);
         setEditingPassword(false);
     };
@@ -153,11 +155,13 @@ function Password({ setMessage }) {
             {editingPassword ? (
                 <div className="setting-other-password-change-input">
                     <input
+                        className="setting-other-password-change-input-item"
                         onChange={oldPasswirdHandler}
                         type="text"
                         placeholder="輸入目前的密碼"
                     />
                     <input
+                        className="setting-other-password-change-input-item-1"
                         onChange={newPasswirdHandler}
                         type="text"
                         placeholder="輸入新的密碼"
@@ -239,7 +243,6 @@ function Setting({ setMessage }) {
             </div>
             <div className="setting-other">
                 <Name setMessage={setMessage} />
-                {/* <Email setMessage={setMessage} /> */}
                 <Password setMessage={setMessage} />
             </div>
         </div>

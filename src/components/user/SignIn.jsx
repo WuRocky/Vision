@@ -7,7 +7,6 @@ import Message from "../Message";
 
 const SignIn = () => {
     const [message, setMessage] = useState(null);
-
     return (
         <div>
             <div onClick={() => setMessage()}>
