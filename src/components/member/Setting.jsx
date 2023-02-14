@@ -61,6 +61,7 @@ import pencil from "../../img/pencil.png";
 function Name({ setMessage }) {
     const { user } = useContext(AppContext);
 
+    const name = user.displayName;
     const [nameValue, setNameValue] = useState("");
 
     const [editingName, seteditingName] = useState(false);
@@ -201,7 +202,6 @@ function Image({ setMessage }) {
 
     const imageSaveHandler = (e) => {
         e.preventDefault();
-
         const uid = user.uid;
         const fileType = file.type;
         addUserPhoto(uid, file, fileType, setMessage);

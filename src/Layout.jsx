@@ -7,6 +7,7 @@ import {
     getTopicsData,
     getPopularData,
     getMyData,
+    getPopularAuthor,
 } from "./hooks/useFireStore";
 
 import { getUser, userSignOut } from "./hooks/useFireAuthentication";
@@ -14,14 +15,22 @@ import { getUser, userSignOut } from "./hooks/useFireAuthentication";
 const AppContext = React.createContext();
 
 const Layout = () => {
+    // 取得前兩邊文章
     const [firebaseTwoDoc, setFirebaseTwoDoc] = useState([]);
 
+    // 熱門文章
     const [popularArticles, setPopularArticles] = useState([]);
 
+    // 得到熱門作者
+    const [popularAuthor, setPopularAuthor] = useState([]);
+
+    // 使用者文章
     const [myArticles, setMyArticles] = useState([]);
 
+    // 登入者資訊
     const [user, setUser] = useState(null);
 
+    // 文章分類
     const [topics, setTopics] = useState([]);
 
     const [isLoading, setIsLoading] = useState(true);
@@ -36,10 +45,22 @@ const Layout = () => {
 
     const [lastArticleRef, setLastArticleRef] = useState(articleRef.current);
     useEffect(() => {
+        // 取得前兩邊文章
         getData(setFirebaseTwoDoc, currentTopics, setLastArticleRef);
+
+        // 登入者資訊
         getUser(setUser);
+
+        // 得到熱門作者
+        getPopularAuthor(setPopularAuthor);
+
+        // 熱門文章
         getPopularData(setPopularArticles);
+
+        // 使用者文章
         getMyData(setMyArticles);
+
+        // 文章分類
         getTopicsData().then((data) => {
             setTopics(data);
             setIsLoading(false);
@@ -60,6 +81,7 @@ const Layout = () => {
                 popularArticles,
                 setPopularArticles,
                 myArticles,
+                popularAuthor,
             }}
         >
             <div>
@@ -88,7 +110,7 @@ const Layout = () => {
                                 ) : (
                                     <li>
                                         <Link className="signIn" to="/signIn">
-                                            Register/Sign In
+                                            Register / Sign In
                                         </Link>
                                     </li>
                                 )}

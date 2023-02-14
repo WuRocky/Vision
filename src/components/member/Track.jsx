@@ -15,6 +15,9 @@ const Track = () => {
     const handleClick = useCallback((id) => {
         navigate(`/article/${id}`);
     }, []);
+    const firstMatchIndex = myArticles.findIndex(
+        (data) => data.trackUserId == user.uid
+    );
 
     return (
         <div className="track">
@@ -27,7 +30,7 @@ const Track = () => {
                                 onClick={() => handleClick(data.id)}
                                 to={`/article/${data.id}`}
                                 className={`track-content-item ${
-                                    index > 0 ? "borderTop" : ""
+                                    index === firstMatchIndex ? "" : "borderTop"
                                 }`}
                             >
                                 <div className="track-content-item-1">

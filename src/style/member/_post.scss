@@ -1,14 +1,26 @@
 .post {
     background-color: var(--second-color);
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     .post-container {
         display: grid;
-        grid-template-columns: minmax(auto, 1200px);
+        grid-template-columns: 1fr;
+        height: 700px;
         width: 50%;
         max-width: 1200px;
         grid-template-rows: auto auto;
+
+        overflow: auto;
+        scrollbar-width: none;
+        scrollbar-color: transparent transparent;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+        &::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, and Opera */
+        }
         .borderTop {
             border-top: 1px solid #c2c2c2;
         }

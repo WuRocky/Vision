@@ -1,7 +1,7 @@
 import { storage } from "../lib/firebase/initialize";
 
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
-
+import { updateArticleUserPhoto } from "./useFireStore";
 import { updateArticle } from "./useFireStore";
 import { updataUserPhoto } from "./useFireAuthentication";
 
@@ -43,6 +43,7 @@ const addUserPhoto = async (userId, file, fileType, setMessage) => {
         ).then((snapshot) => {
             getDownloadURL(snapshot.ref).then((downloadURL) => {
                 updataUserPhoto(downloadURL, setMessage);
+                updateArticleUserPhoto(userId, downloadURL);
             });
         });
         return uploadTask;

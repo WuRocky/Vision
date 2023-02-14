@@ -34,6 +34,24 @@ const updateArticle = async (storeId, imageUrl) => {
     }
 };
 
+///* 更新文章使用者圖片 *///
+const updateArticleUserPhoto = async (userId, userPhoto) => {
+    try {
+        const q = query(collection(db, "article"));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            if (doc.data().author.uid == userId) {
+                updateDoc(doc.ref, {
+                    "author.photoURL": userPhoto,
+                });
+            }
+        });
+    } catch (e) {
+        console.error("Error getting documents: ", e);
+    }
+};
+
+///* 更新文章使用者姓名 *///
 const updateArticleUserName = async (userId, userName) => {
     try {
         const q = query(collection(db, "article"));
@@ -143,7 +161,31 @@ const getTopicsData = async () => {
     }
 };
 
-///* 得到文章 *///
+///* 得到熱門作者 *///
+const getPopularAuthor = (setPopularAuthor) => {
+    const q = query(
+        collection(db, "article"),
+        where("likeUserId", "!=", false),
+        orderBy("likeUserId"),
+        limit(5)
+    );
+
+    onSnapshot(q, (doc) => {
+        const authors = doc.docs.map((doc) => doc.data().author);
+        const uids = Array.from(new Set(authors.map((author) => author.uid)));
+
+        const filteredAuthors = [];
+        uids.forEach((uid) => {
+            const author = authors.find((author) => author.uid === uid);
+            if (author.displayName && author.photoURL) {
+                filteredAuthors.push(author);
+            }
+        });
+        setPopularAuthor(filteredAuthors);
+    });
+};
+
+///* 得到作者文章 *///
 const getArticle = (id, setWriteData) => {
     const docRef = doc(db, "article", id);
     const unsub = onSnapshot(docRef, (doc) => {
@@ -245,6 +287,7 @@ const getDataAfter = (
     }
 };
 
+// 得到熱門文章
 const getPopularData = (setPopularArticles) => {
     const documents = query(
         collection(db, "article"),
@@ -264,7 +307,8 @@ const getPopularData = (setPopularArticles) => {
     });
 };
 
-const getMyData = (setFirebaseAllDoc) => {
+// 得到作者文章
+const getMyData = (setMyArticles) => {
     const documents = query(collection(db, "article"));
     onSnapshot(documents, (doc) => {
         const data = doc.docs.map((doc) => {
@@ -275,7 +319,7 @@ const getMyData = (setFirebaseAllDoc) => {
             };
             return data;
         });
-        setFirebaseAllDoc(data);
+        setMyArticles(data);
     });
 };
 
@@ -293,4 +337,6 @@ export {
     updateArticleUserName,
     getPopularData,
     getMyData,
+    getPopularAuthor,
+    updateArticleUserPhoto,
 };
