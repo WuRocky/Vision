@@ -1,6 +1,6 @@
 // react
-import { useState, useContext, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useContext, useRef, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 // markdown
 import ReactMarkdown from "react-markdown";
@@ -10,13 +10,29 @@ import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 
 // firebase
-import { addData } from "../hooks/useFireStore";
-import { addStorage } from "../hooks/useFireStorage";
+import { addData } from "../../hooks/useFireStore";
+import { addStorage } from "../../hooks/useFireStorage";
 
-import Message from "./Message";
+import Message from "../message/Message";
 
-import { AppContext } from "../Layout";
-const Markdown = () => {
+import { AppContext } from "../../Layout";
+import { getArticle } from "../../hooks/useFireStore";
+const UpdateMarkdown = () => {
+    const { id } = useParams();
+
+    const [updateMarkdown, setUpdateMarkdown] = useState({
+        author: {},
+    });
+    useEffect(() => {
+        const unsubscribe = getArticle(id, (data) => {
+            setMarkDownTitle(data.title);
+            // setUpdateMarkdown(data.content);
+            setMarkdown(data.content);
+            setMarkDownFile(data.imageUrl);
+        });
+        return unsubscribe;
+    }, [id]);
+
     const { topics } = useContext(AppContext);
     const [markDownTitel, setMarkDownTitle] = useState("");
     const [markDownClass, setMarkDownClass] = useState("");
@@ -41,7 +57,7 @@ const Markdown = () => {
     };
 
     const previeUrl = markDownFile
-        ? URL.createObjectURL(markDownFile)
+        ? markDownFile
         : "https://react.semantic-ui.com/images/wireframe/image.png";
 
     ///* 寫入文章 *///
@@ -81,9 +97,8 @@ const Markdown = () => {
         }
     };
     const fileInput = useRef(null);
-
     return (
-        <div>
+        <div className="UpdateMarkdown">
             <div onClick={() => setMessage()}>
                 <Message message={message} />
             </div>
@@ -187,4 +202,4 @@ const Markdown = () => {
     );
 };
 
-export default Markdown;
+export default UpdateMarkdown;

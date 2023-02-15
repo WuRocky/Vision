@@ -1,0 +1,74 @@
+.point {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .point-div {
+        top: 200px;
+        width: 300px;
+        height: 150px;
+        background-color: #ffffff;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        position: absolute;
+        border-radius: 5px;
+        .point-bar {
+            width: 300px;
+            height: 10px;
+            background: linear-gradient(
+                90deg,
+                var(--first-color),
+                var(--second-color)
+            );
+            border-top-right-radius: 5px;
+            border-top-left-radius: 5px;
+        }
+        .point-content {
+            flex: 1;
+            color: var(--third-color);
+            font-weight: 500;
+            display: flex;
+            // justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            .point-content-item-1 {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                .point-content-item-1-title {
+                    margin: 15px 0 10px 0;
+                    font-size: 1.2rem;
+                }
+                .point-content-item-1-content {
+                    font-size: 1.1rem;
+                    margin: 0 0 5px 0;
+                }
+            }
+            .point-content-item-2 {
+                display: flex;
+                margin: 10px 0;
+                .point-content-item-2-remove {
+                    margin: 0 20px;
+                    cursor: pointer;
+                }
+                .point-content-item-2-close {
+                    margin: 0 20px;
+                    cursor: pointer;
+                }
+                .point-content-item-2-remove:hover,
+                .point-content-item-2-close:hover {
+                    color: rgb(208, 191, 170);
+                    transform: translateY(-3px);
+                    transition: transform 0.5s;
+                }
+            }
+        }
+    }
+}

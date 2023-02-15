@@ -16,6 +16,7 @@ import {
     orderBy,
     limit,
     startAfter,
+    deleteDoc,
 } from "firebase/firestore";
 
 import { db, auth } from "../lib/firebase/initialize";
@@ -287,7 +288,7 @@ const getDataAfter = (
     }
 };
 
-// 得到熱門文章
+///* 得到熱門文章 *///
 const getPopularData = (setPopularArticles) => {
     const documents = query(
         collection(db, "article"),
@@ -307,7 +308,7 @@ const getPopularData = (setPopularArticles) => {
     });
 };
 
-// 得到作者文章
+///* 得到作者文章 *///
 const getMyData = (setMyArticles) => {
     const documents = query(collection(db, "article"));
     onSnapshot(documents, (doc) => {
@@ -321,6 +322,17 @@ const getMyData = (setMyArticles) => {
         });
         setMyArticles(data);
     });
+};
+
+///* 刪除文件 *///
+const removeDoc = async (myDoctId, setMessage) => {
+    try {
+        await deleteDoc(doc(db, "article", myDoctId));
+        setMessage("刪除成功");
+    } catch (error) {
+        console.error("Error deleting document:", error);
+        setMessage("刪除失敗");
+    }
 };
 
 export {
@@ -339,4 +351,5 @@ export {
     getMyData,
     getPopularAuthor,
     updateArticleUserPhoto,
+    removeDoc,
 };

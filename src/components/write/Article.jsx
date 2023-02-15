@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
-import userPhoto from "../img/user.png";
 // markdown
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -9,11 +8,12 @@ import { tomorrowNightBlue } from "react-syntax-highlighter/dist/esm/styles/hljs
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 
-import likeGray from "../img/like-gray.png";
-import likeBlack from "../img/like-black.png";
-import messages from "../img/messages.png";
-import tagsGray from "../img/price-tag-gray.png";
-import tagsBlack from "../img/price-tag-black.png";
+import userPhoto from "../../img/user.png";
+import likeGray from "../../img/like-gray.png";
+import likeBlack from "../../img/like-black.png";
+import messages from "../../img/messages.png";
+import tagsGray from "../../img/price-tag-gray.png";
+import tagsBlack from "../../img/price-tag-black.png";
 
 import {
     getArticle,
@@ -21,10 +21,10 @@ import {
     reTrackUserId,
     addLikeUserId,
     reLikeUserId,
-} from "../hooks/useFireStore";
-import { auth } from "../lib/firebase/initialize";
+} from "../../hooks/useFireStore";
+import { auth } from "../../lib/firebase/initialize";
 
-import { AppContext } from "../Layout";
+import { AppContext } from "../../Layout";
 
 const Article = () => {
     const { id } = useParams();

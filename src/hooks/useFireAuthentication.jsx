@@ -1,5 +1,7 @@
 import { auth } from "../lib/firebase/initialize";
-
+import { GoogleAuthProvider } from "firebase/auth";
+import { FacebookAuthProvider } from "firebase/auth";
+import { GithubAuthProvider } from "firebase/auth";
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -11,6 +13,7 @@ import {
     updateEmail,
     reauthenticateWithCredential,
     EmailAuthProvider,
+    signInWithPopup,
 } from "firebase/auth";
 
 ///* 註冊帳號 *///
@@ -144,6 +147,71 @@ const monitorUser = (setUser) => {
     });
 };
 
+///* google 登入 *///
+const logInGoogle = (setMessage) => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+        .then((result) => {
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            const user = result.user;
+            setMessage("登入成功");
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            const email = error.customData.email;
+
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            setMessage(errorMessage);
+        });
+};
+
+///* facebook 登入 *///
+const logInfacebook = (setMessage) => {
+    const provider = new FacebookAuthProvider();
+    signInWithPopup(auth, provider)
+        .then((result) => {
+            const user = result.user;
+
+            const credential =
+                FacebookAuthProvider.credentialFromResult(result);
+            const accessToken = credential.accessToken;
+            setMessage("登入成功");
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            const email = error.customData.email;
+            const credential = FacebookAuthProvider.credentialFromError(error);
+            setMessage(errorMessage);
+        });
+};
+
+///* github 登入 *///
+const logInGitHub = (setMessage) => {
+    const provider = new GithubAuthProvider();
+
+    signInWithPopup(auth, provider)
+        .then((result) => {
+            const credential = GithubAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+
+            const user = result.user;
+            setMessage("登入成功");
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            const email = error.customData.email;
+
+            const credential = GithubAuthProvider.credentialFromError(error);
+            setMessage(errorMessage);
+        });
+};
 export {
     createUser,
     signInUser,
@@ -154,4 +222,7 @@ export {
     updataUserPhoto,
     updataUserPassword,
     monitorUser,
+    logInGoogle,
+    logInfacebook,
+    logInGitHub,
 };

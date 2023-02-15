@@ -5,8 +5,10 @@ import Layout from "./Layout";
 import HomePage from "./pages/HomePage";
 
 import Write from "./pages/Write";
-import Article from "./pages/Article";
 import Member from "./pages/Member";
+
+import Article from "./components/write/Article";
+import UpdateMarkdown from "./components/write/UpdateMarkdown";
 
 import SignIn from "./components/login/SignIn";
 
@@ -28,6 +30,10 @@ const App = () => {
                             <Route
                                 path="article/:id"
                                 element={<Article />}
+                            ></Route>
+                            <Route
+                                path="update-article/:id"
+                                element={<UpdateMarkdown />}
                             ></Route>
                             <Route path="member" element={<Member />}></Route>
                             <Route path="*" element={<Navigate to="/" />} />

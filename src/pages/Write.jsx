@@ -1,6 +1,6 @@
 import React from "react";
 
-import Markdown from "../components/Markdown";
+import Markdown from "../components/write/Markdown";
 const Write = () => {
     return (
         <div className="write">

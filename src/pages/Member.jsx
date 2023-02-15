@@ -4,15 +4,30 @@ import Setting from "../components/member/Setting";
 import Post from "../components/member/Post";
 import Track from "../components/member/Track";
 
-import Message from "../components/Message";
+import Point from "../components/message/Point";
+import Message from "../components/message/Message";
 const Member = () => {
     const [message, setMessage] = useState(null);
-    const [showComponent, setShowComponent] = useState("A");
 
+    const [point, setPoint] = useState(null);
+    const [myDoctId, setMyDoctId] = useState("");
+    const pointHandler = (e) => {
+        e.preventDefault();
+    };
+    const [showComponent, setShowComponent] = useState("A");
     return (
         <div className="member">
             <div onClick={() => setMessage()}>
                 <Message className="member-message" message={message} />
+            </div>
+            {/* <div onClick={() => setPoint()}> */}
+            <div onClick={pointHandler}>
+                <Point
+                    point={point}
+                    setPoint={setPoint}
+                    setMessage={setMessage}
+                    myDoctId={myDoctId}
+                />
             </div>
             <div className="member-item">
                 <div className="member-container">
@@ -44,7 +59,15 @@ const Member = () => {
                                     我的收藏
                                 </div>
                             </div>
-                            {showComponent === "A" ? <Post /> : <Track />}
+                            {showComponent === "A" ? (
+                                <Post
+                                    setPoint={setPoint}
+                                    setMyDoctId={setMyDoctId}
+                                    setMessage={setMessage}
+                                />
+                            ) : (
+                                <Track />
+                            )}
                         </div>
                     </div>
                 </div>

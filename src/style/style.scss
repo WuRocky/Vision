@@ -39,12 +39,14 @@ a:active {
 @import "./home/authors";
 @import "./home/topics";
 
-@import "./message";
+@import "./message/message";
+@import "./message/point";
 
 @import "./singIn";
 @import "./article";
 
 @import "./markdown/write";
+@import "./markdown/UpdateMarkdown";
 
 @import "./member/member";
 

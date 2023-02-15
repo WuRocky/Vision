@@ -55,7 +55,9 @@ const LoginUser = ({ setMessage }) => {
                     onChange={loginPasswrodHandler}
                     value={loginPasswrod}
                 />
-                <button onClick={loginButtonHandler}>Login</button>
+                <button className="login-user" onClick={loginButtonHandler}>
+                    Login
+                </button>
                 <div className="signInMessage">{loginError}</div>
             </form>
         </div>

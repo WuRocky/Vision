@@ -47,14 +47,7 @@ const Register = ({ setMessage }) => {
                 >
                     Register
                 </label>
-                {/* <input
-                    type="text"
-                    name="text"
-                    placeholder="User Name"
-                    required=""
-                    onChange={registerUserNameHandler}
-                    value={userName}
-                /> */}
+
                 <input
                     type="email"
                     name="email"
@@ -71,7 +64,12 @@ const Register = ({ setMessage }) => {
                     onChange={registerPasswordHandler}
                     value={registerPasswrod}
                 />
-                <button onClick={registerButtonHandler}>Sign up</button>
+                <button
+                    className="register-button"
+                    onClick={registerButtonHandler}
+                >
+                    Sign up
+                </button>
                 <div className="signInMessage">{registerError}</div>
             </form>
         </div>

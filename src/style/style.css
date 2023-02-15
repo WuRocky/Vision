@@ -510,6 +510,76 @@ a:active {
   align-items: center;
 }
 
+.point {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.point .point-div {
+  top: 200px;
+  width: 300px;
+  height: 150px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  border-radius: 5px;
+}
+.point .point-div .point-bar {
+  width: 300px;
+  height: 10px;
+  background: linear-gradient(90deg, var(--first-color), var(--second-color));
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.point .point-div .point-content {
+  flex: 1;
+  color: var(--third-color);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.point .point-div .point-content .point-content-item-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.point .point-div .point-content .point-content-item-1 .point-content-item-1-title {
+  margin: 15px 0 10px 0;
+  font-size: 1.2rem;
+}
+.point .point-div .point-content .point-content-item-1 .point-content-item-1-content {
+  font-size: 1.1rem;
+  margin: 0 0 5px 0;
+}
+.point .point-div .point-content .point-content-item-2 {
+  display: flex;
+  margin: 10px 0;
+}
+.point .point-div .point-content .point-content-item-2 .point-content-item-2-remove {
+  margin: 0 20px;
+  cursor: pointer;
+}
+.point .point-div .point-content .point-content-item-2 .point-content-item-2-close {
+  margin: 0 20px;
+  cursor: pointer;
+}
+.point .point-div .point-content .point-content-item-2 .point-content-item-2-remove:hover,
+.point .point-div .point-content .point-content-item-2 .point-content-item-2-close:hover {
+  color: rgb(208, 191, 170);
+  transform: translateY(-3px);
+  transition: transform 0.5s;
+}
+
 .signInMain {
   min-height: var(--height);
   background-color: var(--second-color);
@@ -534,7 +604,7 @@ a:active {
   font-size: 2.3em;
   justify-content: center;
   display: flex;
-  margin: 60px;
+  margin: 10px 60px 20px 60px;
   font-weight: bold;
   cursor: pointer;
   transition: 0.5s ease-in-out;
@@ -552,7 +622,8 @@ a:active {
   border-radius: 5px;
   cursor: pointer;
 }
-.signInMain button {
+.signInMain .register-button,
+.signInMain .login-user {
   width: 60%;
   height: 40px;
   margin: 10px auto;
@@ -569,7 +640,8 @@ a:active {
   transition: 0.2s ease-in;
   cursor: pointer;
 }
-.signInMain button:hover {
+.signInMain .register-button:hover,
+.signInMain .login-user:hover {
   background: #6d44b8;
 }
 .signInMain .login {
@@ -589,6 +661,23 @@ a:active {
   align-items: center;
   color: red;
   font-weight: 600;
+}
+.signInMain .other-register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.signInMain .other-register .google,
+.signInMain .other-register .facebook,
+.signInMain .other-register .github {
+  margin: 30px 12px 0 12px;
+  cursor: pointer;
+}
+.signInMain .other-register .google:hover,
+.signInMain .other-register .facebook:hover,
+.signInMain .other-register .github:hover {
+  transform: translateY(-6px);
+  transition: transform 0.5s;
 }
 
 #chk {
@@ -865,6 +954,197 @@ a:active {
     cursor: pointer;
   }
 }
+.UpdateMarkdown {
+  background-color: var(--second-color);
+  min-height: var(--height);
+}
+.UpdateMarkdown .markDownContainer {
+  margin: 0 50px;
+  display: grid;
+  grid-template-rows: auto auto minmax(var(--height), auto) minmax(200px, auto) auto;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  grid-gap: 10px;
+  grid-template-areas: " markDownTitle markDownTitelInput markDownTitelInput ." " markDownClass markDownClassInput markDownClassInput ." "textarea textarea output output" ". markDownFileButton markDownFile ." ". markDownButton markDownButton .";
+}
+.UpdateMarkdown .markDownContainer .markDownTitle {
+  margin: 15px 0;
+  font-size: 1.25rem;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 1.05rem;
+  grid-area: markDownTitle;
+}
+.UpdateMarkdown .markDownContainer .markDownTitelInput {
+  margin: 15px 0;
+  height: 50px;
+  padding: 5px;
+  font-size: 1.25rem;
+  border-style: none;
+  grid-area: markDownTitelInput;
+  cursor: pointer;
+}
+.UpdateMarkdown .markDownContainer .markDownClassLabel {
+  margin: 15px 0;
+  font-size: 1.25rem;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 1.05rem;
+  grid-area: markDownClass;
+}
+.UpdateMarkdown .markDownContainer .markDownClassInput {
+  grid-area: markDownClassInput;
+  display: flex;
+  justify-content: center;
+}
+.UpdateMarkdown .markDownContainer .markDownClassInput .form-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  margin: 10px;
+}
+.UpdateMarkdown .markDownContainer .markDownClassInput .form-check .form-check-input {
+  margin: 10px 10px;
+}
+.UpdateMarkdown .markDownContainer .markDownClassInput .form-check .form-check-label {
+  margin: 10px;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.UpdateMarkdown .markDownContainer .markDownFileInput {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+  font-size: 1.05rem;
+  border-style: none;
+  grid-area: markDownFileInput;
+}
+.UpdateMarkdown .markDownContainer .markDownFile {
+  margin: 10px 10px 0 10px;
+  width: 25vh;
+  height: 25vh;
+  -o-object-fit: contain;
+     object-fit: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 1.05rem;
+  grid-area: markDownFile;
+}
+.UpdateMarkdown .markDownContainer .markDownFileButton {
+  grid-area: markDownFileButton;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.UpdateMarkdown .markDownContainer .markDownFileButton button {
+  width: 15vw;
+  height: 6.5vh;
+  border-style: none;
+  cursor: pointer;
+  border-radius: 25px;
+  background-color: var(--third-color);
+  color: #fff;
+  font-size: 1.15rem;
+}
+.UpdateMarkdown .markDownContainer .textarea {
+  margin: 10px 10px 0 10px;
+  padding: 5px 20px;
+  border: none;
+  height: auto;
+  resize: none;
+  grid-area: textarea;
+}
+.UpdateMarkdown .markDownContainer .output {
+  background-color: #fae6db;
+  margin: 10px 10px 0 10px;
+  padding: 5px 20px;
+  outline: none;
+  grid-area: output;
+}
+.UpdateMarkdown .markDownContainer .markDownButton {
+  margin: 15px 0;
+  padding: 5px;
+  width: 50vw;
+  height: 6.5vh;
+  border-style: none;
+  cursor: pointer;
+  border-radius: 25px;
+  background-color: var(--third-color);
+  color: #fff;
+  font-size: 1.15rem;
+  grid-area: markDownButton;
+}
+
+@media screen and (max-width: 700px) {
+  .write .markDownContainer {
+    grid-template-rows: auto auto minmax(250px, auto) minmax(250px, auto) 10% auto;
+    grid-template-areas: " markDownTitle markDownTitle markDownTitelInput markDownTitelInput" " markDownClass markDownClass markDownClassInput markDownClassInput" "textarea textarea textarea textarea" "output output output output" "markDownFileButton markDownFileButton markDownFile markDownFile" ". markDownButton markDownButton .";
+  }
+}
+@media screen and (max-width: 600px) {
+  .write {
+    padding: 10px;
+  }
+  .write .markDownContainer {
+    margin: 0 50px;
+    display: grid;
+    grid-template-rows: auto auto minmax(250px, auto) minmax(250px, auto) 10% auto;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    grid-gap: 0px;
+    grid-template-areas: " markDownTitle markDownTitelInput markDownTitelInput markDownTitelInput" " markDownClass markDownClassInput markDownClassInput markDownClassInput" "textarea textarea textarea textarea" "output output output output" "markDownFileButton markDownFileButton markDownFile markDownFile" ". markDownButton markDownButton .";
+  }
+  .write .markDownContainer .markDownFile {
+    width: 18vh;
+    height: 18vh;
+  }
+  .write .markDownContainer .markDownButton {
+    height: 5vh;
+    width: 100%;
+    font-size: 1rem;
+  }
+  .write .markDownContainer .markDownFileButton button {
+    width: 20vw;
+    height: 5vh;
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width: 450px) {
+  .write .markDownContainer {
+    grid-template-rows: auto auto minmax(250px, auto) minmax(250px, auto) 10% auto;
+    grid-template-columns: repeat(4, 80px);
+    justify-content: center;
+  }
+  .write .markDownContainer .markDownFile {
+    width: 15vh;
+    height: 15vh;
+  }
+  .write .markDownContainer .markDownButton {
+    margin: 10px 0;
+    padding: 5px;
+    font-size: 1rem;
+  }
+  .write .markDownContainer .markDownTitelInput {
+    margin: 15px 0;
+    height: 50px;
+    padding: 5px;
+    font-size: 1.25rem;
+    border-style: none;
+    grid-area: markDownTitelInput;
+    cursor: pointer;
+  }
+}
 .member {
   min-height: var(--height);
   background-color: var(--second-color);
@@ -1028,7 +1308,33 @@ a:active {
 .post .post-container .borderTop {
   border-top: 1px solid #c2c2c2;
 }
-.post .post-container .post-content-item {
+.post .post-container .post-container-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.post .post-container .post-container-main .post-container-fix {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 30px;
+}
+.post .post-container .post-container-main .post-container-fix .post-container-fix-edit,
+.post .post-container .post-container-main .post-container-fix .post-container-fix-remove {
+  margin: 10px 0;
+  cursor: pointer;
+}
+.post .post-container .post-container-main .post-container-fix .post-container-fix-edit img,
+.post .post-container .post-container-main .post-container-fix .post-container-fix-remove img {
+  width: 2.2vw;
+}
+.post .post-container .post-container-main .post-container-fix .post-container-fix-edit:hover,
+.post .post-container .post-container-main .post-container-fix .post-container-fix-remove:hover {
+  transform: translateY(-5px);
+  transition: transform 0.5s;
+}
+.post .post-container .post-container-main .post-content-item {
   font-size: 1.25rem;
   display: flex;
   justify-content: center;
@@ -1037,26 +1343,26 @@ a:active {
   height: 250px;
   width: 100%;
 }
-.post .post-container .post-content-item .post-content-item-1 {
+.post .post-container .post-container-main .post-content-item .post-content-item-1 {
   display: flex;
   align-items: center;
   width: 100%;
   margin: 10px;
 }
-.post .post-container .post-content-item .post-content-item-1 div {
+.post .post-container .post-container-main .post-content-item .post-content-item-1 div {
   display: flex;
   margin: 0 25px;
   justify-content: center;
   align-items: center;
 }
-.post .post-container .post-content-item .post-content-item-1 div .post-content-item-1-userPhoto {
+.post .post-container .post-container-main .post-content-item .post-content-item-1 div .post-content-item-1-userPhoto {
   width: 6vh;
   height: 6vh;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.post .post-container .post-content-item .post-content-item-2 {
+.post .post-container .post-container-main .post-content-item .post-content-item-2 {
   display: grid;
   align-items: center;
   grid-template-columns: repeat(6, 1fr);
@@ -1066,10 +1372,10 @@ a:active {
   cursor: pointer;
   grid-template-areas: " item-2-title item-2-title item-2-title item-2-title item-2-title item-2-img" " item-2-article item-2-article item-2-article item-2-article item-2-article item-2-img ";
 }
-.post .post-container .post-content-item .post-content-item-2 .post-content-item-2-title {
+.post .post-container .post-container-main .post-content-item .post-content-item-2 .post-content-item-2-title {
   grid-area: item-2-title;
 }
-.post .post-container .post-content-item .post-content-item-2 .post-content-item-2-article {
+.post .post-container .post-container-main .post-content-item .post-content-item-2 .post-content-item-2-article {
   grid-area: item-2-article;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -1078,54 +1384,54 @@ a:active {
   font-size: 16px;
   font-weight: 300;
 }
-.post .post-container .post-content-item .post-content-item-2 .post-content-item-2-img {
+.post .post-container .post-container-main .post-content-item .post-content-item-2 .post-content-item-2-img {
   grid-area: item-2-img;
   width: 100px;
   height: 100px;
   -o-object-fit: fill;
      object-fit: fill;
 }
-.post .post-container .post-content-item .post-content-item-3 {
+.post .post-container .post-container-main .post-content-item .post-content-item-3 {
   display: flex;
   width: 100%;
   align-items: center;
   margin-top: 20px;
 }
-.post .post-container .post-content-item .post-content-item-3 .post-content-item-3-like {
+.post .post-container .post-container-main .post-content-item .post-content-item-3 .post-content-item-3-like {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 25px;
 }
-.post .post-container .post-content-item .post-content-item-3 div {
+.post .post-container .post-container-main .post-content-item .post-content-item-3 div {
   margin: 0 25px;
 }
 
 @media screen and (max-width: 500px) {
-  .post .post-container .post-content-item {
+  .post .post-container .post-container-main .post-content-item {
     height: 220px;
   }
-  .post .post-container .post-content-item .post-content-item-1 div {
+  .post .post-container .post-container-main .post-content-item .post-content-item-1 div {
     margin: 0 10px;
   }
-  .post .post-container .post-content-item .post-content-item-1 div .post-content-item-1-userPhoto {
+  .post .post-container .post-container-main .post-content-item .post-content-item-1 div .post-content-item-1-userPhoto {
     width: 5vh;
     height: 5vh;
   }
-  .post .post-container .post-content-item .post-content-item-2 .post-content-item-2-img {
+  .post .post-container .post-container-main .post-content-item .post-content-item-2 .post-content-item-2-img {
     width: 70px;
     height: 70px;
   }
 }
 @media screen and (max-width: 400px) {
-  .post .post-container .post-content-item .post-content-item-1 div {
+  .post .post-container .post-container-main .post-content-item .post-content-item-1 div {
     margin: 0 5px;
   }
-  .post .post-container .post-content-item .post-content-item-1 div .post-content-item-1-userPhoto {
+  .post .post-container .post-container-main .post-content-item .post-content-item-1 div .post-content-item-1-userPhoto {
     width: 5vh;
     height: 5vh;
   }
-  .post .post-container .post-content-item .post-content-item-2 .post-content-item-2-img {
+  .post .post-container .post-container-main .post-content-item .post-content-item-2 .post-content-item-2-img {
     width: 50px;
     height: 50px;
   }
