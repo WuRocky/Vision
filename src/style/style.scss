@@ -31,6 +31,12 @@ a:active {
 }
 
 @import "./nav";
+@import "./footer";
+
+@import "./singIn";
+
+@import "./message/message";
+@import "./message/point";
 
 @import "./home/homepage";
 
@@ -39,12 +45,7 @@ a:active {
 @import "./home/authors";
 @import "./home/topics";
 
-@import "./message/message";
-@import "./message/point";
-
-@import "./singIn";
-@import "./article";
-
+@import "./markdown/article";
 @import "./markdown/write";
 @import "./markdown/UpdateMarkdown";
 
@@ -53,5 +54,3 @@ a:active {
 @import "./member/track";
 @import "./member/post";
 @import "./member/setting";
-
-@import "./footer";

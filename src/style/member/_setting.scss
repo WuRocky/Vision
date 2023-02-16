@@ -184,32 +184,32 @@
         }
     }
 }
-@media screen and (max-width: 500px) {
-    .setting {
-        flex-direction: column;
-        .setting-img {
-            .setting-img-content {
-                width: 100%;
-                .userPhoto {
-                    width: 15vh;
-                    height: 15vh;
-                }
-            }
-        }
-        .setting-other {
-            .setting-other-email,
-            .setting-other-name,
-            .setting-other-password {
-                .setting-other-password-change-input,
-                .setting-other-name-change-input {
-                    width: 150px;
-                    .input {
-                        margin: 0;
-                        width: 150px;
-                        cursor: pointer;
-                    }
-                }
-            }
-        }
-    }
-}
+// @media screen and (max-width: 500px) {
+//     .setting {
+//         flex-direction: column;
+//         .setting-img {
+//             .setting-img-content {
+//                 width: 100%;
+//                 .userPhoto {
+//                     width: 15vh;
+//                     height: 15vh;
+//                 }
+//             }
+//         }
+//         .setting-other {
+//             .setting-other-email,
+//             .setting-other-name,
+//             .setting-other-password {
+//                 .setting-other-password-change-input,
+//                 .setting-other-name-change-input {
+//                     width: 150px;
+//                     .input {
+//                         margin: 0;
+//                         width: 150px;
+//                         cursor: pointer;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }

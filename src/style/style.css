@@ -102,6 +102,239 @@ a:active {
     width: 100px;
   }
 }
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--first-color);
+  min-height: 10vh;
+}
+
+.signInMain {
+  min-height: var(--height);
+  background-color: var(--second-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.signInMain .signInContainer {
+  width: 350px;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 5px 20px 50px #000;
+}
+.signInMain .signInContainer .register {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.signInMain label {
+  color: #573b8a;
+  font-size: 2.3em;
+  justify-content: center;
+  display: flex;
+  margin: 10px 60px 20px 60px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+}
+.signInMain input {
+  width: 60%;
+  height: 20px;
+  background: #e0dede;
+  justify-content: center;
+  display: flex;
+  margin: 20px auto;
+  padding: 20px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.signInMain .register-button,
+.signInMain .login-user {
+  width: 60%;
+  height: 40px;
+  margin: 10px auto;
+  justify-content: center;
+  display: block;
+  color: #fff;
+  background: #573b8a;
+  font-size: 1em;
+  font-weight: bold;
+  margin-top: 20px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  transition: 0.2s ease-in;
+  cursor: pointer;
+}
+.signInMain .register-button:hover,
+.signInMain .login-user:hover {
+  background: #6d44b8;
+}
+.signInMain .login {
+  height: 460px;
+  background: #eee;
+  border-radius: 60%/10%;
+  transform: translateY(-180px);
+  transition: 0.8s ease-in-out;
+}
+.signInMain .login label {
+  color: #573b8a;
+  transform: scale(0.6);
+}
+.signInMain .signInMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  font-weight: 600;
+}
+.signInMain .other-register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.signInMain .other-register .google,
+.signInMain .other-register .facebook,
+.signInMain .other-register .github {
+  margin: 30px 12px 0 12px;
+  cursor: pointer;
+}
+.signInMain .other-register .google:hover,
+.signInMain .other-register .facebook:hover,
+.signInMain .other-register .github:hover {
+  transform: translateY(-6px);
+  transition: transform 0.5s;
+}
+
+#chk {
+  display: none;
+}
+
+#chk:checked ~ .login {
+  transform: translateY(-500px);
+}
+
+#chk:checked ~ .login label {
+  transform: scale(1);
+}
+
+#chk:checked ~ .register label {
+  transform: scale(0.6);
+}
+
+.message {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.message .message-div {
+  top: 200px;
+  width: 240px;
+  height: 100px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  border-radius: 5px;
+}
+.message .message-div .decorator-bar {
+  width: 240px;
+  height: 10px;
+  background: linear-gradient(90deg, var(--first-color), var(--second-color));
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.message .message-div .message-content {
+  flex: 1;
+  font-size: 1.2rem;
+  color: var(--third-color);
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.point {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.point .point-div {
+  top: 200px;
+  width: 300px;
+  height: 150px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  border-radius: 5px;
+}
+.point .point-div .point-bar {
+  width: 300px;
+  height: 10px;
+  background: linear-gradient(90deg, var(--first-color), var(--second-color));
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.point .point-div .point-content {
+  flex: 1;
+  color: var(--third-color);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.point .point-div .point-content .point-content-item-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.point .point-div .point-content .point-content-item-1 .point-content-item-1-title {
+  margin: 15px 0 10px 0;
+  font-size: 1.2rem;
+}
+.point .point-div .point-content .point-content-item-1 .point-content-item-1-content {
+  font-size: 1.1rem;
+  margin: 0 0 5px 0;
+}
+.point .point-div .point-content .point-content-item-2 {
+  display: flex;
+  margin: 10px 0;
+}
+.point .point-div .point-content .point-content-item-2 .point-content-item-2-remove {
+  margin: 0 20px;
+  cursor: pointer;
+}
+.point .point-div .point-content .point-content-item-2 .point-content-item-2-close {
+  margin: 0 20px;
+  cursor: pointer;
+}
+.point .point-div .point-content .point-content-item-2 .point-content-item-2-remove:hover,
+.point .point-div .point-content .point-content-item-2 .point-content-item-2-close:hover {
+  color: rgb(208, 191, 170);
+  transform: translateY(-3px);
+  transition: transform 0.5s;
+}
+
 .homepage {
   height: var(--height);
   background-color: var(--second-color);
@@ -471,240 +704,23 @@ a:active {
     margin: 10px;
   }
 }
-.message {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  background-color: rgba(0, 0, 0, 0.5);
-  top: 0;
-  z-index: 5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.message .message-div {
-  top: 200px;
-  width: 240px;
-  height: 100px;
-  background-color: #ffffff;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  position: absolute;
-  border-radius: 5px;
-}
-.message .message-div .decorator-bar {
-  width: 240px;
-  height: 10px;
-  background: linear-gradient(90deg, var(--first-color), var(--second-color));
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
-}
-.message .message-div .message-content {
-  flex: 1;
-  font-size: 1.2rem;
-  color: var(--third-color);
-  font-weight: 500;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.point {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  background-color: rgba(0, 0, 0, 0.5);
-  top: 0;
-  z-index: 5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.point .point-div {
-  top: 200px;
-  width: 300px;
-  height: 150px;
-  background-color: #ffffff;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  position: absolute;
-  border-radius: 5px;
-}
-.point .point-div .point-bar {
-  width: 300px;
-  height: 10px;
-  background: linear-gradient(90deg, var(--first-color), var(--second-color));
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
-}
-.point .point-div .point-content {
-  flex: 1;
-  color: var(--third-color);
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-.point .point-div .point-content .point-content-item-1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-.point .point-div .point-content .point-content-item-1 .point-content-item-1-title {
-  margin: 15px 0 10px 0;
-  font-size: 1.2rem;
-}
-.point .point-div .point-content .point-content-item-1 .point-content-item-1-content {
-  font-size: 1.1rem;
-  margin: 0 0 5px 0;
-}
-.point .point-div .point-content .point-content-item-2 {
-  display: flex;
-  margin: 10px 0;
-}
-.point .point-div .point-content .point-content-item-2 .point-content-item-2-remove {
-  margin: 0 20px;
-  cursor: pointer;
-}
-.point .point-div .point-content .point-content-item-2 .point-content-item-2-close {
-  margin: 0 20px;
-  cursor: pointer;
-}
-.point .point-div .point-content .point-content-item-2 .point-content-item-2-remove:hover,
-.point .point-div .point-content .point-content-item-2 .point-content-item-2-close:hover {
-  color: rgb(208, 191, 170);
-  transform: translateY(-3px);
-  transition: transform 0.5s;
-}
-
-.signInMain {
-  min-height: var(--height);
-  background-color: var(--second-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.signInMain .signInContainer {
-  width: 350px;
-  height: 500px;
-  overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 5px 20px 50px #000;
-}
-.signInMain .signInContainer .register {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-.signInMain label {
-  color: #573b8a;
-  font-size: 2.3em;
-  justify-content: center;
-  display: flex;
-  margin: 10px 60px 20px 60px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.5s ease-in-out;
-}
-.signInMain input {
-  width: 60%;
-  height: 20px;
-  background: #e0dede;
-  justify-content: center;
-  display: flex;
-  margin: 20px auto;
-  padding: 20px;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.signInMain .register-button,
-.signInMain .login-user {
-  width: 60%;
-  height: 40px;
-  margin: 10px auto;
-  justify-content: center;
-  display: block;
-  color: #fff;
-  background: #573b8a;
-  font-size: 1em;
-  font-weight: bold;
-  margin-top: 20px;
-  outline: none;
-  border: none;
-  border-radius: 5px;
-  transition: 0.2s ease-in;
-  cursor: pointer;
-}
-.signInMain .register-button:hover,
-.signInMain .login-user:hover {
-  background: #6d44b8;
-}
-.signInMain .login {
-  height: 460px;
-  background: #eee;
-  border-radius: 60%/10%;
-  transform: translateY(-180px);
-  transition: 0.8s ease-in-out;
-}
-.signInMain .login label {
-  color: #573b8a;
-  transform: scale(0.6);
-}
-.signInMain .signInMessage {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: red;
-  font-weight: 600;
-}
-.signInMain .other-register {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.signInMain .other-register .google,
-.signInMain .other-register .facebook,
-.signInMain .other-register .github {
-  margin: 30px 12px 0 12px;
-  cursor: pointer;
-}
-.signInMain .other-register .google:hover,
-.signInMain .other-register .facebook:hover,
-.signInMain .other-register .github:hover {
-  transform: translateY(-6px);
-  transition: transform 0.5s;
-}
-
-#chk {
-  display: none;
-}
-
-#chk:checked ~ .login {
-  transform: translateY(-500px);
-}
-
-#chk:checked ~ .login label {
-  transform: scale(1);
-}
-
-#chk:checked ~ .register label {
-  transform: scale(0.6);
-}
-
 .article {
   display: flex;
   align-items: center;
   flex-direction: column;
-  min-height: var(--height);
+  height: var(--height);
   background-color: var(--second-color);
 }
 .article .article-content {
   width: 50%;
+  overflow: auto;
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+.article .article-content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
 }
 .article .article-content .article-author {
   display: flex;
@@ -1146,7 +1162,7 @@ a:active {
   }
 }
 .member {
-  min-height: var(--height);
+  height: var(--height);
   background-color: var(--second-color);
 }
 .member .member-item {
@@ -1173,6 +1189,7 @@ a:active {
   align-items: center;
   flex-direction: column;
   grid-area: content;
+  margin: 0 10px;
 }
 .member .member-item .member-container .member-content .member-content-change-components {
   display: flex;
@@ -1194,7 +1211,7 @@ a:active {
 .track .track-container {
   display: grid;
   grid-template-columns: 1fr;
-  height: 700px;
+  max-height: 54vh;
   width: 50%;
   max-width: 1200px;
   grid-template-rows: auto auto;
@@ -1292,7 +1309,7 @@ a:active {
 .post .post-container {
   display: grid;
   grid-template-columns: 1fr;
-  height: 700px;
+  max-height: 54vh;
   width: 50%;
   max-width: 1200px;
   grid-template-rows: auto auto;
@@ -1407,6 +1424,15 @@ a:active {
   margin: 0 25px;
 }
 
+@media screen and (max-width: 700px) {
+  .post .post-container {
+    width: 90%;
+  }
+  .post .post-container .post-container-main .post-container-fix .post-container-fix-edit img,
+  .post .post-container .post-container-main .post-container-fix .post-container-fix-remove img {
+    width: 4vw;
+  }
+}
 @media screen and (max-width: 500px) {
   .post .post-container .post-container-main .post-content-item {
     height: 220px;
@@ -1673,41 +1699,4 @@ a:active {
     width: 80%;
     cursor: pointer;
   }
-}
-@media screen and (max-width: 500px) {
-  .setting {
-    flex-direction: column;
-  }
-  .setting .setting-img .setting-img-content {
-    width: 100%;
-  }
-  .setting .setting-img .setting-img-content .userPhoto {
-    width: 15vh;
-    height: 15vh;
-  }
-  .setting .setting-other .setting-other-email .setting-other-password-change-input,
-  .setting .setting-other .setting-other-email .setting-other-name-change-input,
-  .setting .setting-other .setting-other-name .setting-other-password-change-input,
-  .setting .setting-other .setting-other-name .setting-other-name-change-input,
-  .setting .setting-other .setting-other-password .setting-other-password-change-input,
-  .setting .setting-other .setting-other-password .setting-other-name-change-input {
-    width: 150px;
-  }
-  .setting .setting-other .setting-other-email .setting-other-password-change-input .input,
-  .setting .setting-other .setting-other-email .setting-other-name-change-input .input,
-  .setting .setting-other .setting-other-name .setting-other-password-change-input .input,
-  .setting .setting-other .setting-other-name .setting-other-name-change-input .input,
-  .setting .setting-other .setting-other-password .setting-other-password-change-input .input,
-  .setting .setting-other .setting-other-password .setting-other-name-change-input .input {
-    margin: 0;
-    width: 150px;
-    cursor: pointer;
-  }
-}
-.footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--first-color);
-  min-height: 10vh;
 }/*# sourceMappingURL=style.css.map */

@@ -10,8 +10,8 @@ import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 
 // firebase
-import { addData } from "../../hooks/useFireStore";
-import { addStorage } from "../../hooks/useFireStorage";
+import { updateUserArticleContent } from "../../hooks/useFireStore";
+import { upDataStorage } from "../../hooks/useFireStorage";
 
 import Message from "../message/Message";
 
@@ -19,25 +19,18 @@ import { AppContext } from "../../Layout";
 import { getArticle } from "../../hooks/useFireStore";
 const UpdateMarkdown = () => {
     const { id } = useParams();
-
-    const [updateMarkdown, setUpdateMarkdown] = useState({
-        author: {},
-    });
-    useEffect(() => {
-        const unsubscribe = getArticle(id, (data) => {
-            setMarkDownTitle(data.title);
-            // setUpdateMarkdown(data.content);
-            setMarkdown(data.content);
-            setMarkDownFile(data.imageUrl);
-        });
-        return unsubscribe;
-    }, [id]);
-
     const { topics } = useContext(AppContext);
     const [markDownTitel, setMarkDownTitle] = useState("");
     const [markDownClass, setMarkDownClass] = useState("");
     const [markDown, setMarkdown] = useState("");
-    const [markDownFile, setMarkDownFile] = useState(null);
+    const [markDownFile, setMarkDownFile] = useState("");
+    useEffect(() => {
+        getArticle(id, (data) => {
+            setMarkDownTitle(data.title);
+            setMarkdown(data.content);
+            setMarkDownFile(data.imageUrl);
+        });
+    }, [id]);
 
     const [message, setMessage] = useState(null);
     ///* 標題 *///
@@ -56,8 +49,10 @@ const UpdateMarkdown = () => {
         fileInput.current.click();
     };
 
-    const previeUrl = markDownFile
-        ? markDownFile
+    const previewUrl = markDownFile
+        ? typeof markDownFile === "string"
+            ? markDownFile
+            : URL.createObjectURL(new Blob([markDownFile]))
         : "https://react.semantic-ui.com/images/wireframe/image.png";
 
     ///* 寫入文章 *///
@@ -66,7 +61,7 @@ const UpdateMarkdown = () => {
     };
     const navigate = useNavigate();
 
-    const buttonHandler = async (e) => {
+    const buttonHandler = (e) => {
         e.preventDefault();
 
         if (markDown === "" || markDownTitel === "" || markDownClass === "") {
@@ -74,16 +69,17 @@ const UpdateMarkdown = () => {
             return;
         }
 
-        const success = await addData(
+        const success = updateUserArticleContent(
+            id,
             markDownTitel,
             markDown,
             markDownClass,
             setMessage
         );
-        const fileId = success.id;
+
         if (markDownFile) {
             const fileType = markDownFile.type;
-            addStorage(fileId, markDownFile, fileType);
+            upDataStorage(id, markDownFile, fileType);
         }
 
         setMarkdown("");
@@ -177,7 +173,7 @@ const UpdateMarkdown = () => {
                 />
 
                 {/* 上傳圖片 */}
-                <img src={previeUrl} className="markDownFile" />
+                <img src={previewUrl} className="markDownFile" />
                 <div className="markDownFileButton">
                     <button htmlFor="markDownFile" onClick={markDownFileHandle}>
                         上傳圖片
@@ -195,7 +191,7 @@ const UpdateMarkdown = () => {
                 />
 
                 <button onClick={buttonHandler} className="markDownButton">
-                    送出文章
+                    更新文章
                 </button>
             </form>
         </div>

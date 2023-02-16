@@ -40,7 +40,7 @@ const Markdown = () => {
         fileInput.current.click();
     };
 
-    const previeUrl = markDownFile
+    const previewUrl = markDownFile
         ? URL.createObjectURL(markDownFile)
         : "https://react.semantic-ui.com/images/wireframe/image.png";
 
@@ -162,7 +162,7 @@ const Markdown = () => {
                 />
 
                 {/* 上傳圖片 */}
-                <img src={previeUrl} className="markDownFile" />
+                <img src={previewUrl} className="markDownFile" />
                 <div className="markDownFileButton">
                     <button htmlFor="markDownFile" onClick={markDownFileHandle}>
                         上傳圖片

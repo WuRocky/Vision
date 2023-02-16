@@ -20,7 +20,6 @@ const Member = () => {
             <div onClick={() => setMessage()}>
                 <Message className="member-message" message={message} />
             </div>
-            {/* <div onClick={() => setPoint()}> */}
             <div onClick={pointHandler}>
                 <Point
                     point={point}

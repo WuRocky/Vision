@@ -1,11 +1,12 @@
 import React from "react";
 
 import { removeDoc } from "../../hooks/useFireStore";
-
+import { deleteStorage } from "../../hooks/useFireStorage";
 const Point = ({ point, setPoint, myDoctId, setMessage }) => {
     const removeHandler = (e) => {
         e.preventDefault();
         removeDoc(myDoctId, setMessage);
+        deleteStorage(myDoctId);
         setPoint();
     };
 

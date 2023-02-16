@@ -1,5 +1,5 @@
 .member {
-    min-height: var(--height);
+    height: var(--height);
     background-color: var(--second-color);
 
     .member-item {
@@ -28,6 +28,7 @@
                 align-items: center;
                 flex-direction: column;
                 grid-area: content;
+                margin: 0 10px;
                 .member-content-change-components {
                     display: flex;
                     align-items: center;

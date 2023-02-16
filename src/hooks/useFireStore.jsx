@@ -69,6 +69,33 @@ const updateArticleUserName = async (userId, userName) => {
     }
 };
 
+///* 更新文章內容 *///
+const updateUserArticleContent = async (
+    id,
+    title,
+    content,
+    topic,
+    setFindMessage
+) => {
+    try {
+        const firebaseDB = collection(db, "article");
+        const q = doc(firebaseDB, id);
+
+        const addFirestore = await updateDoc(q, {
+            title: title,
+            content: content,
+            topic: topic,
+            time: Timestamp.now(),
+            imageUrl: "",
+        });
+        setFindMessage("更新成功");
+        return addFirestore;
+    } catch (e) {
+        console.error("Error adding document: ", e);
+        return false;
+    }
+};
+
 ///* 新增追蹤人數 *///
 const addTrackUserId = async (id, uid) => {
     try {
@@ -352,4 +379,5 @@ export {
     getPopularAuthor,
     updateArticleUserPhoto,
     removeDoc,
+    updateUserArticleContent,
 };

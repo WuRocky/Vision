@@ -1,7 +1,7 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
 import React, { useState, useEffect, useRef } from "react";
 import Footer from "./components/Footer";
-import Notes from "./img/notes2.png";
+
 import {
     getData,
     getTopicsData,
@@ -10,7 +10,8 @@ import {
     getPopularAuthor,
 } from "./hooks/useFireStore";
 
-import { getUser, userSignOut } from "./hooks/useFireAuthentication";
+import { getUser } from "./hooks/useFireAuthentication";
+import Nav from "./components/Nav";
 
 const AppContext = React.createContext();
 
@@ -34,10 +35,7 @@ const Layout = () => {
     const [topics, setTopics] = useState([]);
 
     const [isLoading, setIsLoading] = useState(true);
-    const logout = () => {
-        userSignOut();
-        window.location.reload();
-    };
+
     const location = useLocation();
     const urlSearchParams = new URLSearchParams(location.search);
     const currentTopics = urlSearchParams.get("topics");
@@ -85,39 +83,7 @@ const Layout = () => {
             }}
         >
             <div>
-                <div className="navContainer">
-                    <div>
-                        <Link to="/">
-                            <img src={Notes} alt="Vision" />
-                            <p>Vision</p>
-                        </Link>
-                        <nav>
-                            <ul>
-                                {user ? (
-                                    <>
-                                        <li>
-                                            <Link to="/write">Write</Link>
-                                        </li>
-                                        <li>
-                                            <Link to="/member">Member</Link>
-                                        </li>
-                                        <li>
-                                            <Link onClick={logout}>
-                                                Sign out
-                                            </Link>
-                                        </li>
-                                    </>
-                                ) : (
-                                    <li>
-                                        <Link className="signIn" to="/signIn">
-                                            Register / Sign In
-                                        </Link>
-                                    </li>
-                                )}
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
+                <Nav />
                 <Outlet />
                 <Footer />
             </div>

@@ -8,7 +8,7 @@
     .post-container {
         display: grid;
         grid-template-columns: 1fr;
-        height: 700px;
+        max-height: 54vh;
         width: 50%;
         max-width: 1200px;
         grid-template-rows: auto auto;
@@ -126,7 +126,23 @@
         }
     }
 }
-
+@media screen and (max-width: 700px) {
+    .post {
+        .post-container {
+            width: 90%;
+            .post-container-main {
+                .post-container-fix {
+                    .post-container-fix-edit,
+                    .post-container-fix-remove {
+                        img {
+                            width: 4vw;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 @media screen and (max-width: 500px) {
     .post {
         .post-container {
