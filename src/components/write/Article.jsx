@@ -15,6 +15,8 @@ import messages from "../../img/messages.png";
 import tagsGray from "../../img/price-tag-gray.png";
 import tagsBlack from "../../img/price-tag-black.png";
 
+import Comments from "../message/Comments";
+
 import {
     getArticle,
     addTrackUserId,
@@ -58,90 +60,114 @@ const Article = () => {
             addLikeUserId(id, user.uid);
         }
     };
+
+    const [showComment, setShowComment] = useState(null);
+    const commentHandler = (e) => {
+        e.preventDefault();
+        if (user == null) {
+            navigate("/signIn");
+            return;
+        }
+        setShowComment(!showComment);
+    };
     const isStore = writeData.trackUserId?.includes(auth.currentUser?.uid);
     const isLike = writeData.likeUserId?.includes(auth.currentUser?.uid);
     return (
-        <div className="article">
-            <div className="article-content">
-                <div className="article-author">
-                    <div>
-                        {writeData.author.photoURL ? (
-                            <img
-                                className="article-author-photo"
-                                src={writeData.author.photoURL}
-                            />
-                        ) : (
-                            <img
-                                // className="article-author-photo"
-                                src={userPhoto}
-                            />
-                        )}
+        <>
+            <Comments
+                showComment={showComment}
+                setShowComment={setShowComment}
+                writeData={writeData}
+            />
+            <div className="article">
+                <div className="article-content">
+                    <div className="article-author">
+                        <div>
+                            {writeData.author.photoURL ? (
+                                <img
+                                    className="article-author-photo"
+                                    src={writeData.author.photoURL}
+                                />
+                            ) : (
+                                <img src={userPhoto} />
+                            )}
+                        </div>
+                        <div>{writeData.topic}</div>
+                        <div>{writeData.author.displayName || "匿名"}</div>
+                        <div>
+                            {writeData.time
+                                ?.toDate()
+                                .toLocaleDateString("zh-TW")}
+                        </div>
                     </div>
-                    <div>{writeData.topic}</div>
-                    <div>{writeData.author.displayName || "匿名"}</div>
-                    <div>
-                        {writeData.time?.toDate().toLocaleDateString("zh-TW")}
+                    <div className="article-title">
+                        <h1>{writeData.title}</h1>
                     </div>
-                </div>
-                <div className="article-title">
-                    <h1>{writeData.title}</h1>
-                </div>
-                <div className="article-markdown">
-                    <ReactMarkdown
-                        children={writeData.content}
-                        remarkPlugins={[remarkGfm]}
-                        rehypePlugins={[rehypeRaw]}
-                        components={{
-                            code({
-                                node,
-                                inline,
-                                className,
-                                children,
-                                ...props
-                            }) {
-                                const match = /language-(\w+)/.exec(
-                                    className || ""
-                                );
-                                return !inline && match ? (
-                                    <SyntaxHighlighter
-                                        children={String(children).replace(
-                                            /\n$/,
-                                            ""
-                                        )}
-                                        style={tomorrowNightBlue}
-                                        language={match[1]}
-                                        PreTag="div"
-                                        {...props}
-                                    />
-                                ) : (
-                                    <code className={className} {...props}>
-                                        {children}
-                                    </code>
-                                );
-                            },
-                        }}
-                    />
-                </div>
-                <div className="article-feel">
-                    <div className="article-feel-like">
-                        <img
-                            src={isLike ? likeBlack : likeGray}
-                            onClick={toggleImageLikeHandler}
+                    <div className="article-markdown">
+                        <ReactMarkdown
+                            children={writeData.content}
+                            remarkPlugins={[remarkGfm]}
+                            rehypePlugins={[rehypeRaw]}
+                            components={{
+                                code({
+                                    node,
+                                    inline,
+                                    className,
+                                    children,
+                                    ...props
+                                }) {
+                                    const match = /language-(\w+)/.exec(
+                                        className || ""
+                                    );
+                                    return !inline && match ? (
+                                        <SyntaxHighlighter
+                                            children={String(children).replace(
+                                                /\n$/,
+                                                ""
+                                            )}
+                                            style={tomorrowNightBlue}
+                                            language={match[1]}
+                                            PreTag="div"
+                                            {...props}
+                                        />
+                                    ) : (
+                                        <code className={className} {...props}>
+                                            {children}
+                                        </code>
+                                    );
+                                },
+                            }}
                         />
-                        <div>{writeData.likeUserId?.length || 0}</div>
                     </div>
-                    <div className="article-feel-messages">
-                        <img src={messages} />
-                    </div>
-                    <div className="article-feel-tags">
-                        <img
-                            src={isStore ? tagsBlack : tagsGray}
-                            onClick={toggleImageTrackHandler}
-                        />
+                    <div className="article-feel">
+                        <div className="article-feel-like">
+                            <img
+                                src={isLike ? likeBlack : likeGray}
+                                onClick={toggleImageLikeHandler}
+                            />
+                            <div>{writeData.likeUserId?.length || 0}</div>
+                        </div>
+                        <div
+                            className="article-feel-messages"
+                            onClick={commentHandler}
+                        >
+                            <img src={messages} />
+                            <div>
+                                {writeData.commentsContent
+                                    ? writeData.commentsContent
+                                    : 0}
+                            </div>
+                        </div>
+                        <div className="article-feel-tags">
+                            <img
+                                src={isStore ? tagsBlack : tagsGray}
+                                onClick={toggleImageTrackHandler}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

@@ -6,7 +6,7 @@ import {
     doc,
     query,
     setDoc,
-    WithFieldValue,
+    writeBatch,
     where,
     onSnapshot,
     Timestamp,
@@ -17,9 +17,48 @@ import {
     limit,
     startAfter,
     deleteDoc,
+    increment,
+    serverTimestamp,
 } from "firebase/firestore";
 
 import { db, auth } from "../lib/firebase/initialize";
+
+///* 新增留言 *///
+const addMessage = (
+    commentContent,
+    storeId,
+    uid,
+    displayName,
+    photoURL,
+    setMessage
+) => {
+    const batch = writeBatch(db);
+    const articleRef = doc(db, "article", storeId);
+    batch.update(articleRef, {
+        commentsContent: increment(1),
+    });
+
+    const commentRef = doc(collection(articleRef, "comment"));
+    batch.set(commentRef, {
+        content: commentContent,
+        createdAt: serverTimestamp(),
+        author: {
+            uid: uid,
+            displayName: displayName || "",
+            photoURL: photoURL || "",
+        },
+    });
+
+    batch
+        .commit()
+        .then(() => {
+            setMessage("留言完成");
+        })
+        .catch((error) => {
+            console.error("Error adding comment: ", error);
+            setMessage("Error adding comment: ", error);
+        });
+};
 
 ///* 更新文章圖片 *///
 const updateArticle = async (storeId, imageUrl) => {
@@ -213,15 +252,6 @@ const getPopularAuthor = (setPopularAuthor) => {
     });
 };
 
-///* 得到作者文章 *///
-const getArticle = (id, setWriteData) => {
-    const docRef = doc(db, "article", id);
-    const unsub = onSnapshot(docRef, (doc) => {
-        setWriteData(doc.data());
-    });
-    return unsub;
-};
-
 ///* 得到前兩個文章 *///
 const getData = (setFirebaseTwoDoc, currentTopics, setLastArticleRef) => {
     if (currentTopics) {
@@ -335,7 +365,7 @@ const getPopularData = (setPopularArticles) => {
     });
 };
 
-///* 得到作者文章 *///
+///* 得到作者所有文章 *///
 const getMyData = (setMyArticles) => {
     const documents = query(collection(db, "article"));
     onSnapshot(documents, (doc) => {
@@ -351,6 +381,15 @@ const getMyData = (setMyArticles) => {
     });
 };
 
+///* 得到目前作者文章 *///
+const getArticle = (id, setWriteData) => {
+    const docRef = doc(db, "article", id);
+    const unsub = onSnapshot(docRef, (doc) => {
+        setWriteData(doc.data());
+    });
+    return unsub;
+};
+
 ///* 刪除文件 *///
 const removeDoc = async (myDoctId, setMessage) => {
     try {
@@ -360,6 +399,19 @@ const removeDoc = async (myDoctId, setMessage) => {
         console.error("Error deleting document:", error);
         setMessage("刪除失敗");
     }
+};
+
+///* 得到文章留言 *///
+const getArticleMessage = (id, setCommentContent) => {
+    const docRef = collection(doc(db, "article", id), "comment");
+    const unsub = onSnapshot(
+        query(docRef, orderBy("createdAt", "desc")),
+        (doc) => {
+            const data = doc.docs.map((doc) => doc.data());
+            setCommentContent(data);
+        }
+    );
+    return unsub;
 };
 
 export {
@@ -380,4 +432,6 @@ export {
     updateArticleUserPhoto,
     removeDoc,
     updateUserArticleContent,
+    addMessage,
+    getArticleMessage,
 };

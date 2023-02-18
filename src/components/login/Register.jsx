@@ -8,8 +8,6 @@ const Register = ({ setMessage }) => {
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPasswrod, setRegisterPassword] = useState("");
 
-    const navigate = useNavigate();
-
     const registerEmailHandler = (e) => {
         setRegisterEmail(e.target.value);
     };
