@@ -31,11 +31,16 @@ const Nav = () => {
                                 </li>
                             </>
                         ) : (
-                            <li>
-                                <Link className="signIn" to="/signIn">
-                                    Register / Sign In
-                                </Link>
-                            </li>
+                            <>
+                                {/* <li>
+                                    <Link to="/write">Write</Link>
+                                </li> */}
+                                <li>
+                                    <Link className="signIn" to="/signIn">
+                                        Register / Sign In
+                                    </Link>
+                                </li>
+                            </>
                         )}
                     </ul>
                 </nav>

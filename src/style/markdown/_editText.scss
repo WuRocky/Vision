@@ -1,0 +1,278 @@
+.edit-text-content {
+    display: block;
+    justify-content: center;
+    flex-direction: column;
+    .edit-text {
+        overflow: auto;
+        scrollbar-width: none;
+        scrollbar-color: transparent transparent;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+        &::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, and Opera */
+        }
+        white-space: normal;
+        max-height: 600px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        max-width: 800px; /* 設定最大寬度為 300px */
+        border: 1px solid black; /* 加入邊框以示範 */
+        font-size: 24px;
+    }
+    .text-editor-tools {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin: 0 20px;
+        background-color: var(--second-color);
+        .text-editor-tools-button {
+            margin-right: 20px;
+            border-style: none;
+            background-color: var(--second-color);
+            cursor: pointer;
+
+            .text-editor-tools-img {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 5px;
+                padding: 5px;
+            }
+            .text-editor-tools-img:hover {
+                background-color: rgb(184, 184, 184);
+                transition: 0.3s;
+            }
+        }
+        .fill-color-div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-right: 20px;
+            background-color: transparent;
+            cursor: pointer;
+        }
+        .text-color-div {
+            margin-right: 20px;
+            background-color: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+.bold {
+    font-weight: 600;
+}
+.unbold {
+    font-weight: 400;
+}
+.italic {
+    font-style: italic;
+}
+.unitalic {
+    font-style: normal;
+}
+.underline {
+    text-decoration: underline;
+}
+.nounderline {
+    text-decoration: none !important;
+}
+
+.color-picker,
+.text-color {
+    position: absolute;
+    border-radius: 4px;
+    background-color: var(--second-color);
+    height: 250px;
+    width: 120px;
+    box-shadow: rgb(15 15 15 / 5%) 0px 0px 0px 1px,
+        rgb(15 15 15 / 10%) 0px 3px 6px, rgb(15 15 15 / 20%) 0px 9px 24px;
+    overflow: hidden auto;
+    .color-picker-content,
+    .text-color-contentt {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px;
+        border-radius: 5px;
+        z-index: 2;
+        .color-picker-content-item,
+        .text-color-content-item {
+            display: flex;
+            align-items: center;
+
+            width: 100%;
+            .color-picker-content-img {
+                width: 24px;
+                height: 24px;
+                margin: 0 5px;
+            }
+            .text-color-content-img {
+                width: 20px;
+                height: 20px;
+                border-radius: 5px;
+                margin: 5px 5px;
+            }
+            .color-picker-content-name,
+            .text-color-content-name {
+                // width: 2vw;
+            }
+        }
+    }
+    .color-picker-content:hover,
+    .text-color-content:hover {
+        background-color: rgb(184, 184, 184);
+        transition: 0.3s;
+    }
+}
+
+.font-size {
+    position: absolute;
+    border-radius: 4px;
+    background-color: var(--second-color);
+    height: 150px;
+    width: 150px;
+    box-shadow: rgb(15 15 15 / 5%) 0px 0px 0px 1px,
+        rgb(15 15 15 / 10%) 0px 3px 6px, rgb(15 15 15 / 20%) 0px 9px 24px;
+    overflow: hidden auto;
+
+    .font-size-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px;
+        border-radius: 5px;
+        z-index: 2;
+
+        .font-size-content-item {
+            display: flex;
+            align-items: center;
+
+            width: 100%;
+
+            .font-size-content-img {
+                width: 20px;
+                height: 20px;
+                border-radius: 5px;
+                margin: 5px 5px;
+            }
+
+            .font-size-content-name {
+                width: 100px;
+                text-align: center;
+            }
+        }
+    }
+    .font-size-content:hover {
+        background-color: rgb(184, 184, 184);
+        transition: 0.3s;
+    }
+}
+
+.color-Default {
+    color: #000000;
+}
+.color-Gray {
+    color: #808080;
+}
+.color-Brown {
+    color: #a52a2a;
+}
+.color-Orange {
+    color: #ffa500;
+}
+.color-Yellow {
+    color: #cb912f;
+}
+.color-Green {
+    color: #008000;
+}
+.color-Blue {
+    color: #0000ff;
+}
+.color-Purple {
+    color: #800080;
+}
+.color-Pink {
+    color: #ff1493;
+}
+.color-Red {
+    color: #ff0000;
+}
+
+.backgroun-Default {
+    background-color: var(--second-color);
+}
+.backgroun-Gray {
+    background-color: #808080;
+}
+.backgroun-Brown {
+    background-color: #f4a460;
+}
+.backgroun-Orange {
+    background-color: #ffa500;
+}
+.backgroun-Yellow {
+    background-color: #ffff00;
+}
+.backgroun-Green {
+    background-color: #008000;
+}
+.backgroun-Blue {
+    background-color: #add8e6;
+}
+.backgroun-Purple {
+    background-color: #9370db;
+}
+.backgroun-Pink {
+    background-color: #ffc0cb;
+}
+.backgroun-Red {
+    background-color: #ff0000;
+}
+
+.size-default {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.size-h1 {
+    font-weight: 600;
+    font-size: 1.875em;
+    line-height: 1.3;
+    white-space: pre;
+    word-break: break-word;
+}
+.size-h2 {
+    font-weight: 600;
+    font-size: 1.5em;
+    line-height: 1.3;
+
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+.size-h3 {
+    font-weight: 600;
+    font-size: 1.25em;
+    line-height: 1.3;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+.size-align-justify {
+    text-align: center;
+    width: 800px;
+}
+.size-align-left {
+    text-align: left;
+    width: 800px;
+}
+.size-align-right {
+    text-align: right;
+    width: 800px;
+}
