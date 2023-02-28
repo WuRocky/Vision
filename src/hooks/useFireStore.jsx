@@ -234,7 +234,7 @@ const getPopularAuthor = (setPopularAuthor) => {
         collection(db, "article"),
         where("likeUserId", "!=", false),
         orderBy("likeUserId"),
-        limit(5)
+        limit(8)
     );
 
     onSnapshot(q, (doc) => {
@@ -252,14 +252,14 @@ const getPopularAuthor = (setPopularAuthor) => {
     });
 };
 
-///* 得到前兩個文章 *///
+///* 得到前四個文章 *///
 const getData = (setFirebaseTwoDoc, currentTopics, setLastArticleRef) => {
     if (currentTopics) {
         const documents = query(
             collection(db, "article"),
             where("topic", "==", currentTopics),
             orderBy("time", "desc"),
-            limit(2)
+            limit(4)
         );
         onSnapshot(documents, (doc) => {
             const data = doc.docs.map((doc) => {
@@ -277,7 +277,7 @@ const getData = (setFirebaseTwoDoc, currentTopics, setLastArticleRef) => {
         const documents = query(
             collection(db, "article"),
             orderBy("time", "desc"),
-            limit(2)
+            limit(4)
         );
         onSnapshot(documents, (doc) => {
             const data = doc.docs.map((doc) => {
@@ -294,7 +294,7 @@ const getData = (setFirebaseTwoDoc, currentTopics, setLastArticleRef) => {
     }
 };
 
-///* 得到後兩個文章 *///
+///* 得到後三個文章 *///
 const getDataAfter = (
     setFirebaseTwoDoc,
     currentTopics,
@@ -308,7 +308,7 @@ const getDataAfter = (
             where("topic", "==", currentTopics),
             orderBy("time", "desc"),
             startAfter(lastArticleRef),
-            limit(2)
+            limit(3)
         );
         onSnapshot(documents, (doc) => {
             const data = doc.docs.map((doc) => {
@@ -327,7 +327,7 @@ const getDataAfter = (
             collection(db, "article"),
             orderBy("time", "desc"),
             startAfter(lastArticleRef),
-            limit(2)
+            limit(3)
         );
         onSnapshot(documents, (doc) => {
             const data = doc.docs.map((doc) => {

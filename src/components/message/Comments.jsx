@@ -66,13 +66,19 @@ const Comments = ({ showComment, setShowComment }) => {
                                                                 src={
                                                                     data.author
                                                                         .photoURL
+                                                                        ? data
+                                                                              .author
+                                                                              .photoURL
+                                                                        : "https://react.semantic-ui.com/images/wireframe/image.png"
                                                                 }
                                                             />
                                                         </div>
                                                         <div>
                                                             {data.author
-                                                                .displayName ||
-                                                                "匿名"}
+                                                                .displayName
+                                                                ? data.author
+                                                                      .displayName
+                                                                : "匿名"}
                                                         </div>
                                                         {data.createdAt && (
                                                             <div className="comments-content-item-1-content-title-time">

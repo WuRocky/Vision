@@ -3,6 +3,12 @@ import userPhoto from "../../img/user.png";
 import { AppContext } from "../../Layout";
 import { useNavigate, Link } from "react-router-dom";
 
+import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { tomorrowNightBlue } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+
 import likeGray from "../../img/like-gray.png";
 import tagsGray from "../../img/price-tag-gray.png";
 import tagsBlack from "../../img/price-tag-black.png";
@@ -15,6 +21,7 @@ const HomePageContent = () => {
     const handleClick = useCallback((id) => {
         navigate(`/article/${id}`);
     }, []);
+
     return (
         <div className="homepage-content">
             {firebaseTwoDoc.map((data, index) => {
@@ -46,7 +53,47 @@ const HomePageContent = () => {
                                 {data.title}
                             </div>
                             <p className="homepage-content-item-2-article">
-                                {data.content}
+                                {/* {data.content} */}
+
+                                <ReactMarkdown
+                                    children={data.content}
+                                    remarkPlugins={[remarkGfm]}
+                                    rehypePlugins={[rehypeRaw]}
+                                    components={{
+                                        h1: "h4",
+                                        h2: "h5",
+                                        h3: "h6",
+                                        code({
+                                            node,
+                                            inline,
+                                            className,
+                                            children,
+                                            ...props
+                                        }) {
+                                            const match = /language-(\w+)/.exec(
+                                                className || ""
+                                            );
+                                            return !inline && match ? (
+                                                <SyntaxHighlighter
+                                                    children={String(
+                                                        children
+                                                    ).replace(/\n$/, "")}
+                                                    style={tomorrowNightBlue}
+                                                    language={match[1]}
+                                                    PreTag="div"
+                                                    {...props}
+                                                />
+                                            ) : (
+                                                <code
+                                                    className={className}
+                                                    {...props}
+                                                >
+                                                    {children}
+                                                </code>
+                                            );
+                                        },
+                                    }}
+                                />
                             </p>
                             <img
                                 className="homepage-content-item-2-img"

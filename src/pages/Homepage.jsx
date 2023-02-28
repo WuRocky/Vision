@@ -40,7 +40,7 @@ const HomePage = () => {
                                     );
                                 }
                             }}
-                            bottomOffset={-200}
+                            bottomOffset={-100}
                         />
                     </div>
                     <div className="homepage-grid-item-3">

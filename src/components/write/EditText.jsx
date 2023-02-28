@@ -101,9 +101,15 @@ const EditText = ({ setEditText, editText }) => {
             range.setAttribute("class", "");
         }
     };
+    /// * 限制輸入字數長度 * ///
+    const MAX_LENGTH = 5000;
 
+    /// * 取得輸入內容 * ///
     const writeHandler = (e) => {
         const text = e.target.innerHTML;
+        if (text.length > MAX_LENGTH) {
+            e.target.innerHTML = text.slice(0, MAX_LENGTH);
+        }
         setEditText(text);
     };
 
@@ -167,7 +173,7 @@ const EditText = ({ setEditText, editText }) => {
                 className="edit-text"
                 onKeyUp={keyboardHander}
                 onInput={writeHandler}
-            ></div>
+            />
         </div>
     );
 };

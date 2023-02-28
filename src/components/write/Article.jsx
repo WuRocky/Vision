@@ -30,13 +30,24 @@ import { AppContext } from "../../Layout";
 
 const Article = () => {
     const { id } = useParams();
-    const [writeData, setWriteData] = useState({
-        author: {},
-    });
     const { user } = useContext(AppContext);
+
+    const handleBackButton = () => {
+        window.history.back();
+    };
+    const [writeData, setWriteData] = useState("");
+    const [writeDataAuthor, setWriteDataAuthor] = useState("");
     useEffect(() => {
-        getArticle(id, setWriteData);
-    }, []);
+        getArticle(id, (data) => {
+            setWriteData(data);
+            setWriteDataAuthor(data.author);
+        });
+        window.addEventListener("popstate", handleBackButton);
+        return () => {
+            window.removeEventListener("popstate", handleBackButton);
+        };
+    }, [id]);
+
     const navigate = useNavigate();
     const toggleImageTrackHandler = (e) => {
         if (user == null) {
@@ -83,17 +94,17 @@ const Article = () => {
                 <div className="article-content">
                     <div className="article-author">
                         <div>
-                            {writeData.author.photoURL ? (
+                            {writeDataAuthor.photoURL ? (
                                 <img
                                     className="article-author-photo"
-                                    src={writeData.author.photoURL}
+                                    src={writeDataAuthor.photoURL}
                                 />
                             ) : (
                                 <img src={userPhoto} />
                             )}
                         </div>
                         <div>{writeData.topic}</div>
-                        <div>{writeData.author.displayName || "匿名"}</div>
+                        <div>{writeDataAuthor.displayName || "匿名"}</div>
                         <div>
                             {writeData.time
                                 ?.toDate()

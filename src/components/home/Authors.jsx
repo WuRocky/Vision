@@ -8,19 +8,21 @@ const Authors = () => {
     return (
         <div className="authors">
             <div className="authors-title">熱門作者</div>
-            {popularAuthor.map((data, index) => {
-                return (
-                    <div className="authors-content" key={index}>
-                        <img
-                            className="authors-content-img"
-                            src={data.photoURL}
-                        />
-                        <div className="authors-content-name">
-                            {data.displayName}
+            <div className="authors-container">
+                {popularAuthor.map((data, index) => {
+                    return (
+                        <div className="authors-content" key={index}>
+                            <img
+                                className="authors-content-img"
+                                src={data.photoURL}
+                            />
+                            <div className="authors-content-name">
+                                {data.displayName}
+                            </div>
                         </div>
-                    </div>
-                );
-            })}
+                    );
+                })}
+            </div>
         </div>
     );
 };

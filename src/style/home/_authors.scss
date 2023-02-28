@@ -8,21 +8,30 @@
         margin: 15px 0;
         font-size: 1.25rem;
     }
-    .authors-content {
+    .authors-container {
         display: flex;
         justify-content: center;
         align-items: center;
-
-        .authors-content-img {
-            margin: 10px;
-            width: 3vw;
-            height: 3vw;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        .authors-content-name {
-            margin: 10px;
-            font-size: 1.1rem;
+        flex-direction: column;
+        .authors-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            .authors-content-img {
+                margin: 10px;
+                width: 3vw;
+                height: 3vw;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+            .authors-content-name {
+                margin: 10px;
+                font-size: 1.1rem;
+                width: 100px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+            }
         }
     }
 }

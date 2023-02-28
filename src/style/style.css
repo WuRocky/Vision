@@ -477,13 +477,17 @@ a:active {
 .homepage .homepage-container .homepage-container-item .homepage-grid-item-2 {
   grid-area: HomePageContent;
   overflow: auto;
-  scrollbar-width: none;
-  scrollbar-color: transparent transparent;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
 }
 .homepage .homepage-container .homepage-container-item .homepage-grid-item-2::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, and Opera */
+  width: 5px;
+  height: 10px;
+}
+.homepage .homepage-container .homepage-container-item .homepage-grid-item-2::-webkit-scrollbar-track {
+  background-color: var(--second-color);
+}
+.homepage .homepage-container .homepage-container-item .homepage-grid-item-2::-webkit-scrollbar-thumb {
+  background-color: #8b8a8a;
+  border-radius: 5px;
 }
 .homepage .homepage-container .homepage-container-item .homepage-grid-item-3 {
   grid-area: Topics;
@@ -754,12 +758,18 @@ a:active {
   margin: 15px 0;
   font-size: 1.25rem;
 }
-.authors .authors-content {
+.authors .authors-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
-.authors .authors-content .authors-content-img {
+.authors .authors-container .authors-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.authors .authors-container .authors-content .authors-content-img {
   margin: 10px;
   width: 3vw;
   height: 3vw;
@@ -767,9 +777,13 @@ a:active {
   -o-object-fit: cover;
      object-fit: cover;
 }
-.authors .authors-content .authors-content-name {
+.authors .authors-container .authors-content .authors-content-name {
   margin: 10px;
   font-size: 1.1rem;
+  width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
 }
 
 @media screen and (max-width: 1000px) {
@@ -934,7 +948,7 @@ a:active {
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 1.05rem;
 }
 .write .write-main .write-content .write-content-title-item .write-content-title-input {
@@ -960,12 +974,11 @@ a:active {
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 1.05rem;
 }
 .write .write-main .write-content .write-content-class-item .write-content-class-input {
   display: flex;
-  justify-content: center;
   margin: 15px;
   width: 45vw;
 }
@@ -974,15 +987,49 @@ a:active {
   align-items: center;
   justify-content: center;
   width: 100px;
-  margin: 10px;
-}
-.write .write-main .write-content .write-content-class-item .write-content-class-input .form-check .form-check-input {
-  margin: 10px 10px;
+  margin: 10px 10px 10px 0;
 }
 .write .write-main .write-content .write-content-class-item .write-content-class-input .form-check .form-check-label {
-  margin: 10px;
-  font-size: 1.3rem;
+  padding: 6px;
+  border-radius: 50px;
+  display: inline-flex;
   cursor: pointer;
+  transition: background 0.2s ease;
+  margin: 10px 10px 10px 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.write .write-main .write-content .write-content-class-item .write-content-class-input .form-check .form-check-label input {
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: none;
+  border: 0;
+  box-shadow: inset 0 0 0 1px rgb(184, 184, 184);
+  box-shadow: inset 0 0 0 1.5px rgb(184, 184, 184);
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  padding: 0;
+  margin: 0;
+  transition: box-shadow 150ms cubic-bezier(0.95, 0.15, 0.5, 1.25);
+  pointer-events: none;
+}
+.write .write-main .write-content .write-content-class-item .write-content-class-input .form-check .form-check-label input:focus {
+  outline: none;
+}
+.write .write-main .write-content .write-content-class-item .write-content-class-input .form-check .form-check-label input:checked {
+  box-shadow: inset 0 0 0 6px var(--third-color);
+}
+.write .write-main .write-content .write-content-class-item .write-content-class-input .form-check .form-check-label span {
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 20px;
+  padding: 0 8px;
+}
+.write .write-main .write-content .write-content-class-item .write-content-class-input .form-check .form-check-label:hover,
+.write .write-main .write-content .write-content-class-item .write-content-class-input .form-check .form-check-label:focus-within {
+  background: rgba(var(--second-color), 0.1);
 }
 .write .write-main .write-content .edit-text-item {
   display: flex;
