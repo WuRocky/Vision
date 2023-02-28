@@ -141,7 +141,9 @@ const Write = () => {
                                                     value={data.name}
                                                     onChange={inputWriteClass}
                                                 />
-                                                <span> {data.name}</span>
+                                                <span className="form-check-span">
+                                                    {data.name}
+                                                </span>
                                             </label>
                                         </div>
                                     );
