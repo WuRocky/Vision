@@ -322,7 +322,7 @@ a:active {
 }
 .comments .comments-div .comments-content form textarea {
   resize: none;
-  width: 80%;
+  width: 30vw;
   height: 80px;
 }
 .comments .comments-div .comments-content form .comments-content-item-2 {
@@ -1342,18 +1342,32 @@ a:active {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+}
+.member .member-item .member-container .member-content .member-content-change-components .member-content-change-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex: 1 1 auto;
   border-bottom: 1px solid #c2c2c2;
 }
-.member .member-item .member-container .member-content .member-content-change-components div {
+.member .member-item .member-container .member-content .member-content-change-components .member-content-change-item div {
   font-size: 1.3rem;
   margin: 20px;
   cursor: pointer;
 }
 
+@media screen and (max-width: 1200px) {
+  .member .member-item .member-container .member-content .member-content-change-components .member-content-change-item {
+    max-width: 100%;
+  }
+}
 .track {
   background-color: var(--second-color);
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 .track .track-container {
   display: grid;
@@ -1372,7 +1386,7 @@ a:active {
   display: none; /* Chrome, Safari, and Opera */
 }
 .track .track-container .borderTop {
-  border-top: 1px solid #c2c2c2;
+  border-bottom: 1px solid #c2c2c2;
 }
 .track .track-container .track-content-item {
   font-size: 1.25rem;

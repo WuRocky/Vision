@@ -7,6 +7,7 @@ import arrowRight from "../../img/btn_rightArrow.png";
 const Featured = () => {
     const { popularArticles } = useContext(AppContext);
     const navigate = useNavigate();
+    // console.log(popularArticles);
     const [currentArticles, setCurrentArticles] = useState(
         popularArticles.slice(0, 5)
     );

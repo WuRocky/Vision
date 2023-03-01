@@ -4,8 +4,6 @@ import { AppContext } from "../../Layout";
 import { useNavigate, Link } from "react-router-dom";
 
 import ReactMarkdown from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { tomorrowNightBlue } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 
@@ -26,7 +24,7 @@ const HomePageContent = () => {
         <div className="homepage-content">
             {firebaseTwoDoc.map((data, index) => {
                 return (
-                    <Link
+                    <div
                         key={data.id}
                         onClick={() => handleClick(data.id)}
                         to={`/article/${data.id}`}
@@ -52,7 +50,7 @@ const HomePageContent = () => {
                             <div className="homepage-content-item-2-title">
                                 {data.title}
                             </div>
-                            <p className="homepage-content-item-2-article">
+                            <div className="homepage-content-item-2-article">
                                 {/* {data.content} */}
 
                                 <ReactMarkdown
@@ -63,38 +61,9 @@ const HomePageContent = () => {
                                         h1: "h4",
                                         h2: "h5",
                                         h3: "h6",
-                                        code({
-                                            node,
-                                            inline,
-                                            className,
-                                            children,
-                                            ...props
-                                        }) {
-                                            const match = /language-(\w+)/.exec(
-                                                className || ""
-                                            );
-                                            return !inline && match ? (
-                                                <SyntaxHighlighter
-                                                    children={String(
-                                                        children
-                                                    ).replace(/\n$/, "")}
-                                                    style={tomorrowNightBlue}
-                                                    language={match[1]}
-                                                    PreTag="div"
-                                                    {...props}
-                                                />
-                                            ) : (
-                                                <code
-                                                    className={className}
-                                                    {...props}
-                                                >
-                                                    {children}
-                                                </code>
-                                            );
-                                        },
                                     }}
                                 />
-                            </p>
+                            </div>
                             <img
                                 className="homepage-content-item-2-img"
                                 src={
@@ -131,7 +100,7 @@ const HomePageContent = () => {
                                 )}
                             </div>
                         </div>
-                    </Link>
+                    </div>
                 );
             })}
         </div>

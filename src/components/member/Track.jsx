@@ -2,7 +2,9 @@ import React, { useContext, useCallback } from "react";
 import { AppContext } from "../../Layout";
 
 import userPhoto from "../../img/user.png";
-
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import likeGray from "../../img/like-gray.png";
 import tagsGray from "../../img/price-tag-gray.png";
 import tagsBlack from "../../img/price-tag-black.png";
@@ -18,19 +20,21 @@ const Track = () => {
     const firstMatchIndex = myArticles.findIndex(
         (data) => data.trackUserId == user.uid
     );
-
+    const uid = user.uid;
+    // console.log(firstMatchIndex);
     return (
         <div className="track">
             <div className="track-container">
                 {myArticles.map((data, index) => {
-                    if (data.trackUserId == user.uid) {
+                    if (data.trackUserId && data.trackUserId.includes(uid)) {
                         return (
-                            <Link
+                            <div
                                 key={data.id}
                                 onClick={() => handleClick(data.id)}
                                 to={`/article/${data.id}`}
                                 className={`track-content-item ${
-                                    index === firstMatchIndex ? "" : "borderTop"
+                                    // index === firstMatchIndex ? "" : "borderTop"
+                                    index < firstMatchIndex ? "" : "borderTop"
                                 }`}
                             >
                                 <div className="track-content-item-1">
@@ -55,9 +59,20 @@ const Track = () => {
                                     <div className="track-content-item-2-title">
                                         {data.title}
                                     </div>
-                                    <p className="track-content-item-2-article">
-                                        {data.content}
-                                    </p>
+                                    <div className="track-content-item-2-article">
+                                        {/* {data.content} */}
+
+                                        <ReactMarkdown
+                                            children={data.content}
+                                            remarkPlugins={[remarkGfm]}
+                                            rehypePlugins={[rehypeRaw]}
+                                            components={{
+                                                h1: "h4",
+                                                h2: "h5",
+                                                h3: "h6",
+                                            }}
+                                        />
+                                    </div>
                                     <img
                                         className="track-content-item-2-img"
                                         src={
@@ -90,7 +105,7 @@ const Track = () => {
                                         )}
                                     </div>
                                 </div>
-                            </Link>
+                            </div>
                         );
                     }
                 })}

@@ -33,8 +33,9 @@ const Member = () => {
                     <div className="member-title">會員資料</div>
                     <div className="member-content">
                         <Setting setMessage={setMessage} />
-                        <div>
-                            <div className="member-content-change-components">
+
+                        <div className="member-content-change-components">
+                            <div className="member-content-change-item">
                                 <div
                                     style={{
                                         color:
@@ -58,6 +59,9 @@ const Member = () => {
                                     我的收藏
                                 </div>
                             </div>
+                        </div>
+
+                        <div style={{ width: "100%" }}>
                             {showComponent === "A" ? (
                                 <Post
                                     setPoint={setPoint}

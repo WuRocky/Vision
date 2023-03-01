@@ -29,15 +29,39 @@
                 flex-direction: column;
                 grid-area: content;
                 margin: 0 10px;
+
                 .member-content-change-components {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    border-bottom: 1px solid #c2c2c2;
-                    div {
-                        font-size: 1.3rem;
-                        margin: 20px;
-                        cursor: pointer;
+                    width: 100%;
+                    .member-content-change-item {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-wrap: wrap;
+                        flex: 1 1 auto;
+                        border-bottom: 1px solid #c2c2c2;
+                        div {
+                            font-size: 1.3rem;
+                            margin: 20px;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 1200px) {
+    .member {
+        .member-item {
+            .member-container {
+                .member-content {
+                    .member-content-change-components {
+                        .member-content-change-item {
+                            max-width: 100%;
+                        }
                     }
                 }
             }

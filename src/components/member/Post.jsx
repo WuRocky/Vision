@@ -10,6 +10,10 @@ import tagsBlack from "../../img/price-tag-black.png";
 import edit from "../../img/edit.png";
 import remove from "../../img/delete.png";
 
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+
 import { useNavigate, Link } from "react-router-dom";
 
 const Post = ({ setPoint, setMyDoctId }) => {
@@ -29,7 +33,7 @@ const Post = ({ setPoint, setMyDoctId }) => {
                     if (data.author.uid == user.uid) {
                         return (
                             <div className="post-container-main" key={index}>
-                                <Link
+                                <div
                                     key={data.id}
                                     onClick={() => articleHandleClick(data.id)}
                                     to={`/article/${data.id}`}
@@ -57,9 +61,20 @@ const Post = ({ setPoint, setMyDoctId }) => {
                                         <div className="post-content-item-2-title">
                                             {data.title}
                                         </div>
-                                        <p className="post-content-item-2-article">
+                                        <div className="post-content-item-2-article">
                                             {data.content}
-                                        </p>
+
+                                            <ReactMarkdown
+                                                children={data.content}
+                                                remarkPlugins={[remarkGfm]}
+                                                rehypePlugins={[rehypeRaw]}
+                                                components={{
+                                                    h1: "h4",
+                                                    h2: "h5",
+                                                    h3: "h6",
+                                                }}
+                                            />
+                                        </div>
                                         <img
                                             className="post-content-item-2-img"
                                             src={
@@ -93,7 +108,7 @@ const Post = ({ setPoint, setMyDoctId }) => {
                                             )}
                                         </div>
                                     </div>
-                                </Link>
+                                </div>
                                 <div className="post-container-fix">
                                     <div
                                         onClick={() =>

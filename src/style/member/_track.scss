@@ -2,11 +2,13 @@
     background-color: var(--second-color);
     display: flex;
     justify-content: center;
+    width: 100%;
     .track-container {
         display: grid;
         grid-template-columns: 1fr;
         max-height: 54vh;
         width: 50%;
+
         max-width: 1200px;
         grid-template-rows: auto auto;
 
@@ -19,7 +21,7 @@
             display: none; /* Chrome, Safari, and Opera */
         }
         .borderTop {
-            border-top: 1px solid #c2c2c2;
+            border-bottom: 1px solid #c2c2c2;
         }
         .track-content-item {
             font-size: 1.25rem;

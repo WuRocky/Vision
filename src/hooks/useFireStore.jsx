@@ -19,6 +19,8 @@ import {
     deleteDoc,
     increment,
     serverTimestamp,
+    startAt,
+    endAt,
 } from "firebase/firestore";
 
 import { db, auth } from "../lib/firebase/initialize";
@@ -234,7 +236,7 @@ const getPopularAuthor = (setPopularAuthor) => {
         collection(db, "article"),
         where("likeUserId", "!=", false),
         orderBy("likeUserId"),
-        limit(8)
+        limit(10)
     );
 
     onSnapshot(q, (doc) => {
@@ -347,13 +349,28 @@ const getDataAfter = (
 
 ///* 得到熱門文章 *///
 const getPopularData = (setPopularArticles) => {
-    const documents = query(
-        collection(db, "article"),
-        orderBy("likeUserId", "desc"),
-        limit(8)
-    );
-    onSnapshot(documents, (doc) => {
-        const data = doc.docs.map((doc) => {
+    const documents = query(collection(db, "article"));
+
+    onSnapshot(documents, (querySnapshot) => {
+        const filteredDocuments = querySnapshot.docs.filter((doc) => {
+            const imageUrl = doc.data().imageUrl;
+            const likeUserId = doc.data().likeUserId;
+            const content = doc.data().content;
+            return (
+                imageUrl != "" &&
+                likeUserId &&
+                likeUserId.length >= 3 &&
+                content.length >= 100
+            );
+        });
+        // 從符合條件的文件中隨機選擇8個
+        const selectedDocuments = [];
+        const maxIndex = filteredDocuments.length - 1;
+        while (selectedDocuments.length < 8) {
+            const randomIndex = Math.floor(Math.random() * maxIndex);
+            selectedDocuments.push(filteredDocuments[randomIndex]);
+        }
+        const data = filteredDocuments.map((doc) => {
             const id = doc.id;
             const data = {
                 ...doc.data(),
@@ -361,9 +378,30 @@ const getPopularData = (setPopularArticles) => {
             };
             return data;
         });
+
         setPopularArticles(data);
     });
 };
+
+// ///* 得到熱門文章 *///
+// const getPopularData = (setPopularArticles) => {
+//     const documents = query(
+//         collection(db, "article"),
+//         orderBy("likeUserId", "desc"),
+//         limit(8)
+//     );
+//     onSnapshot(documents, (doc) => {
+//         const data = doc.docs.map((doc) => {
+//             const id = doc.id;
+//             const data = {
+//                 ...doc.data(),
+//                 id,
+//             };
+//             return data;
+//         });
+//         setPopularArticles(data);
+//     });
+// };
 
 ///* 得到作者所有文章 *///
 const getMyData = (setMyArticles) => {

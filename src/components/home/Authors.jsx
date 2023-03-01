@@ -4,7 +4,6 @@ import { AppContext } from "../../Layout";
 
 const Authors = () => {
     const { popularAuthor } = useContext(AppContext);
-    // console.log(popularAuthor);
     return (
         <div className="authors">
             <div className="authors-title">熱門作者</div>
