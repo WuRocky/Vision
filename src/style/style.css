@@ -110,6 +110,31 @@ a:active {
   background-color: var(--first-color);
   min-height: 10vh;
 }
+.footer .footer-contact-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer .footer-contact-title img {
+  width: 2.5vw;
+  margin: 10px;
+}
+.footer .footer-contact-information {
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer .footer-contact-information .footer-contact-information-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer .footer-contact-information .footer-contact-information-content img {
+  width: 2.5vw;
+  height: 2.5vw;
+  margin: 0 5px;
+}
 
 .signInMain {
   min-height: var(--height);
@@ -1909,6 +1934,15 @@ a:active {
   background-color: rgb(184, 184, 184);
   transition: 0.3s;
 }
+.edit-text-content .text-editor-tools .font-size-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-right: 20px;
+  background-color: transparent;
+  cursor: pointer;
+}
 .edit-text-content .text-editor-tools .fill-color-div {
   display: flex;
   align-items: center;
@@ -1962,9 +1996,9 @@ a:active {
   overflow: hidden auto;
 }
 .color-picker .color-picker-content,
-.color-picker .text-color-contentt,
+.color-picker .text-color-content,
 .text-color .color-picker-content,
-.text-color .text-color-contentt {
+.text-color .text-color-content {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1974,38 +2008,38 @@ a:active {
 }
 .color-picker .color-picker-content .color-picker-content-item,
 .color-picker .color-picker-content .text-color-content-item,
-.color-picker .text-color-contentt .color-picker-content-item,
-.color-picker .text-color-contentt .text-color-content-item,
+.color-picker .text-color-content .color-picker-content-item,
+.color-picker .text-color-content .text-color-content-item,
 .text-color .color-picker-content .color-picker-content-item,
 .text-color .color-picker-content .text-color-content-item,
-.text-color .text-color-contentt .color-picker-content-item,
-.text-color .text-color-contentt .text-color-content-item {
+.text-color .text-color-content .color-picker-content-item,
+.text-color .text-color-content .text-color-content-item {
   display: flex;
   align-items: center;
   width: 100%;
 }
 .color-picker .color-picker-content .color-picker-content-item .color-picker-content-img,
 .color-picker .color-picker-content .text-color-content-item .color-picker-content-img,
-.color-picker .text-color-contentt .color-picker-content-item .color-picker-content-img,
-.color-picker .text-color-contentt .text-color-content-item .color-picker-content-img,
+.color-picker .text-color-content .color-picker-content-item .color-picker-content-img,
+.color-picker .text-color-content .text-color-content-item .color-picker-content-img,
 .text-color .color-picker-content .color-picker-content-item .color-picker-content-img,
 .text-color .color-picker-content .text-color-content-item .color-picker-content-img,
-.text-color .text-color-contentt .color-picker-content-item .color-picker-content-img,
-.text-color .text-color-contentt .text-color-content-item .color-picker-content-img {
+.text-color .text-color-content .color-picker-content-item .color-picker-content-img,
+.text-color .text-color-content .text-color-content-item .color-picker-content-img {
   width: 24px;
   height: 24px;
   margin: 0 5px;
 }
 .color-picker .color-picker-content .color-picker-content-item .text-color-content-img,
 .color-picker .color-picker-content .text-color-content-item .text-color-content-img,
-.color-picker .text-color-contentt .color-picker-content-item .text-color-content-img,
-.color-picker .text-color-contentt .text-color-content-item .text-color-content-img,
+.color-picker .text-color-content .color-picker-content-item .text-color-content-img,
+.color-picker .text-color-content .text-color-content-item .text-color-content-img,
 .text-color .color-picker-content .color-picker-content-item .text-color-content-img,
 .text-color .color-picker-content .text-color-content-item .text-color-content-img,
-.text-color .text-color-contentt .color-picker-content-item .text-color-content-img,
-.text-color .text-color-contentt .text-color-content-item .text-color-content-img {
-  width: 20px;
-  height: 20px;
+.text-color .text-color-content .color-picker-content-item .text-color-content-img,
+.text-color .text-color-content .text-color-content-item .text-color-content-img {
+  width: 18px;
+  height: 18px;
   border-radius: 5px;
   margin: 5px 5px;
 }

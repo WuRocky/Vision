@@ -9,6 +9,8 @@ import likeGray from "../../img/like-gray.png";
 import tagsGray from "../../img/price-tag-gray.png";
 import tagsBlack from "../../img/price-tag-black.png";
 
+import noImage from "../../img/no-Image.png";
+
 import { useNavigate, Link } from "react-router-dom";
 
 const Track = () => {
@@ -70,15 +72,13 @@ const Track = () => {
                                                 h1: "h4",
                                                 h2: "h5",
                                                 h3: "h6",
+                                                img: "span",
                                             }}
                                         />
                                     </div>
                                     <img
                                         className="track-content-item-2-img"
-                                        src={
-                                            data.imageUrl ||
-                                            "https://react.semantic-ui.com/images/wireframe/image.png"
-                                        }
+                                        src={data.imageUrl || noImage}
                                     />
                                 </div>
                                 <div className="track-content-item-3">

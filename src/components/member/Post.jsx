@@ -14,6 +14,8 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 
+import noImage from "../../img/no-Image.png";
+
 import { useNavigate, Link } from "react-router-dom";
 
 const Post = ({ setPoint, setMyDoctId }) => {
@@ -72,15 +74,13 @@ const Post = ({ setPoint, setMyDoctId }) => {
                                                     h1: "h4",
                                                     h2: "h5",
                                                     h3: "h6",
+                                                    img: "span",
                                                 }}
                                             />
                                         </div>
                                         <img
                                             className="post-content-item-2-img"
-                                            src={
-                                                data.imageUrl ||
-                                                "https://react.semantic-ui.com/images/wireframe/image.png"
-                                            }
+                                            src={data.imageUrl || noImage}
                                         />
                                     </div>
                                     <div className="post-content-item-3">

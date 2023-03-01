@@ -45,6 +45,15 @@
                 transition: 0.3s;
             }
         }
+        .font-size-div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-right: 20px;
+            background-color: transparent;
+            cursor: pointer;
+        }
         .fill-color-div {
             display: flex;
             align-items: center;
@@ -95,7 +104,7 @@
         rgb(15 15 15 / 10%) 0px 3px 6px, rgb(15 15 15 / 20%) 0px 9px 24px;
     overflow: hidden auto;
     .color-picker-content,
-    .text-color-contentt {
+    .text-color-content {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -106,7 +115,6 @@
         .text-color-content-item {
             display: flex;
             align-items: center;
-
             width: 100%;
             .color-picker-content-img {
                 width: 24px;
@@ -114,14 +122,10 @@
                 margin: 0 5px;
             }
             .text-color-content-img {
-                width: 20px;
-                height: 20px;
+                width: 18px;
+                height: 18px;
                 border-radius: 5px;
                 margin: 5px 5px;
-            }
-            .color-picker-content-name,
-            .text-color-content-name {
-                // width: 2vw;
             }
         }
     }
@@ -135,6 +139,7 @@
 .font-size {
     position: absolute;
     border-radius: 4px;
+
     background-color: var(--second-color);
     height: 150px;
     width: 150px;
@@ -153,16 +158,13 @@
         .font-size-content-item {
             display: flex;
             align-items: center;
-
             width: 100%;
-
             .font-size-content-img {
                 width: 20px;
                 height: 20px;
                 border-radius: 5px;
                 margin: 5px 5px;
             }
-
             .font-size-content-name {
                 width: 100px;
                 text-align: center;

@@ -8,6 +8,8 @@ import { addStorage } from "../hooks/useFireStorage";
 
 import Message from "../components/message/Message";
 
+import noImage from "../img/no-Image.png";
+
 import { AppContext } from "../Layout";
 // import Markdown from "../components/write/Markdown";
 import EditText from "../components/write/EditText";
@@ -54,9 +56,7 @@ const Write = () => {
         setWriteFile();
     };
 
-    const previewUrl = writeFile
-        ? URL.createObjectURL(writeFile)
-        : "https://react.semantic-ui.com/images/wireframe/image.png";
+    const previewUrl = writeFile ? URL.createObjectURL(writeFile) : noImage;
 
     /// * 導向網址 * ///
     const navigate = useNavigate();

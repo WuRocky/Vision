@@ -1,4 +1,4 @@
-import React, { useContext, useCallback } from "react";
+import React, { useContext, useCallback, useState } from "react";
 import userPhoto from "../../img/user.png";
 import { AppContext } from "../../Layout";
 import { useNavigate, Link } from "react-router-dom";
@@ -12,6 +12,8 @@ import tagsGray from "../../img/price-tag-gray.png";
 import tagsBlack from "../../img/price-tag-black.png";
 
 import message from "../../img/messages.png";
+
+import noImage from "../../img/no-Image.png";
 
 const HomePageContent = () => {
     const { firebaseTwoDoc, user } = useContext(AppContext);
@@ -55,21 +57,19 @@ const HomePageContent = () => {
 
                                 <ReactMarkdown
                                     children={data.content}
-                                    remarkPlugins={[remarkGfm]}
+                                    // remarkPlugins={[remarkGfm]}
                                     rehypePlugins={[rehypeRaw]}
                                     components={{
                                         h1: "h4",
                                         h2: "h5",
                                         h3: "h6",
+                                        img: "span",
                                     }}
                                 />
                             </div>
                             <img
                                 className="homepage-content-item-2-img"
-                                src={
-                                    data.imageUrl ||
-                                    "https://react.semantic-ui.com/images/wireframe/image.png"
-                                }
+                                src={data.imageUrl || noImage}
                             />
                         </div>
                         <div className="homepage-content-item-3">

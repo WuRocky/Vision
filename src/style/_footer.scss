@@ -5,4 +5,29 @@
     // font-size: 1.25rem;
     background-color: var(--first-color);
     min-height: 10vh;
+    .footer-contact-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+            width: 2.5vw;
+            margin: 10px;
+        }
+    }
+    .footer-contact-information {
+        margin: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .footer-contact-information-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+                width: 2.5vw;
+                height: 2.5vw;
+                margin: 0 5px;
+            }
+        }
+    }
 }

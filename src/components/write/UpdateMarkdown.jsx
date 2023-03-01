@@ -9,6 +9,8 @@ import { tomorrowNightBlue } from "react-syntax-highlighter/dist/esm/styles/hljs
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 
+import noImage from "../../img/no-Image.png";
+
 // firebase
 import { updateUserArticleContent } from "../../hooks/useFireStore";
 import { upDataStorage } from "../../hooks/useFireStorage";
@@ -53,7 +55,7 @@ const UpdateMarkdown = () => {
         ? typeof markDownFile === "string"
             ? markDownFile
             : URL.createObjectURL(new Blob([markDownFile]))
-        : "https://react.semantic-ui.com/images/wireframe/image.png";
+        : noImage;
 
     ///* 寫入文章 *///
     const markDonwHandler = (e) => {

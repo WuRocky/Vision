@@ -8,6 +8,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrowNightBlue } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import noImage from "../../img/no-Image.png";
 
 // firebase
 import { addData } from "../../hooks/useFireStore";
@@ -42,7 +43,7 @@ const Markdown = () => {
 
     const previewUrl = markDownFile
         ? URL.createObjectURL(markDownFile)
-        : "https://react.semantic-ui.com/images/wireframe/image.png";
+        : noImage;
 
     ///* 寫入文章 *///
     const markDonwHandler = (e) => {

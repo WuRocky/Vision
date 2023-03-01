@@ -5,6 +5,8 @@ import {
     updataUserPassword,
 } from "../../hooks/useFireAuthentication";
 
+import noImage from "../../img/no-Image.png";
+
 import { updateArticleUserName } from "../../hooks/useFireStore";
 
 import { addUserPhoto } from "../../hooks/useFireStorage";
@@ -193,8 +195,7 @@ function Image({ setMessage }) {
     const [file, seFile] = useState(null);
     const previewUrl = file
         ? URL.createObjectURL(file)
-        : user.photoURL ||
-          "https://react.semantic-ui.com/images/wireframe/image.png";
+        : user.photoURL || noImage;
     const imageEditHandler = (e) => {
         e.preventDefault();
         fileInput.current.click();

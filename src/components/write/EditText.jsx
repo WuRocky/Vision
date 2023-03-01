@@ -117,7 +117,7 @@ const EditText = ({ setEditText, editText }) => {
         <div className="edit-text-content">
             <div className="text-editor-tools">
                 <button
-                    className="text-editor-tools-button"
+                    className="font-size-div text-editor-tools-button"
                     onClick={showFontSizeHandler}
                 >
                     <img className="text-editor-tools-img" src={fontSize} />

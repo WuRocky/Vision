@@ -3,6 +3,8 @@ import { addMessage, getArticleMessage } from "../../hooks/useFireStore";
 import { useParams } from "react-router-dom";
 import { AppContext } from "../../Layout";
 import Message from "./Message";
+import noImage from "../../img/no-Image.png";
+
 const Comments = ({ showComment, setShowComment }) => {
     const { id } = useParams();
     const { user } = useContext(AppContext);
@@ -69,7 +71,7 @@ const Comments = ({ showComment, setShowComment }) => {
                                                                         ? data
                                                                               .author
                                                                               .photoURL
-                                                                        : "https://react.semantic-ui.com/images/wireframe/image.png"
+                                                                        : noImage
                                                                 }
                                                             />
                                                         </div>

@@ -3,7 +3,7 @@ import { AppContext } from "../../Layout";
 import { Link, useNavigate } from "react-router-dom";
 import arrowLeft from "../../img/btn_leftArrow.png";
 import arrowRight from "../../img/btn_rightArrow.png";
-
+import noImage from "../../img/no-Image.png";
 const Featured = () => {
     const { popularArticles } = useContext(AppContext);
     const navigate = useNavigate();
@@ -63,10 +63,7 @@ const Featured = () => {
                             </div>
                             <img
                                 className="featured-popular-content-img"
-                                src={
-                                    data.imageUrl ||
-                                    "https://react.semantic-ui.com/images/wireframe/image.png"
-                                }
+                                src={data.imageUrl || noImage}
                             />
                         </Link>
                     );
