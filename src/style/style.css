@@ -1057,7 +1057,7 @@ a:active {
   background: rgba(var(--second-color), 0.1);
 }
 .write .write-main .write-content .edit-text-item {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   margin: 15px 10px;
@@ -1070,6 +1070,56 @@ a:active {
   margin: 25px 0;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
   outline: none;
+}
+.write .write-main .write-content .preview-item {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 10px;
+}
+.write .write-main .write-content .preview-item .preview-content {
+  justify-content: center;
+  flex-direction: column;
+}
+.write .write-main .write-content .preview-item .preview-content .preview {
+  padding: 20px 25px;
+  min-height: 70vh;
+  width: 800px;
+  border-radius: 2rem;
+  margin: 25px 0;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  outline: none;
+  overflow: auto;
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  white-space: normal;
+  max-height: 600px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  max-width: 800px;
+  border: 1px solid black;
+  font-size: 24px;
+}
+.write .write-main .write-content .show {
+  display: flex;
+}
+.write .write-main .write-content .switch-components {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.write .write-main .write-content .switch-components .switch-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.write .write-main .write-content .switch-components .switch-item div {
+  font-size: 1.3rem;
+  margin: 20px;
+  cursor: pointer;
 }
 .write .write-main .write-content .write-content-file-item {
   display: flex;

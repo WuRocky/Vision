@@ -1,10 +1,18 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 // firebase
-
 import { addData } from "../hooks/useFireStore";
 import { addStorage } from "../hooks/useFireStorage";
+
+// markdown
+import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { tomorrowNightBlue } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+import remarkBreaks from "remark-breaks";
+import remarkHtml from "remark-html";
 
 import Message from "../components/message/Message";
 
@@ -13,6 +21,7 @@ import noImage from "../img/no-Image.png";
 import { AppContext } from "../Layout";
 // import Markdown from "../components/write/Markdown";
 import EditText from "../components/write/EditText";
+
 const Write = () => {
     /// * 共用分類 * ///
     const { topics } = useContext(AppContext);
@@ -23,8 +32,11 @@ const Write = () => {
     /// * 分類內容 * ///
     const [writeClass, setWriteClass] = useState("");
 
-    /// * 輸入內容 * ///
+    /// * 編輯內容 * ///
     const [editText, setEditText] = useState("");
+
+    /// * 選擇顯示編輯或預覽內容 * ///
+    const [switchContent, setSwitchContent] = useState("edit-text-item");
 
     /// * 上傳照片內容 * ///
     const [writeFile, setWriteFile] = useState(null);
@@ -97,7 +109,7 @@ const Write = () => {
             }, 2000);
         }
     };
-
+    const previewText = editText.replace(/\n/g, "<br>");
     return (
         <>
             <div onClick={() => setMessage()}>
@@ -153,12 +165,73 @@ const Write = () => {
 
                         {/* 寫入文章 */}
                         {/* <textarea className="textarea" onChange={writeHandler} /> */}
-                        <div className="edit-text-item">
+                        <div
+                            className={`edit-text-item ${
+                                switchContent === "edit-text-item" ? "show" : ""
+                            }`}
+                        >
                             <EditText
                                 setEditText={setEditText}
                                 editText={editText}
                             />
                         </div>
+
+                        {/* 預覽內容 */}
+                        <div
+                            className={`preview-item ${
+                                switchContent === "preview-item" ? "show" : ""
+                            }`}
+                        >
+                            <div className="preview-content">
+                                <ReactMarkdown
+                                    className="preview"
+                                    remarkPlugins={[remarkGfm]}
+                                    rehypePlugins={[rehypeRaw]}
+                                    children={editText}
+                                />
+
+                                {/* <ReactMarkdown
+                                    className="preview"
+                                    remarkPlugins={[remarkGfm]}
+                                    rehypePlugins={[rehypeRaw]}
+                                >
+                                    {editText.replace(/\n/g, "<div>")}
+                                </ReactMarkdown> */}
+                            </div>
+                        </div>
+
+                        {/* 選擇顯示編輯或預覽內容 */}
+                        <div className="switch-components">
+                            <div className="switch-item">
+                                <div
+                                    style={{
+                                        color:
+                                            switchContent === "edit-text-item"
+                                                ? "black"
+                                                : "gray",
+                                    }}
+                                    onClick={() =>
+                                        setSwitchContent("edit-text-item")
+                                    }
+                                >
+                                    我的文章
+                                </div>
+                                <div
+                                    style={{
+                                        color:
+                                            switchContent === "preview-item"
+                                                ? "black"
+                                                : "gray",
+                                    }}
+                                    onClick={() =>
+                                        setSwitchContent("preview-item")
+                                    }
+                                >
+                                    我的收藏
+                                </div>
+                            </div>
+                        </div>
+
                         {/* 上傳圖片 */}
                         <div className="write-content-file-item">
                             <div className="write-content-file-button">
