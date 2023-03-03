@@ -2,86 +2,23 @@
     display: block;
     justify-content: center;
     flex-direction: column;
-    .edit-text-item-1 {
-        display: none;
-        justify-content: center;
-        align-items: center;
-
-        .edit-text {
-            overflow: auto;
-            scrollbar-width: none;
-            scrollbar-color: transparent transparent;
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none; /* IE and Edge */
-            &::-webkit-scrollbar {
-                display: none; /* Chrome, Safari, and Opera */
-            }
-            white-space: normal;
-            max-height: 600px;
-            overflow-wrap: break-word;
-            word-wrap: break-word;
-            max-width: 800px; /* 設定最大寬度為 300px */
-            border: 1px solid black; /* 加入邊框以示範 */
-            font-size: 24px;
+    .edit-text {
+        overflow: auto;
+        scrollbar-width: none;
+        scrollbar-color: transparent transparent;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+        &::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, and Opera */
         }
+        white-space: normal;
+        max-height: 600px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        max-width: 800px; /* 設定最大寬度為 300px */
+        border: 1px solid black; /* 加入邊框以示範 */
+        font-size: 24px;
     }
-
-    .preview-itme-1 {
-        display: none;
-        justify-content: center;
-        align-items: center;
-        .preview {
-            // display: none;
-            padding: 20px 25px;
-            min-height: 70vh;
-            width: 800px;
-            border-radius: 2rem;
-            margin: 25px 0;
-            // box-shadow: 5px 20px 50px 5px rgba(67, 63, 62, 0.5);
-            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-            outline: none;
-
-            overflow: auto;
-            scrollbar-width: none;
-            scrollbar-color: transparent transparent;
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none; /* IE and Edge */
-            &::-webkit-scrollbar {
-                display: none; /* Chrome, Safari, and Opera */
-            }
-            white-space: normal;
-            max-height: 600px;
-            overflow-wrap: break-word;
-            word-wrap: break-word;
-            max-width: 800px; /* 設定最大寬度為 300px */
-            border: 1px solid black; /* 加入邊框以示範 */
-            font-size: 24px;
-        }
-    }
-
-    .show {
-        display: flex;
-    }
-
-    // 選擇顯示編輯或預覽內容
-    .switch-components {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        .switch-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            div {
-                font-size: 1.3rem;
-                margin: 20px;
-                cursor: pointer;
-            }
-        }
-    }
-
     .text-editor-tools {
         display: flex;
         align-items: center;

@@ -1,4 +1,4 @@
-function changeStyle(className1, className2) {
+function changeStyle(className1, className2, setEditText) {
     // 獲取當前頁面中的選擇範圍對象
     const selection = window.getSelection();
     const range = selection.getRangeAt(0);
@@ -23,9 +23,11 @@ function changeStyle(className1, className2) {
         span.classList.add(className1);
         replaceSelection(span.outerHTML, true);
     }
+    const content = document.querySelector(".edit-text").innerHTML;
+    setEditText(content);
 }
 
-function changeFontSize(className1, className2) {
+function changeFontSize(className1, className2, setEditText) {
     // 獲取當前頁面中的選擇範圍對象
     const selection = window.getSelection();
     const range = selection.getRangeAt(0);
@@ -54,7 +56,46 @@ function changeFontSize(className1, className2) {
         div.appendChild(span);
         replaceSelection(div.outerHTML, true);
     }
+    const content = document.querySelector(".edit-text").innerHTML;
+    setEditText(content);
 }
+
+function replaceSelection(html, selectInserted) {
+    // 選擇範圍
+    const selection = window.getSelection();
+    // 是否有選取範圍
+    if (selection.rangeCount <= 0) {
+        return;
+    }
+
+    // 獲取第一個 Range 對象
+    const range = selection.getRangeAt(0);
+    // 刪除其內容
+    range.deleteContents();
+
+    const template = document.createElement("template");
+
+    // 參數解析為片段，去除前後空格
+    template.innerHTML = html.trim();
+    // 創建一個新的文檔片段
+    const fragment = document.importNode(template.content, true);
+    const firstNode = fragment.firstChild;
+    const lastNode = fragment.lastChild;
+
+    // 新創建的文檔片段插入到範圍中
+    range.insertNode(fragment);
+
+    if (selectInserted) {
+        // 新插入的內容
+        const newRange = document.createRange();
+        newRange.setStartBefore(firstNode);
+        newRange.setEndAfter(lastNode);
+        selection.addRange(newRange);
+        selection.removeAllRanges();
+    }
+}
+
+export { changeStyle, changeFontSize };
 
 // function changeFontSize(className) {
 //     const selection = window.getSelection();
@@ -97,40 +138,3 @@ function changeFontSize(className1, className2) {
 
 //     replaceSelection(span.outerHTML, true);
 // }
-
-function replaceSelection(html, selectInserted) {
-    // 選擇範圍
-    const selection = window.getSelection();
-    // 是否有選取範圍
-    if (selection.rangeCount <= 0) {
-        return;
-    }
-
-    // 獲取第一個 Range 對象
-    const range = selection.getRangeAt(0);
-    // 刪除其內容
-    range.deleteContents();
-
-    const template = document.createElement("template");
-
-    // 參數解析為片段，去除前後空格
-    template.innerHTML = html.trim();
-    // 創建一個新的文檔片段
-    const fragment = document.importNode(template.content, true);
-    const firstNode = fragment.firstChild;
-    const lastNode = fragment.lastChild;
-
-    // 新創建的文檔片段插入到範圍中
-    range.insertNode(fragment);
-
-    if (selectInserted) {
-        // 新插入的內容
-        const newRange = document.createRange();
-        newRange.setStartBefore(firstNode);
-        newRange.setEndAfter(lastNode);
-        selection.addRange(newRange);
-        selection.removeAllRanges();
-    }
-}
-
-export { changeStyle, changeFontSize };

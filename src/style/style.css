@@ -1057,7 +1057,7 @@ a:active {
   background: rgba(var(--second-color), 0.1);
 }
 .write .write-main .write-content .edit-text-item {
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   margin: 15px 10px;
@@ -1070,56 +1070,6 @@ a:active {
   margin: 25px 0;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
   outline: none;
-}
-.write .write-main .write-content .preview-item {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  margin: 15px 10px;
-}
-.write .write-main .write-content .preview-item .preview-content {
-  justify-content: center;
-  flex-direction: column;
-}
-.write .write-main .write-content .preview-item .preview-content .preview {
-  padding: 20px 25px;
-  min-height: 70vh;
-  width: 800px;
-  border-radius: 2rem;
-  margin: 25px 0;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-  outline: none;
-  overflow: auto;
-  scrollbar-width: none;
-  scrollbar-color: transparent transparent;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  white-space: normal;
-  max-height: 600px;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  max-width: 800px;
-  border: 1px solid black;
-  font-size: 24px;
-}
-.write .write-main .write-content .show {
-  display: flex;
-}
-.write .write-main .write-content .switch-components {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-.write .write-main .write-content .switch-components .switch-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.write .write-main .write-content .switch-components .switch-item div {
-  font-size: 1.3rem;
-  margin: 20px;
-  cursor: pointer;
 }
 .write .write-main .write-content .write-content-file-item {
   display: flex;
@@ -1941,7 +1891,12 @@ a:active {
   justify-content: center;
   flex-direction: column;
 }
-.edit-text-content .edit-text {
+.edit-text-content .edit-text-item-1 {
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.edit-text-content .edit-text-item-1 .edit-text {
   overflow: auto;
   scrollbar-width: none;
   scrollbar-color: transparent transparent;
@@ -1955,8 +1910,56 @@ a:active {
   border: 1px solid black; /* 加入邊框以示範 */
   font-size: 24px;
 }
-.edit-text-content .edit-text::-webkit-scrollbar {
+.edit-text-content .edit-text-item-1 .edit-text::-webkit-scrollbar {
   display: none; /* Chrome, Safari, and Opera */
+}
+.edit-text-content .preview-itme-1 {
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.edit-text-content .preview-itme-1 .preview {
+  padding: 20px 25px;
+  min-height: 70vh;
+  width: 800px;
+  border-radius: 2rem;
+  margin: 25px 0;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  outline: none;
+  overflow: auto;
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  white-space: normal;
+  max-height: 600px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  max-width: 800px; /* 設定最大寬度為 300px */
+  border: 1px solid black; /* 加入邊框以示範 */
+  font-size: 24px;
+}
+.edit-text-content .preview-itme-1 .preview::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+.edit-text-content .show {
+  display: flex;
+}
+.edit-text-content .switch-components {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.edit-text-content .switch-components .switch-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.edit-text-content .switch-components .switch-item div {
+  font-size: 1.3rem;
+  margin: 20px;
+  cursor: pointer;
 }
 .edit-text-content .text-editor-tools {
   display: flex;

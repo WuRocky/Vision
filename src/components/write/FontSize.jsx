@@ -10,7 +10,7 @@ import alignRight from "../../img/font-size/align-right.png";
 
 import { changeStyle, changeFontSize } from "../../hooks/useEditTextFun";
 
-const FontSize = ({ fontSizeRef }) => {
+const FontSize = ({ fontSizeRef, setEditText }) => {
     const changeFontSizeHandler = (
         e,
         className
@@ -18,7 +18,7 @@ const FontSize = ({ fontSizeRef }) => {
         // style2
     ) => {
         e.preventDefault();
-        changeFontSize(className, "size-default");
+        changeFontSize(className, "size-default", setEditText);
         // changeFontSize(style1, style2);
     };
 

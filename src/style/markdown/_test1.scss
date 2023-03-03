@@ -118,7 +118,7 @@
             }
             // 編輯內容
             .edit-text-item {
-                display: flex;
+                display: none;
                 align-items: center;
                 justify-content: center;
                 margin: 15px 10px;
@@ -134,63 +134,63 @@
                 }
             }
 
-            // .preview-item {
-            //     display: none;
-            //     align-items: center;
-            //     justify-content: center;
-            //     margin: 15px 10px;
+            .preview-item {
+                display: none;
+                align-items: center;
+                justify-content: center;
+                margin: 15px 10px;
 
-            //     .preview-content {
-            //         // display: ;
-            //         justify-content: center;
-            //         flex-direction: column;
-            //         .preview {
-            //             padding: 20px 25px;
-            //             min-height: 70vh;
-            //             width: 800px;
-            //             border-radius: 2rem;
-            //             margin: 25px 0;
-            //             box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-            //             outline: none;
+                .preview-content {
+                    // display: ;
+                    justify-content: center;
+                    flex-direction: column;
+                    .preview {
+                        padding: 20px 25px;
+                        min-height: 70vh;
+                        width: 800px;
+                        border-radius: 2rem;
+                        margin: 25px 0;
+                        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+                        outline: none;
 
-            //             overflow: auto;
-            //             scrollbar-width: none;
-            //             scrollbar-color: transparent transparent;
-            //             scrollbar-width: none;
-            //             -ms-overflow-style: none;
-            //             white-space: normal;
-            //             max-height: 600px;
-            //             overflow-wrap: break-word;
-            //             word-wrap: break-word;
-            //             max-width: 800px;
-            //             border: 1px solid black;
-            //             font-size: 24px;
-            //         }
-            //     }
-            // }
+                        overflow: auto;
+                        scrollbar-width: none;
+                        scrollbar-color: transparent transparent;
+                        scrollbar-width: none;
+                        -ms-overflow-style: none;
+                        white-space: normal;
+                        max-height: 600px;
+                        overflow-wrap: break-word;
+                        word-wrap: break-word;
+                        max-width: 800px;
+                        border: 1px solid black;
+                        font-size: 24px;
+                    }
+                }
+            }
 
-            // .show {
-            //     display: flex;
-            // }
+            .show {
+                display: flex;
+            }
 
-            // // 選擇顯示編輯或預覽內容
-            // .switch-components {
-            //     display: flex;
-            //     align-items: center;
-            //     justify-content: center;
-            //     width: 100%;
-            //     .switch-item {
-            //         display: flex;
-            //         align-items: center;
-            //         justify-content: center;
+            // 選擇顯示編輯或預覽內容
+            .switch-components {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                .switch-item {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
 
-            //         div {
-            //             font-size: 1.3rem;
-            //             margin: 20px;
-            //             cursor: pointer;
-            //         }
-            //     }
-            // }
+                    div {
+                        font-size: 1.3rem;
+                        margin: 20px;
+                        cursor: pointer;
+                    }
+                }
+            }
 
             // 上傳圖片
             .write-content-file-item {

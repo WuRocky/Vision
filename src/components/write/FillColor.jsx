@@ -13,10 +13,10 @@ import colorYellow from "../../img/color/color-Yellow.png";
 
 import { changeStyle } from "../../hooks/useEditTextFun";
 
-const FillColor = ({ fillColorRef }) => {
+const FillColor = ({ fillColorRef, setEditText }) => {
     const changeFillColorHandler = (e, color) => {
         e.preventDefault();
-        changeStyle(color);
+        changeStyle(color, color, setEditText);
     };
 
     const options = [
