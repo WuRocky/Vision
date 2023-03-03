@@ -1,9 +1,6 @@
+// react
 import React, { useState, useContext, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-
-// firebase
-import { addData } from "../hooks/useFireStore";
-import { addStorage } from "../hooks/useFireStorage";
+import { useParams, useNavigate } from "react-router-dom";
 
 // markdown
 import ReactMarkdown from "react-markdown";
@@ -11,18 +8,28 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrowNightBlue } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
-import remarkBreaks from "remark-breaks";
-import remarkHtml from "remark-html";
 
-import Message from "../components/message/Message";
+import noImage from "../../img/no-Image.png";
 
-import noImage from "../img/no-Image.png";
+// firebase
+import { updateUserArticleContent } from "../../hooks/useFireStore";
+import { upDataStorage } from "../../hooks/useFireStorage";
 
-import { AppContext } from "../Layout";
-// import Markdown from "../components/write/Markdown";
-import EditText from "../components/write/EditText";
+import UpdateEditText from "./UpdateEditText";
 
-const Write = () => {
+import Message from "../message/Message";
+
+import { AppContext } from "../../Layout";
+import { getArticle } from "../../hooks/useFireStore";
+const UpdateWrite = () => {
+    const { id } = useParams();
+    useEffect(() => {
+        getArticle(id, (data) => {
+            setWriteTitle(data.title);
+            setEditText(data.content);
+            setWriteFile(data.imageUrl);
+        });
+    }, [id]);
     /// * 共用分類 * ///
     const { topics } = useContext(AppContext);
 
@@ -34,9 +41,6 @@ const Write = () => {
 
     /// * 編輯內容 * ///
     const [editText, setEditText] = useState("");
-
-    /// * 選擇顯示編輯或預覽內容 * ///
-    const [switchContent, setSwitchContent] = useState("edit-text-item");
 
     /// * 上傳照片內容 * ///
     const [writeFile, setWriteFile] = useState(null);
@@ -68,33 +72,38 @@ const Write = () => {
         setWriteFile();
     };
 
-    const previewUrl = writeFile ? URL.createObjectURL(writeFile) : noImage;
+    const previewUrl = writeFile
+        ? typeof writeFile === "string"
+            ? writeFile
+            : URL.createObjectURL(new Blob([writeFile]))
+        : noImage;
 
     /// * 導向網址 * ///
     const navigate = useNavigate();
-
     ///* 寫入文章 *///
     const buttonHandler = async (e) => {
         e.preventDefault();
-
+        console.log(writeFile);
         /// * 查看是否輸入內容 * ///
         if (editText === "" || writeTitel === "" || writeClass === "") {
             setMessage("請輸入內容");
             return;
         }
-
-        const success = await addData(
+        if (typeof writeFile === "string") {
+            setMessage("請更新圖片");
+            return;
+        }
+        const success = updateUserArticleContent(
+            id,
             writeTitel,
             editText,
             writeClass,
             setMessage
         );
 
-        /// * 得到照片輸入至fire storage * ///
-        const fileId = success.id;
         if (writeFile) {
             const fileType = writeFile.type;
-            addStorage(fileId, writeFile, fileType);
+            upDataStorage(id, writeFile, fileType);
         }
 
         /// * 清除輸入內容 * ///
@@ -109,14 +118,13 @@ const Write = () => {
             }, 2000);
         }
     };
-    const previewText = editText.replace(/\n/g, "<br>");
     return (
         <>
             <div onClick={() => setMessage()}>
                 <Message message={message} />
             </div>
-            <div className="write">
-                <div className="write-main">
+            <div className="UpdateMarkdown">
+                <div className="write-main ">
                     <form className="write-content">
                         {/* 標題 */}
                         <div className="write-content-title-item">
@@ -164,72 +172,12 @@ const Write = () => {
                         </div>
 
                         {/* 寫入文章 */}
-                        {/* <textarea className="textarea" onChange={writeHandler} /> */}
-                        <div
-                            className={`edit-text-item ${
-                                switchContent === "edit-text-item" ? "show" : ""
-                            }`}
-                        >
-                            <EditText
+                        <div className="edit-text-item">
+                            <UpdateEditText
                                 setEditText={setEditText}
                                 editText={editText}
+                                value={editText}
                             />
-                        </div>
-
-                        {/* 預覽內容 */}
-                        <div
-                            className={`preview-item ${
-                                switchContent === "preview-item" ? "show" : ""
-                            }`}
-                        >
-                            <div className="preview-content">
-                                <ReactMarkdown
-                                    className="preview"
-                                    remarkPlugins={[remarkGfm]}
-                                    rehypePlugins={[rehypeRaw]}
-                                    children={editText}
-                                />
-
-                                {/* <ReactMarkdown
-                                    className="preview"
-                                    remarkPlugins={[remarkGfm]}
-                                    rehypePlugins={[rehypeRaw]}
-                                >
-                                    {editText.replace(/\n/g, "<div>")}
-                                </ReactMarkdown> */}
-                            </div>
-                        </div>
-
-                        {/* 選擇顯示編輯或預覽內容 */}
-                        <div className="switch-components">
-                            <div className="switch-item">
-                                <div
-                                    style={{
-                                        color:
-                                            switchContent === "edit-text-item"
-                                                ? "black"
-                                                : "gray",
-                                    }}
-                                    onClick={() =>
-                                        setSwitchContent("edit-text-item")
-                                    }
-                                >
-                                    我的文章
-                                </div>
-                                <div
-                                    style={{
-                                        color:
-                                            switchContent === "preview-item"
-                                                ? "black"
-                                                : "gray",
-                                    }}
-                                    onClick={() =>
-                                        setSwitchContent("preview-item")
-                                    }
-                                >
-                                    我的收藏
-                                </div>
-                            </div>
                         </div>
 
                         {/* 上傳圖片 */}
@@ -258,7 +206,7 @@ const Write = () => {
                                 onClick={buttonHandler}
                                 className="write-content-button"
                             >
-                                送出文章
+                                更新文章
                             </button>
                         </div>
                     </form>
@@ -277,4 +225,4 @@ const Write = () => {
     );
 };
 
-export default Write;
+export default UpdateWrite;

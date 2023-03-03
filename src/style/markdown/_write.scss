@@ -134,71 +134,14 @@
                 }
             }
 
-            // .preview-item {
-            //     display: none;
-            //     align-items: center;
-            //     justify-content: center;
-            //     margin: 15px 10px;
-
-            //     .preview-content {
-            //         // display: ;
-            //         justify-content: center;
-            //         flex-direction: column;
-            //         .preview {
-            //             padding: 20px 25px;
-            //             min-height: 70vh;
-            //             width: 800px;
-            //             border-radius: 2rem;
-            //             margin: 25px 0;
-            //             box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-            //             outline: none;
-
-            //             overflow: auto;
-            //             scrollbar-width: none;
-            //             scrollbar-color: transparent transparent;
-            //             scrollbar-width: none;
-            //             -ms-overflow-style: none;
-            //             white-space: normal;
-            //             max-height: 600px;
-            //             overflow-wrap: break-word;
-            //             word-wrap: break-word;
-            //             max-width: 800px;
-            //             border: 1px solid black;
-            //             font-size: 24px;
-            //         }
-            //     }
-            // }
-
-            // .show {
-            //     display: flex;
-            // }
-
-            // // 選擇顯示編輯或預覽內容
-            // .switch-components {
-            //     display: flex;
-            //     align-items: center;
-            //     justify-content: center;
-            //     width: 100%;
-            //     .switch-item {
-            //         display: flex;
-            //         align-items: center;
-            //         justify-content: center;
-
-            //         div {
-            //             font-size: 1.3rem;
-            //             margin: 20px;
-            //             cursor: pointer;
-            //         }
-            //     }
-            // }
-
             // 上傳圖片
             .write-content-file-item {
                 display: flex;
                 justify-content: space-around;
                 align-items: center;
-                width: 1000px;
-                // width: 100%;
+                // width: 1000px;
+                // width: 80%;
+                width: 100%;
                 margin: 15px;
                 .write-content-file-button {
                     display: flex;
@@ -267,4 +210,64 @@
     margin: 1rem;
     font-size: 1.05rem;
     border-style: none;
+}
+
+@media screen and (max-width: 700px) {
+    .write {
+        .write-main {
+            .write-content {
+                .write-content-file-item {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    .write-content-file-button {
+                        // width: 40%;
+                    }
+                    .write-content-file {
+                        // width: 40%;
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 550px) {
+    .write {
+        .write-main {
+            .write-content {
+                .write-content-file-item {
+                    .write-content-file-button {
+                        // width: 40%;
+                    }
+                    .write-content-file {
+                        width: 15vh;
+                        height: 15vh;
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 400px) {
+    .write {
+        .write-main {
+            .write-content {
+                .write-content-file-item {
+                    .write-content-file-button {
+                        // width: 40%;
+                    }
+                    .write-content-file {
+                        width: 12vh;
+                        height: 12vh;
+                    }
+                }
+                .write-content-button-item {
+                    .write-content-button {
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+    }
 }

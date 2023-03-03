@@ -1075,7 +1075,7 @@ a:active {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 1000px;
+  width: 100%;
   margin: 15px;
 }
 .write .write-main .write-content .write-content-file-item .write-content-file-button {
@@ -1142,83 +1142,186 @@ a:active {
   border-style: none;
 }
 
+@media screen and (max-width: 700px) {
+  .write .write-main .write-content .write-content-file-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 550px) {
+  .write .write-main .write-content .write-content-file-item .write-content-file {
+    width: 15vh;
+    height: 15vh;
+  }
+}
+@media screen and (max-width: 400px) {
+  .write .write-main .write-content .write-content-file-item .write-content-file {
+    width: 12vh;
+    height: 12vh;
+  }
+  .write .write-main .write-content .write-content-button-item .write-content-button {
+    font-size: 15px;
+  }
+}
 .UpdateMarkdown {
   background-color: var(--second-color);
   min-height: var(--height);
-}
-.UpdateMarkdown .markDownContainer {
-  margin: 0 50px;
-  display: grid;
-  grid-template-rows: auto auto minmax(var(--height), auto) minmax(200px, auto) auto;
-  grid-template-columns: repeat(4, 1fr);
   justify-content: center;
-  grid-gap: 10px;
-  grid-template-areas: " markDownTitle markDownTitelInput markDownTitelInput ." " markDownClass markDownClassInput markDownClassInput ." "textarea textarea output output" ". markDownFileButton markDownFile ." ". markDownButton markDownButton .";
+  display: flex;
 }
-.UpdateMarkdown .markDownContainer .markDownTitle {
-  margin: 15px 0;
+.UpdateMarkdown .write-main {
+  display: flex;
+  max-width: 1200px;
+}
+.UpdateMarkdown .write-main .write-content {
+  display: flex;
+  max-width: 1200px;
+  flex-direction: column;
+}
+.UpdateMarkdown .write-main .write-content .write-content-title-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+}
+.UpdateMarkdown .write-main .write-content .write-content-title-item .write-content-title {
+  margin: 15px;
   font-size: 1.25rem;
   height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 1.05rem;
-  grid-area: markDownTitle;
 }
-.UpdateMarkdown .markDownContainer .markDownTitelInput {
-  margin: 15px 0;
+.UpdateMarkdown .write-main .write-content .write-content-title-item .write-content-title-input {
+  margin: 15px;
   height: 50px;
   padding: 5px;
   font-size: 1.25rem;
   border-style: none;
-  grid-area: markDownTitelInput;
   cursor: pointer;
+  width: 45vw;
 }
-.UpdateMarkdown .markDownContainer .markDownClassLabel {
-  margin: 15px 0;
+.UpdateMarkdown .write-main .write-content .write-content-class-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+}
+.UpdateMarkdown .write-main .write-content .write-content-class-item .write-content-label {
+  margin: 15px;
   font-size: 1.25rem;
   height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 1.05rem;
-  grid-area: markDownClass;
 }
-.UpdateMarkdown .markDownContainer .markDownClassInput {
-  grid-area: markDownClassInput;
+.UpdateMarkdown .write-main .write-content .write-content-class-item .write-content-class-input {
   display: flex;
-  justify-content: center;
+  margin: 15px;
+  width: 45vw;
 }
-.UpdateMarkdown .markDownContainer .markDownClassInput .form-check {
+.UpdateMarkdown .write-main .write-content .write-content-class-item .write-content-class-input .form-check {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100px;
-  margin: 10px;
+  margin: 10px 10px 10px 0;
 }
-.UpdateMarkdown .markDownContainer .markDownClassInput .form-check .form-check-input {
-  margin: 10px 10px;
-}
-.UpdateMarkdown .markDownContainer .markDownClassInput .form-check .form-check-label {
-  margin: 10px;
-  font-size: 1.3rem;
+.UpdateMarkdown .write-main .write-content .write-content-class-item .write-content-class-input .form-check .form-check-label {
+  padding: 6px;
+  border-radius: 50px;
+  display: inline-flex;
   cursor: pointer;
+  transition: background 0.2s ease;
+  margin: 10px 10px 10px 0;
+  -webkit-tap-highlight-color: transparent;
 }
-.UpdateMarkdown .markDownContainer .markDownFileInput {
-  display: none;
+.UpdateMarkdown .write-main .write-content .write-content-class-item .write-content-class-input .form-check .form-check-label .form-check-input {
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: none;
+  border: 0;
+  box-shadow: inset 0 0 0 1px rgb(184, 184, 184);
+  box-shadow: inset 0 0 0 1.5px rgb(184, 184, 184);
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  padding: 0;
+  margin: 0;
+  transition: box-shadow 150ms cubic-bezier(0.95, 0.15, 0.5, 1.25);
+  pointer-events: none;
+}
+.UpdateMarkdown .write-main .write-content .write-content-class-item .write-content-class-input .form-check .form-check-label .form-check-input:focus {
+  outline: none;
+}
+.UpdateMarkdown .write-main .write-content .write-content-class-item .write-content-class-input .form-check .form-check-label .form-check-input:checked {
+  box-shadow: inset 0 0 0 6px var(--third-color);
+}
+.UpdateMarkdown .write-main .write-content .write-content-class-item .write-content-class-input .form-check .form-check-label .form-check-span {
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 20px;
+  padding: 0 8px;
+}
+.UpdateMarkdown .write-main .write-content .write-content-class-item .write-content-class-input .form-check .form-check-label:hover,
+.UpdateMarkdown .write-main .write-content .write-content-class-item .write-content-class-input .form-check .form-check-label:focus-within {
+  background: rgba(var(--second-color), 0.1);
+}
+.UpdateMarkdown .write-main .write-content .edit-text-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 10px;
+}
+.UpdateMarkdown .write-main .write-content .edit-text-item .edit-text {
+  padding: 20px 25px;
+  min-height: 70vh;
+  width: 800px;
+  border-radius: 2rem;
+  margin: 25px 0;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  outline: none;
+}
+.UpdateMarkdown .write-main .write-content .write-content-file-item {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin: 15px;
+}
+.UpdateMarkdown .write-main .write-content .write-content-file-item .write-content-file-button {
+  display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem;
-  font-size: 1.05rem;
-  border-style: none;
-  grid-area: markDownFileInput;
+  flex-direction: column;
+  margin: 15px;
 }
-.UpdateMarkdown .markDownContainer .markDownFile {
-  margin: 10px 10px 0 10px;
+.UpdateMarkdown .write-main .write-content .write-content-file-item .write-content-file-button button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4vh;
+  width: 8rem;
+  margin: 10px 0;
+  border-style: none;
+  cursor: pointer;
+  border-radius: 25px;
+  background-color: var(--third-color);
+  color: #fff;
+  font-size: 1.15rem;
+}
+.UpdateMarkdown .write-main .write-content .write-content-file-item .write-content-file {
+  margin: 10px;
   width: 25vh;
   height: 25vh;
   -o-object-fit: contain;
@@ -1227,110 +1330,60 @@ a:active {
   justify-content: center;
   align-items: center;
   letter-spacing: 1.05rem;
-  grid-area: markDownFile;
 }
-.UpdateMarkdown .markDownContainer .markDownFileButton {
-  grid-area: markDownFileButton;
+.UpdateMarkdown .write-main .write-content .write-content-button-item {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 10px 0;
+  max-width: 1200px;
 }
-.UpdateMarkdown .markDownContainer .markDownFileButton button {
-  width: 15vw;
-  height: 6.5vh;
-  border-style: none;
-  cursor: pointer;
-  border-radius: 25px;
-  background-color: var(--third-color);
-  color: #fff;
-  font-size: 1.15rem;
-}
-.UpdateMarkdown .markDownContainer .textarea {
-  margin: 10px 10px 0 10px;
-  padding: 5px 20px;
-  border: none;
-  height: auto;
-  resize: none;
-  grid-area: textarea;
-}
-.UpdateMarkdown .markDownContainer .output {
-  background-color: #fae6db;
-  margin: 10px 10px 0 10px;
-  padding: 5px 20px;
-  outline: none;
-  grid-area: output;
-}
-.UpdateMarkdown .markDownContainer .markDownButton {
+.UpdateMarkdown .write-main .write-content .write-content-button-item .write-content-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 15px 0;
   padding: 5px;
-  width: 50vw;
-  height: 6.5vh;
+  width: 21vw;
+  height: 4.5vh;
   border-style: none;
   cursor: pointer;
   border-radius: 25px;
   background-color: var(--third-color);
   color: #fff;
   font-size: 1.15rem;
-  grid-area: markDownButton;
+}
+
+.write-content-file-input {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+  font-size: 1.05rem;
+  border-style: none;
 }
 
 @media screen and (max-width: 700px) {
-  .write .markDownContainer {
-    grid-template-rows: auto auto minmax(250px, auto) minmax(250px, auto) 10% auto;
-    grid-template-areas: " markDownTitle markDownTitle markDownTitelInput markDownTitelInput" " markDownClass markDownClass markDownClassInput markDownClassInput" "textarea textarea textarea textarea" "output output output output" "markDownFileButton markDownFileButton markDownFile markDownFile" ". markDownButton markDownButton .";
-  }
-}
-@media screen and (max-width: 600px) {
-  .write {
-    padding: 10px;
-  }
-  .write .markDownContainer {
-    margin: 0 50px;
-    display: grid;
-    grid-template-rows: auto auto minmax(250px, auto) minmax(250px, auto) 10% auto;
-    grid-template-columns: repeat(4, 1fr);
+  .UpdateMarkdown .write-main .write-content .write-content-file-item {
+    display: flex;
     justify-content: center;
-    grid-gap: 0px;
-    grid-template-areas: " markDownTitle markDownTitelInput markDownTitelInput markDownTitelInput" " markDownClass markDownClassInput markDownClassInput markDownClassInput" "textarea textarea textarea textarea" "output output output output" "markDownFileButton markDownFileButton markDownFile markDownFile" ". markDownButton markDownButton .";
-  }
-  .write .markDownContainer .markDownFile {
-    width: 18vh;
-    height: 18vh;
-  }
-  .write .markDownContainer .markDownButton {
-    height: 5vh;
+    align-items: center;
     width: 100%;
-    font-size: 1rem;
-  }
-  .write .markDownContainer .markDownFileButton button {
-    width: 20vw;
-    height: 5vh;
-    font-size: 1rem;
   }
 }
-@media screen and (max-width: 450px) {
-  .write .markDownContainer {
-    grid-template-rows: auto auto minmax(250px, auto) minmax(250px, auto) 10% auto;
-    grid-template-columns: repeat(4, 80px);
-    justify-content: center;
-  }
-  .write .markDownContainer .markDownFile {
+@media screen and (max-width: 550px) {
+  .UpdateMarkdown .write-main .write-content .write-content-file-item .write-content-file {
     width: 15vh;
     height: 15vh;
   }
-  .write .markDownContainer .markDownButton {
-    margin: 10px 0;
-    padding: 5px;
-    font-size: 1rem;
+}
+@media screen and (max-width: 400px) {
+  .UpdateMarkdown .write-main .write-content .write-content-file-item .write-content-file {
+    width: 12vh;
+    height: 12vh;
   }
-  .write .markDownContainer .markDownTitelInput {
-    margin: 15px 0;
-    height: 50px;
-    padding: 5px;
-    font-size: 1.25rem;
-    border-style: none;
-    grid-area: markDownTitelInput;
-    cursor: pointer;
+  .UpdateMarkdown .write-main .write-content .write-content-button-item .write-content-button {
+    font-size: 15px;
   }
 }
 .member {
@@ -2263,4 +2316,28 @@ a:active {
 .size-align-right {
   text-align: right;
   width: 800px;
+}
+
+@media screen and (max-width: 900px) {
+  .edit-text-content {
+    width: 75%;
+  }
+}
+@media screen and (max-width: 700px) {
+  .edit-text-content {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .edit-text-content {
+    width: 45%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .edit-text-content {
+    width: 40%;
+  }
+  .edit-text-content .text-editor-tools .text-editor-tools-button {
+    margin-right: 5px;
+  }
 }/*# sourceMappingURL=style.css.map */

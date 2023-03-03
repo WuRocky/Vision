@@ -8,7 +8,8 @@ import Write from "./pages/Write";
 import Member from "./pages/Member";
 
 import Article from "./components/write/Article";
-import UpdateMarkdown from "./components/write/UpdateMarkdown";
+// import UpdateWrite from "./components/write/UpdateWrite";
+import UpdateWrite from "./components/write/UpdateWrite";
 
 import SignIn from "./components/login/SignIn";
 
@@ -33,7 +34,7 @@ const App = () => {
                             ></Route>
                             <Route
                                 path="update-article/:id"
-                                element={<UpdateMarkdown />}
+                                element={<UpdateWrite />}
                             ></Route>
                             <Route path="member" element={<Member />}></Route>
                             <Route

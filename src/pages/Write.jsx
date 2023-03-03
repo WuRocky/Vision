@@ -1,25 +1,16 @@
-import React, { useState, useContext, useRef, useEffect } from "react";
+import React, { useState, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 // firebase
 import { addData } from "../hooks/useFireStore";
 import { addStorage } from "../hooks/useFireStorage";
 
-// markdown
-import ReactMarkdown from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { tomorrowNightBlue } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import remarkGfm from "remark-gfm";
-import rehypeRaw from "rehype-raw";
-import remarkBreaks from "remark-breaks";
-import remarkHtml from "remark-html";
-
 import Message from "../components/message/Message";
 
 import noImage from "../img/no-Image.png";
 
 import { AppContext } from "../Layout";
-// import Markdown from "../components/write/Markdown";
+
 import EditText from "../components/write/EditText";
 
 const Write = () => {
@@ -160,7 +151,6 @@ const Write = () => {
                         </div>
 
                         {/* 寫入文章 */}
-                        {/* <textarea className="textarea" onChange={writeHandler} /> */}
                         <div className="edit-text-item">
                             <EditText
                                 setEditText={setEditText}

@@ -42,10 +42,10 @@ const upDataStorage = async (articleID, file, fileType) => {
 
         await deleteObject(storageRef)
             .then(() => {
-                // console.log("刪除檔案成功");
+                console.log("刪除檔案成功");
             })
             .catch((error) => {
-                // console.log("刪除檔案失敗");
+                console.log("刪除檔案失敗");
             });
 
         const metadata = {
