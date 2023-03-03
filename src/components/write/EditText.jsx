@@ -107,26 +107,63 @@ const EditText = ({ setEditText, editText }) => {
     /// * 取得輸入內容 * ///
     const writeHandler = (e) => {
         const text = e.target.innerHTML;
-        if (text.length > MAX_LENGTH) {
-            e.target.innerHTML = text.slice(0, MAX_LENGTH);
+        const replacedText = text
+            .replace(/<div>/g, "\n")
+            .replace(/<\/div>/g, "");
+        if (replacedText.length > MAX_LENGTH) {
+            e.target.innerHTML = replacedText
+                .slice(0, MAX_LENGTH)
+                .replace(/\n/g, "<div><br></div>");
+        } else {
+            setEditText(replacedText);
         }
-        setEditText(text);
     };
     /// * 監聽鍵盤 * ///
     const keyboardHander = (e) => {
-        if (e.keyCode === 13 && e.shiftKey) {
+        if (e.keyCode === 13) {
             const range = window.getSelection().getRangeAt(0);
+            const currentBlock = document.createElement("div");
+            currentBlock.appendChild(range.cloneContents());
+
+            // 獲取父元素的標籤名
+            const currentTagName =
+                range.startContainer.parentNode.tagName.toLowerCase();
+
             const div = document.createElement("div");
             range.insertNode(div);
             range.setStartAfter(div);
             range.collapse(true);
+
+            // 如果當前塊是標題，則將下一個塊設置為相同的標籤名稱
+            if (currentTagName.match(/h[1-6]/)) {
+                const nextBlock = document.createElement(currentTagName);
+                nextBlock.innerHTML = "<br>";
+                div.parentNode.insertBefore(nextBlock, div.nextSibling);
+            }
             e.preventDefault();
-        } else if (e.keyCode === 13) {
-            const range = window
-                .getSelection()
-                .getRangeAt(0).commonAncestorContainer;
-            range.setAttribute("class", "");
         }
+    };
+
+    const handlePaste = (e) => {
+        // 防止預設的黏貼事件，使得你的元素只接受純文字
+        e.preventDefault();
+        // 獲取剪貼簿中的純文字內容
+        const text = e.clipboardData.getData("text");
+
+        // 在這裡處理你的黏貼事件，可以將黏貼的內容以特定的格式插入到 `contentEditable` 元素中
+        // 插入純文字
+        const selection = window.getSelection();
+        if (!selection.rangeCount) return false;
+        const range = selection.getRangeAt(0);
+        const newNode = document.createElement("p");
+        newNode.innerHTML = "&nbsp;"; // 插入空段落
+        range.insertNode(newNode);
+        newNode.innerHTML = text; // 設置新節點的內容
+        range.setEndAfter(newNode); // 將選區的結束位置設置在新節點後面
+        range.setStartAfter(newNode); // 將選區的開始位置設置在新節點後面
+        selection.removeAllRanges(); // 刪除原有選區
+        selection.addRange(range); // 添加新選區
+        setEditText(text);
     };
 
     return (
@@ -186,9 +223,9 @@ const EditText = ({ setEditText, editText }) => {
                         />
                     ) : null}
                 </button>
-                <button className="text-editor-tools-button">
+                {/* <button className="text-editor-tools-button">
                     <img className="text-editor-tools-img" src={addImage} />
-                </button>
+                </button> */}
             </div>
             {/* 編輯內容 */}
             <div
@@ -204,6 +241,7 @@ const EditText = ({ setEditText, editText }) => {
                     className="edit-text"
                     onKeyUp={keyboardHander}
                     onInput={writeHandler}
+                    onPaste={handlePaste}
                 />
             </div>
             {/* 預覽內容 */}
@@ -212,11 +250,35 @@ const EditText = ({ setEditText, editText }) => {
                     switchContent === "preview-itme-1" ? "show" : ""
                 }`}
             >
+                {/* <ReactMarkdown className="preview">{editText}</ReactMarkdown> */}
                 <ReactMarkdown
                     className="preview"
                     children={editText}
                     remarkPlugins={[remarkGfm]}
                     rehypePlugins={[rehypeRaw]}
+                    components={{
+                        code({ node, inline, className, children, ...props }) {
+                            const match = /language-(\w+)/.exec(
+                                className || ""
+                            );
+                            return !inline && match ? (
+                                <SyntaxHighlighter
+                                    children={String(children).replace(
+                                        /\n$/,
+                                        ""
+                                    )}
+                                    style={tomorrowNightBlue}
+                                    language={match[1]}
+                                    PreTag="div"
+                                    {...props}
+                                />
+                            ) : (
+                                <code className={className} {...props}>
+                                    {children}
+                                </code>
+                            );
+                        },
+                    }}
                 />
             </div>
             <div className="switch-components">

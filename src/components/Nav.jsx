@@ -20,9 +20,9 @@ const Nav = () => {
                     <ul>
                         {user ? (
                             <>
-                                {/* <li>
+                                <li>
                                     <Link to="/write">Write</Link>
-                                </li> */}
+                                </li>
                                 <li>
                                     <Link to="/member">Member</Link>
                                 </li>
@@ -32,9 +32,9 @@ const Nav = () => {
                             </>
                         ) : (
                             <>
-                                <li>
+                                {/* <li>
                                     <Link to="/write">Write</Link>
-                                </li>
+                                </li> */}
                                 <li>
                                     <Link className="signIn" to="/signIn">
                                         Register / Sign In

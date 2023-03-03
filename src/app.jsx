@@ -26,7 +26,7 @@ const App = () => {
                     {user ? (
                         <>
                             <Route index element={<HomePage />}></Route>
-                            {/* <Route path="write" element={<Write />}></Route> */}
+                            <Route path="write" element={<Write />}></Route>
                             <Route
                                 path="article/:id"
                                 element={<Article />}
@@ -44,7 +44,7 @@ const App = () => {
                     ) : (
                         <>
                             <Route index element={<HomePage />}></Route>
-                            <Route path="write" element={<Write />}></Route>
+                            {/* <Route path="write" element={<Write />}></Route> */}
                             <Route path="signIn" element={<SignIn />}></Route>
                             <Route
                                 path="article/:id"
