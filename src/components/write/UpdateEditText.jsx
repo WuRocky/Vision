@@ -168,7 +168,37 @@ const UpdateEditText = ({ setEditText, editText }) => {
 
     return (
         <div className="edit-text-content">
-            <div className="text-editor-tools">
+            <div className="switch-components">
+                <div className="switch-item">
+                    <div
+                        style={{
+                            color:
+                                switchContent === "edit-text-item-1"
+                                    ? "black"
+                                    : "gray",
+                        }}
+                        onClick={() => setSwitchContent("edit-text-item-1")}
+                    >
+                        編輯內容
+                    </div>
+                    <div
+                        style={{
+                            color:
+                                switchContent === "preview-itme-1"
+                                    ? "black"
+                                    : "gray",
+                        }}
+                        onClick={() => setSwitchContent("preview-itme-1")}
+                    >
+                        預覽內容
+                    </div>
+                </div>
+            </div>
+            <div
+                className={`text-editor-tools ${
+                    switchContent === "edit-text-item-1" ? "show" : ""
+                }`}
+            >
                 <button
                     className="font-size-div text-editor-tools-button"
                     onClick={showFontSizeHandler}
@@ -282,32 +312,6 @@ const UpdateEditText = ({ setEditText, editText }) => {
                         },
                     }}
                 />
-            </div>
-            <div className="switch-components">
-                <div className="switch-item">
-                    <div
-                        style={{
-                            color:
-                                switchContent === "edit-text-item-1"
-                                    ? "black"
-                                    : "gray",
-                        }}
-                        onClick={() => setSwitchContent("edit-text-item-1")}
-                    >
-                        編輯內容
-                    </div>
-                    <div
-                        style={{
-                            color:
-                                switchContent === "preview-itme-1"
-                                    ? "black"
-                                    : "gray",
-                        }}
-                        onClick={() => setSwitchContent("preview-itme-1")}
-                    >
-                        預覽內容
-                    </div>
-                </div>
             </div>
         </div>
     );

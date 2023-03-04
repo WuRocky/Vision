@@ -16,6 +16,8 @@ import underline from "../../img/underline.png";
 import textColor from "../../img/fill-color.png";
 import fontSize from "../../img/icons8-paste-as-text-48.png";
 
+import addImage from "../../img/add-image.png";
+
 import colorDefault from "../../img/color/color-Default.png";
 
 import { changeStyle } from "../../hooks/useEditTextFun";
@@ -166,7 +168,37 @@ const EditText = ({ setEditText, editText }) => {
 
     return (
         <div className="edit-text-content">
-            <div className="text-editor-tools">
+            <div className="switch-components">
+                <div className="switch-item">
+                    <div
+                        style={{
+                            color:
+                                switchContent === "edit-text-item-1"
+                                    ? "black"
+                                    : "gray",
+                        }}
+                        onClick={() => setSwitchContent("edit-text-item-1")}
+                    >
+                        編輯內容
+                    </div>
+                    <div
+                        style={{
+                            color:
+                                switchContent === "preview-itme-1"
+                                    ? "black"
+                                    : "gray",
+                        }}
+                        onClick={() => setSwitchContent("preview-itme-1")}
+                    >
+                        預覽內容
+                    </div>
+                </div>
+            </div>
+            <div
+                className={`text-editor-tools ${
+                    switchContent === "edit-text-item-1" ? "show" : ""
+                }`}
+            >
                 <button
                     className="font-size-div text-editor-tools-button"
                     onClick={showFontSizeHandler}
@@ -248,6 +280,7 @@ const EditText = ({ setEditText, editText }) => {
                     switchContent === "preview-itme-1" ? "show" : ""
                 }`}
             >
+                {/* <ReactMarkdown className="preview">{editText}</ReactMarkdown> */}
                 <ReactMarkdown
                     className="preview"
                     children={editText}
@@ -277,32 +310,6 @@ const EditText = ({ setEditText, editText }) => {
                         },
                     }}
                 />
-            </div>
-            <div className="switch-components">
-                <div className="switch-item">
-                    <div
-                        style={{
-                            color:
-                                switchContent === "edit-text-item-1"
-                                    ? "black"
-                                    : "gray",
-                        }}
-                        onClick={() => setSwitchContent("edit-text-item-1")}
-                    >
-                        編輯內容
-                    </div>
-                    <div
-                        style={{
-                            color:
-                                switchContent === "preview-itme-1"
-                                    ? "black"
-                                    : "gray",
-                        }}
-                        onClick={() => setSwitchContent("preview-itme-1")}
-                    >
-                        預覽內容
-                    </div>
-                </div>
             </div>
         </div>
     );

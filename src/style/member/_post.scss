@@ -103,8 +103,8 @@
                     .post-content-item-2-img {
                         grid-area: item-2-img;
                         width: 100px;
-                        height: 100px;
-                        object-fit: fill;
+                        height: auto;
+                        object-fit: cover;
                     }
                 }
                 .post-content-item-3 {

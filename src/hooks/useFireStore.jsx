@@ -235,7 +235,7 @@ const getPopularAuthor = (setPopularAuthor) => {
         collection(db, "article"),
         where("likeUserId", "!=", false),
         orderBy("likeUserId"),
-        limit(10)
+        limit(5)
     );
 
     onSnapshot(q, (doc) => {

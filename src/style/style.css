@@ -1586,9 +1586,9 @@ a:active {
 .track .track-container .track-content-item .track-content-item-2 .track-content-item-2-img {
   grid-area: item-2-img;
   width: 100px;
-  height: 100px;
-  -o-object-fit: fill;
-     object-fit: fill;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .track .track-container .track-content-item .track-content-item-3 {
   display: flex;
@@ -1710,9 +1710,9 @@ a:active {
 .post .post-container .post-container-main .post-content-item .post-content-item-2 .post-content-item-2-img {
   grid-area: item-2-img;
   width: 100px;
-  height: 100px;
-  -o-object-fit: fill;
-     object-fit: fill;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .post .post-container .post-container-main .post-content-item .post-content-item-3 {
   display: flex;
@@ -2039,8 +2039,8 @@ a:active {
   align-items: center;
 }
 .edit-text-content .preview-itme-1 .preview {
-  padding: 20px 25px;
-  min-height: 70vh;
+  padding: 20px 45px;
+  height: 776.5px;
   width: 800px;
   border-radius: 2rem;
   margin: 25px 0;
@@ -2052,37 +2052,45 @@ a:active {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
   white-space: normal;
-  max-height: 600px;
   overflow-wrap: break-word;
   word-wrap: break-word;
-  max-width: 800px; /* 設定最大寬度為 300px */
   border: 1px solid black; /* 加入邊框以示範 */
-  font-size: 24px;
 }
 .edit-text-content .preview-itme-1 .preview::-webkit-scrollbar {
   display: none; /* Chrome, Safari, and Opera */
 }
-.edit-text-content .show {
-  display: flex;
+.edit-text-content .preview-itme-1 .preview h1 {
+  margin: 1.5rem 0;
+  letter-spacing: -0.016em;
+  line-height: 40px;
+  color: rgb(41, 41, 41);
 }
-.edit-text-content .switch-components {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+.edit-text-content .preview-itme-1 .preview h2 {
+  margin: 1.2rem 0;
+  line-height: 24px;
+  letter-spacing: 0px;
+  color: rgb(41, 41, 41);
 }
-.edit-text-content .switch-components .switch-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.edit-text-content .preview-itme-1 .preview h3 {
+  margin: 1rem 0;
+  color: rgb(41, 41, 41);
 }
-.edit-text-content .switch-components .switch-item div {
-  font-size: 1.3rem;
-  margin: 20px;
-  cursor: pointer;
+.edit-text-content .preview-itme-1 .preview ol,
+.edit-text-content .preview-itme-1 .preview ul {
+  padding: 0 0 0 20px;
+}
+.edit-text-content .preview-itme-1 .preview ol li,
+.edit-text-content .preview-itme-1 .preview ul li {
+  margin: 0.8rem 0;
+}
+.edit-text-content .preview-itme-1 .preview p {
+  letter-spacing: -0.003em;
+  line-height: 32px;
+  color: rgb(41, 41, 41);
+  font-weight: 400;
 }
 .edit-text-content .text-editor-tools {
-  display: flex;
+  display: none;
   align-items: center;
   width: 100%;
   margin: 0 20px;
@@ -2132,6 +2140,25 @@ a:active {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.edit-text-content .show {
+  display: flex;
+}
+.edit-text-content .switch-components {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.edit-text-content .switch-components .switch-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.edit-text-content .switch-components .switch-item div {
+  font-size: 1.3rem;
+  margin: 20px;
+  cursor: pointer;
 }
 
 .bold {

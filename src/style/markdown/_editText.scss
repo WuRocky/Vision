@@ -31,13 +31,12 @@
         justify-content: center;
         align-items: center;
         .preview {
-            // display: none;
-            padding: 20px 25px;
-            min-height: 70vh;
+            padding: 20px 45px;
+            height: 776.5px;
             width: 800px;
             border-radius: 2rem;
             margin: 25px 0;
-            // box-shadow: 5px 20px 50px 5px rgba(67, 63, 62, 0.5);
+
             box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
             outline: none;
 
@@ -50,40 +49,48 @@
                 display: none; /* Chrome, Safari, and Opera */
             }
             white-space: normal;
-            max-height: 600px;
+            // max-height: 800px;
             overflow-wrap: break-word;
             word-wrap: break-word;
-            max-width: 800px; /* 設定最大寬度為 300px */
             border: 1px solid black; /* 加入邊框以示範 */
-            font-size: 24px;
-        }
-    }
+            // font-size: 24px;
 
-    .show {
-        display: flex;
-    }
+            h1 {
+                margin: 1.5rem 0;
+                letter-spacing: -0.016em;
+                line-height: 40px;
+                color: rgb(41, 41, 41);
+            }
+            h2 {
+                margin: 1.2rem 0;
 
-    // 選擇顯示編輯或預覽內容
-    .switch-components {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        .switch-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            div {
-                font-size: 1.3rem;
-                margin: 20px;
-                cursor: pointer;
+                line-height: 24px;
+                letter-spacing: 0px;
+                // margin: 0;
+                color: rgba(41, 41, 41, 1);
+            }
+            h3 {
+                margin: 1rem 0;
+                color: rgba(41, 41, 41, 1);
+            }
+            ol,
+            ul {
+                padding: 0 0 0 20px;
+                li {
+                    margin: 0.8rem 0;
+                }
+            }
+            p {
+                letter-spacing: -0.003em;
+                line-height: 32px;
+                color: rgba(41, 41, 41, 1);
+                font-weight: 400;
             }
         }
     }
 
     .text-editor-tools {
-        display: flex;
+        display: none;
         align-items: center;
         width: 100%;
         margin: 0 20px;
@@ -133,6 +140,28 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+    }
+    .show {
+        display: flex;
+    }
+
+    // 選擇顯示編輯或預覽內容
+    .switch-components {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        .switch-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            div {
+                font-size: 1.3rem;
+                margin: 20px;
+                cursor: pointer;
+            }
         }
     }
 }
