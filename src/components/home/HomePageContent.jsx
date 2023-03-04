@@ -45,8 +45,8 @@ const HomePageContent = () => {
                                     <img src={userPhoto} />
                                 )}
                             </div>
-                            <div>{data.topic}</div>
                             <div>{data.author.displayName || "匿名"}</div>
+                            <div>{data.topic}</div>
                         </div>
                         <div className="homepage-content-item-2">
                             <div className="homepage-content-item-2-title">

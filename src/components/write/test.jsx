@@ -16,6 +16,8 @@ import underline from "../../img/underline.png";
 import textColor from "../../img/fill-color.png";
 import fontSize from "../../img/icons8-paste-as-text-48.png";
 
+import addImage from "../../img/add-image.png";
+
 import colorDefault from "../../img/color/color-Default.png";
 
 import { changeStyle } from "../../hooks/useEditTextFun";

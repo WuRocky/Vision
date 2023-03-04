@@ -5,10 +5,6 @@
     // margin: 0 10px;
     flex-direction: column;
     position: relative;
-    .featured-title {
-        font-size: 1.25rem;
-    }
-
     .featured-popular {
         display: flex;
         justify-content: center;
@@ -26,12 +22,25 @@
                 max-width: 100px;
                 width: calc(100% / 3);
             }
-
-            .featured-popular-content-img {
+            .featured-popular-content-title {
+                font-size: 0.8rem;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 1;
+            }
+            .featured-popular-content-img-content {
                 width: 4vw;
                 height: 4vw;
                 margin: 10px 0;
-                object-fit: contain;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .featured-popular-content-img {
+                    object-fit: cover;
+                    width: 100%;
+                    height: auto;
+                }
             }
         }
     }

@@ -54,17 +54,19 @@ const Post = ({ setPoint, setMyDoctId }) => {
                                                 <img src={userPhoto} />
                                             )}
                                         </div>
-                                        <div>{data.topic}</div>
                                         <div>
-                                            {data.author.displayName || "匿名"}
+                                            {data.author.displayName
+                                                ? data.author.displayName
+                                                : "匿名"}
                                         </div>
+                                        <div>{data.topic}</div>
                                     </div>
                                     <div className="post-content-item-2">
                                         <div className="post-content-item-2-title">
                                             {data.title}
                                         </div>
                                         <div className="post-content-item-2-article">
-                                            {data.content}
+                                            {/* {data.content} */}
 
                                             <ReactMarkdown
                                                 children={data.content}

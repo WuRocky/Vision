@@ -50,12 +50,12 @@ const Track = () => {
                                             <img src={userPhoto} />
                                         )}
                                     </div>
-                                    <div>{data.topic}</div>
                                     <div>
                                         {data.author.displayName
                                             ? data.author.displayName
                                             : "匿名"}
                                     </div>
+                                    <div>{data.topic}</div>
                                 </div>
                                 <div className="track-content-item-2">
                                     <div className="track-content-item-2-title">

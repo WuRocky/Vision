@@ -103,8 +103,8 @@ const Article = () => {
                                 <img src={userPhoto} />
                             )}
                         </div>
-                        <div>{writeData.topic}</div>
                         <div>{writeDataAuthor.displayName || "匿名"}</div>
+                        <div>{writeData.topic}</div>
                         <div>
                             {writeData.time
                                 ?.toDate()
@@ -120,6 +120,7 @@ const Article = () => {
                             remarkPlugins={[remarkGfm]}
                             rehypePlugins={[rehypeRaw]}
                             components={{
+                                img: "span",
                                 code({
                                     node,
                                     inline,

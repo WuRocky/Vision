@@ -9,6 +9,12 @@ import Message from "../components/message/Message";
 
 import noImage from "../img/no-Image.png";
 
+import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { tomorrowNightBlue } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+
 import { AppContext } from "../Layout";
 
 import EditText from "../components/write/EditText";

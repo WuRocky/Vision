@@ -1,35 +1,19 @@
-// react
-import React, { useState, useContext, useRef, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-
-// markdown
-import ReactMarkdown from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { tomorrowNightBlue } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import remarkGfm from "remark-gfm";
-import rehypeRaw from "rehype-raw";
-
-import noImage from "../../img/no-Image.png";
+import React, { useState, useContext, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 // firebase
-import { updateUserArticleContent } from "../../hooks/useFireStore";
-import { upDataStorage } from "../../hooks/useFireStorage";
+import { addData } from "../hooks/useFireStore";
+import { addStorage } from "../hooks/useFireStorage";
 
-import UpdateEditText from "./UpdateEditText";
+import Message from "../components/message/Message";
 
-import Message from "../message/Message";
+import noImage from "../img/no-Image.png";
 
-import { AppContext } from "../../Layout";
-import { getArticle } from "../../hooks/useFireStore";
-const UpdateWrite = () => {
-    const { id } = useParams();
-    useEffect(() => {
-        getArticle(id, (data) => {
-            setWriteTitle(data.title);
-            setEditText(data.content);
-            setWriteFile(data.imageUrl);
-        });
-    }, [id]);
+import { AppContext } from "../Layout";
+
+import EditText from "../components/write/EditText";
+
+const Write = () => {
     /// * 共用分類 * ///
     const { topics } = useContext(AppContext);
 
@@ -72,34 +56,34 @@ const UpdateWrite = () => {
         setWriteFile();
     };
 
-    const previewUrl = writeFile
-        ? typeof writeFile === "string"
-            ? writeFile
-            : URL.createObjectURL(new Blob([writeFile]))
-        : noImage;
+    const previewUrl = writeFile ? URL.createObjectURL(writeFile) : noImage;
 
     /// * 導向網址 * ///
     const navigate = useNavigate();
+
     ///* 寫入文章 *///
     const buttonHandler = async (e) => {
         e.preventDefault();
+
         /// * 查看是否輸入內容 * ///
         if (editText === "" || writeTitel === "" || writeClass === "") {
             setMessage("請輸入內容");
             return;
         }
 
-        if (writeFile && typeof writeFile !== "string") {
-            const fileType = writeFile.type;
-            await upDataStorage(id, writeFile, fileType);
-        }
-        const success = updateUserArticleContent(
-            id,
+        const success = await addData(
             writeTitel,
             editText,
             writeClass,
             setMessage
         );
+
+        /// * 得到照片輸入至fire storage * ///
+        const fileId = success.id;
+        if (writeFile) {
+            const fileType = writeFile.type;
+            addStorage(fileId, writeFile, fileType);
+        }
 
         /// * 清除輸入內容 * ///
         setEditText("");
@@ -118,8 +102,8 @@ const UpdateWrite = () => {
             <div onClick={() => setMessage()}>
                 <Message message={message} />
             </div>
-            <div className="UpdateMarkdown">
-                <div className="write-main ">
+            <div className="write">
+                <div className="write-main">
                     <form className="write-content">
                         {/* 標題 */}
                         <div className="write-content-title-item">
@@ -168,10 +152,9 @@ const UpdateWrite = () => {
 
                         {/* 寫入文章 */}
                         <div className="edit-text-item">
-                            <UpdateEditText
+                            <EditText
                                 setEditText={setEditText}
                                 editText={editText}
-                                value={editText}
                             />
                         </div>
 
@@ -201,7 +184,7 @@ const UpdateWrite = () => {
                                 onClick={buttonHandler}
                                 className="write-content-button"
                             >
-                                更新文章
+                                送出文章
                             </button>
                         </div>
                     </form>
@@ -220,4 +203,4 @@ const UpdateWrite = () => {
     );
 };
 
-export default UpdateWrite;
+export default Write;

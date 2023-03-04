@@ -586,6 +586,10 @@ a:active {
 }
 .homepage-content .homepage-content-item .homepage-content-item-2 .homepage-content-item-2-title {
   grid-area: item-2-title;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 2 px;
 }
 .homepage-content .homepage-content-item .homepage-content-item-2 .homepage-content-item-2-article {
   grid-area: item-2-article;
@@ -599,9 +603,9 @@ a:active {
 .homepage-content .homepage-content-item .homepage-content-item-2 .homepage-content-item-2-img {
   grid-area: item-2-img;
   width: 100px;
-  height: 100px;
-  -o-object-fit: fill;
-     object-fit: fill;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .homepage-content .homepage-content-item .homepage-content-item-3 {
   display: flex;
@@ -659,19 +663,28 @@ a:active {
   }
   .homepage-content .homepage-content-item .homepage-content-item-2 .homepage-content-item-2-img {
     width: 50px;
-    height: 50px;
+    height: auto;
   }
   .homepage-content .homepage-content-item .homepage-content-item-3 .homepage-content-item-3-like {
     margin: 0;
   }
   .homepage-content .homepage-content-item .homepage-content-item-3 div {
-    margin: 0 15px;
+    margin: 0 11px;
   }
 }
 @media screen and (max-width: 400px) {
   .homepage-content .homepage-content-item .homepage-content-item-1 div .homepage-content-item-1-userPhoto {
     width: 6vw;
     height: 6vw;
+  }
+  .homepage-content .homepage-content-item .homepage-content-item-3 div {
+    margin: 0 8px;
+  }
+  .homepage-content .homepage-content-item .homepage-content-item-3 .homepage-content-item-3-like img {
+    width: 1rem;
+  }
+  .homepage-content .homepage-content-item .homepage-content-item-3 .homepage-content-item-3-message img {
+    width: 0.9rem;
   }
 }
 .featured {
@@ -680,9 +693,6 @@ a:active {
   align-items: center;
   flex-direction: column;
   position: relative;
-}
-.featured .featured-title {
-  font-size: 1.25rem;
 }
 .featured .featured-popular {
   display: flex;
@@ -705,12 +715,26 @@ a:active {
     width: 33.3333333333%;
   }
 }
-.featured .featured-popular .featured-popular-content .featured-popular-content-img {
+.featured .featured-popular .featured-popular-content .featured-popular-content-title {
+  font-size: 0.8rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+.featured .featured-popular .featured-popular-content .featured-popular-content-img-content {
   width: 4vw;
   height: 4vw;
   margin: 10px 0;
-  -o-object-fit: contain;
-     object-fit: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.featured .featured-popular .featured-popular-content .featured-popular-content-img-content .featured-popular-content-img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: auto;
 }
 .featured .featured-arrow {
   position: absolute;
@@ -904,11 +928,54 @@ a:active {
 .article .article-content .article-title {
   font-size: 0.95rem;
   font-weight: 600;
-  margin: 10px;
+  margin: 1rem;
+}
+.article .article-content .article-title h1 {
+  letter-spacing: -0.016em;
+  line-height: 40px;
+  margin-top: 0.6em;
+  font-size: 32px;
+  margin-bottom: -0.27em;
+  font-weight: 700;
+  color: rgb(41, 41, 41);
+  margin: 0;
+  -webkit-margin-before: 1em;
+          margin-block-start: 1em;
+  -webkit-margin-after: 1em;
+          margin-block-end: 1em;
 }
 .article .article-content .article-markdown {
-  font-size: small;
   margin: 1rem;
+}
+.article .article-content .article-markdown h1 {
+  margin: 1.5rem 0;
+  letter-spacing: -0.016em;
+  line-height: 40px;
+  color: rgb(41, 41, 41);
+}
+.article .article-content .article-markdown h2 {
+  margin: 1.2rem 0;
+  line-height: 24px;
+  letter-spacing: 0px;
+  color: rgb(41, 41, 41);
+}
+.article .article-content .article-markdown h3 {
+  margin: 1rem 0;
+  color: rgb(41, 41, 41);
+}
+.article .article-content .article-markdown ol,
+.article .article-content .article-markdown ul {
+  padding: 0 0 0 15px;
+}
+.article .article-content .article-markdown ol li,
+.article .article-content .article-markdown ul li {
+  margin: 0.8rem 0;
+}
+.article .article-content .article-markdown p {
+  letter-spacing: -0.003em;
+  line-height: 32px;
+  color: rgb(41, 41, 41);
+  font-weight: 400;
 }
 .article .article-content .article-feel {
   display: flex;

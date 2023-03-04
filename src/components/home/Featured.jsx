@@ -48,7 +48,6 @@ const Featured = () => {
 
     return (
         <div className="featured">
-            <div className="featured-title">精選文章</div>
             <div className="featured-popular">
                 {currentArticles.map((data, index) => {
                     return (
@@ -61,10 +60,12 @@ const Featured = () => {
                             <div className="featured-popular-content-title">
                                 {data.title}
                             </div>
-                            <img
-                                className="featured-popular-content-img"
-                                src={data.imageUrl || noImage}
-                            />
+                            <div className="featured-popular-content-img-content">
+                                <img
+                                    className="featured-popular-content-img"
+                                    src={data.imageUrl || noImage}
+                                />
+                            </div>
                         </Link>
                     );
                 })}

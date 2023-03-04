@@ -127,7 +127,6 @@ const updateUserArticleContent = async (
             content: content,
             topic: topic,
             time: Timestamp.now(),
-            imageUrl: "",
         });
         setFindMessage("更新成功");
         return addFirestore;
