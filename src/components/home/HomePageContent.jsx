@@ -57,7 +57,7 @@ const HomePageContent = () => {
 
                                 <ReactMarkdown
                                     children={data.content}
-                                    // remarkPlugins={[remarkGfm]}
+                                    remarkPlugins={[remarkGfm]}
                                     rehypePlugins={[rehypeRaw]}
                                     components={{
                                         h1: "h4",
