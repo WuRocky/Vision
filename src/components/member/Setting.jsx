@@ -160,13 +160,13 @@ function Password({ setMessage }) {
                     <input
                         className="setting-other-password-change-input-item"
                         onChange={oldPasswirdHandler}
-                        type="text"
+                        type="password"
                         placeholder="輸入目前的密碼"
                     />
                     <input
                         className="setting-other-password-change-input-item-1"
                         onChange={newPasswirdHandler}
-                        type="text"
+                        type="password"
                         placeholder="輸入新的密碼"
                     />
                 </div>

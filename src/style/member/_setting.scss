@@ -56,6 +56,7 @@
     .setting-other {
         flex-grow: 2;
         flex-basis: 0;
+        height: auto;
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -67,7 +68,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 25px;
+            height: 32px;
 
             .setting-other-name-title,
             .setting-other-password-title {
@@ -118,17 +119,18 @@
                 display: flex;
                 justify-content: center;
                 flex-direction: column;
-                height: 25px;
+                height: 30px;
                 width: 200px;
                 .setting-other-name-change-input-item,
                 .setting-other-password-change-input-item,
                 .setting-other-password-change-input-item-1 {
                     width: 100%;
-                    height: 20px;
-                    background: #e0dede;
+                    height: 30px;
+                    background: #f7e5d6;
+                    box-shadow: 1px -1px 5px #bebebe, -1px 1px 5px #cfcfcf;
                     justify-content: center;
                     display: flex;
-                    margin: 5px;
+                    margin: 3px;
                     padding: 10px;
                     border: none;
                     outline: none;

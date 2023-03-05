@@ -21,6 +21,8 @@ import { useNavigate, Link } from "react-router-dom";
 const Post = ({ setPoint, setMyDoctId }) => {
     const { myArticles, user } = useContext(AppContext);
     const navigate = useNavigate();
+
+    const [firstIndex, setFirstIndex] = useState(-1);
     const articleHandleClick = useCallback((id) => {
         navigate(`/article/${id}`);
     }, []);
@@ -33,6 +35,9 @@ const Post = ({ setPoint, setMyDoctId }) => {
             <div className="post-container">
                 {myArticles.map((data, index) => {
                     if (data.author.uid == user.uid) {
+                        if (firstIndex === -1 || index < firstIndex) {
+                            setFirstIndex(index);
+                        }
                         return (
                             <div className="post-container-main" key={index}>
                                 <div
@@ -40,7 +45,7 @@ const Post = ({ setPoint, setMyDoctId }) => {
                                     onClick={() => articleHandleClick(data.id)}
                                     to={`/article/${data.id}`}
                                     className={`post-content-item ${
-                                        index > 0 ? "borderTop" : ""
+                                        index === firstIndex ? "" : "borderTop"
                                     }`}
                                 >
                                     <div className="post-content-item-1">

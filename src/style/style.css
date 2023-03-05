@@ -1531,7 +1531,7 @@ a:active {
   display: none; /* Chrome, Safari, and Opera */
 }
 .track .track-container .borderTop {
-  border-bottom: 1px solid #c2c2c2;
+  border-top: 1px solid #c2c2c2;
 }
 .track .track-container .track-content-item {
   font-size: 1.25rem;
@@ -1827,6 +1827,7 @@ a:active {
 .setting .setting-other {
   flex-grow: 2;
   flex-basis: 0;
+  height: auto;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -1838,7 +1839,7 @@ a:active {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 25px;
+  height: 32px;
 }
 .setting .setting-other .setting-other-email .setting-other-name-title,
 .setting .setting-other .setting-other-email .setting-other-password-title,
@@ -1916,7 +1917,7 @@ a:active {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 25px;
+  height: 30px;
   width: 200px;
 }
 .setting .setting-other .setting-other-email .setting-other-password-change-input .setting-other-name-change-input-item,
@@ -1938,11 +1939,12 @@ a:active {
 .setting .setting-other .setting-other-password .setting-other-name-change-input .setting-other-password-change-input-item,
 .setting .setting-other .setting-other-password .setting-other-name-change-input .setting-other-password-change-input-item-1 {
   width: 100%;
-  height: 20px;
-  background: #e0dede;
+  height: 30px;
+  background: #f7e5d6;
+  box-shadow: 1px -1px 5px #bebebe, -1px 1px 5px #cfcfcf;
   justify-content: center;
   display: flex;
-  margin: 5px;
+  margin: 3px;
   padding: 10px;
   border: none;
   outline: none;

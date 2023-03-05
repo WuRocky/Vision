@@ -1,4 +1,4 @@
-import React, { useContext, useCallback } from "react";
+import React, { useContext, useCallback, useState } from "react";
 import { AppContext } from "../../Layout";
 
 import userPhoto from "../../img/user.png";
@@ -19,6 +19,8 @@ const Track = () => {
     const handleClick = useCallback((id) => {
         navigate(`/article/${id}`);
     }, []);
+
+    const [firstIndex, setFirstIndex] = useState(-1);
     const firstMatchIndex = myArticles.findIndex(
         (data) => data.trackUserId == user.uid
     );
@@ -29,6 +31,9 @@ const Track = () => {
             <div className="track-container">
                 {myArticles.map((data, index) => {
                     if (data.trackUserId && data.trackUserId.includes(uid)) {
+                        if (firstIndex === -1 || index < firstIndex) {
+                            setFirstIndex(index);
+                        }
                         return (
                             <div
                                 key={data.id}
@@ -36,7 +41,7 @@ const Track = () => {
                                 to={`/article/${data.id}`}
                                 className={`track-content-item ${
                                     // index === firstMatchIndex ? "" : "borderTop"
-                                    index < firstMatchIndex ? "" : "borderTop"
+                                    index === firstIndex ? "" : "borderTop"
                                 }`}
                             >
                                 <div className="track-content-item-1">
