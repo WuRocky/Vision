@@ -16,6 +16,8 @@ import rehypeRaw from "rehype-raw";
 
 import noImage from "../../img/no-Image.png";
 
+import message from "../../img/messages.png";
+
 import { useNavigate, Link } from "react-router-dom";
 
 const Post = ({ setPoint, setMyDoctId }) => {
@@ -95,6 +97,14 @@ const Post = ({ setPoint, setMyDoctId }) => {
                                             <img src={likeGray} />
                                             <div>
                                                 {data.likeUserId?.length || 0}
+                                            </div>
+                                        </div>
+                                        <div className="post-content-item-3-message">
+                                            <img src={message} />
+                                            <div>
+                                                {data.commentsContent
+                                                    ? data.commentsContent
+                                                    : 0}
                                             </div>
                                         </div>
                                         <div className="post-content-item-3-like">

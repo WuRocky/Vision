@@ -11,6 +11,8 @@ import tagsBlack from "../../img/price-tag-black.png";
 
 import noImage from "../../img/no-Image.png";
 
+import message from "../../img/messages.png";
+
 import { useNavigate, Link } from "react-router-dom";
 
 const Track = () => {
@@ -91,6 +93,14 @@ const Track = () => {
                                         <img src={likeGray} />
                                         <div>
                                             {data.likeUserId?.length || 0}
+                                        </div>
+                                    </div>
+                                    <div className="track-content-item-3-message">
+                                        <img src={message} />
+                                        <div>
+                                            {data.commentsContent
+                                                ? data.commentsContent
+                                                : 0}
                                         </div>
                                     </div>
                                     <div className="track-content-item-3-like">

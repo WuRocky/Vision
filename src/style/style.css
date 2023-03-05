@@ -1602,10 +1602,56 @@ a:active {
   justify-content: center;
   margin: 0 25px;
 }
+.track .track-container .track-content-item .track-content-item-3 .track-content-item-3-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.track .track-container .track-content-item .track-content-item-3 .track-content-item-3-message img {
+  width: 2rem;
+}
 .track .track-container .track-content-item .track-content-item-3 div {
   margin: 0 25px;
 }
 
+@media screen and (max-width: 900px) {
+  .track .track-container {
+    width: 90%;
+  }
+  .track .track-container .track-content-item .track-content-item-3 div {
+    margin: 0 15px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .track .track-container {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .track .track-container .track-content-item {
+    height: 220px;
+    margin: 10px 0;
+  }
+  .track .track-container .track-content-item .track-content-item-1 div {
+    margin: 0 10px;
+  }
+  .track .track-container .track-content-item .track-content-item-1 div .track-content-item-1-userPhoto {
+    width: 5vh;
+    height: 5vh;
+  }
+  .track .track-container .track-content-item .track-content-item-2 .track-content-item-2-img {
+    width: 70px;
+    height: auto;
+  }
+}
+@media screen and (max-width: 400px) {
+  .track .track-container {
+    width: 90%;
+  }
+  .track .track-container .track-content-item .track-content-item-3 div {
+    margin: 0 5px;
+  }
+}
 .post {
   background-color: var(--second-color);
   display: flex;
@@ -1726,10 +1772,26 @@ a:active {
   justify-content: center;
   margin: 0 25px;
 }
+.post .post-container .post-container-main .post-content-item .post-content-item-3 .post-content-item-3-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.post .post-container .post-container-main .post-content-item .post-content-item-3 .post-content-item-3-message img {
+  width: 2rem;
+}
 .post .post-container .post-container-main .post-content-item .post-content-item-3 div {
   margin: 0 25px;
 }
 
+@media screen and (max-width: 900px) {
+  .post .post-container {
+    width: 90%;
+  }
+  .post .post-container .post-container-main .post-content-item .post-content-item-3 div {
+    margin: 0 15px;
+  }
+}
 @media screen and (max-width: 700px) {
   .post .post-container {
     width: 90%;
@@ -1742,6 +1804,7 @@ a:active {
 @media screen and (max-width: 500px) {
   .post .post-container .post-container-main .post-content-item {
     height: 220px;
+    margin: 10px 0;
   }
   .post .post-container .post-container-main .post-content-item .post-content-item-1 div {
     margin: 0 10px;
@@ -1752,7 +1815,7 @@ a:active {
   }
   .post .post-container .post-container-main .post-content-item .post-content-item-2 .post-content-item-2-img {
     width: 70px;
-    height: 70px;
+    height: auto;
   }
 }
 @media screen and (max-width: 400px) {
@@ -1763,9 +1826,17 @@ a:active {
     width: 5vh;
     height: 5vh;
   }
+  .post .post-container .post-container-main .post-content-item .post-content-item-2 .post-content-item-2-title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
   .post .post-container .post-container-main .post-content-item .post-content-item-2 .post-content-item-2-img {
     width: 50px;
-    height: 50px;
+    height: auto;
+  }
+  .post .post-container .post-container-main .post-content-item .post-content-item-3 div {
+    margin: 0 5px;
   }
 }
 .setting {
