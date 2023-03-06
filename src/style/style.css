@@ -2505,4 +2505,69 @@ a:active {
   .edit-text-content .text-editor-tools .text-editor-tools-button {
     margin-right: 5px;
   }
+}
+.loading-content {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: var(--first-color);
+}
+.loading-content .loading {
+  display: flex;
+}
+.loading-content .loading .dot {
+  position: relative;
+  width: 2em;
+  height: 2em;
+  margin: 0.8em;
+  border-radius: 50%;
+}
+.loading-content .loading .dot::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  border-radius: inherit;
+  animation: wave 2s ease-out infinite;
+}
+.loading-content .loading .dot:nth-child(1) {
+  background: #efd8c6;
+}
+.loading-content .loading .dot:nth-child(1)::before {
+  animation-delay: 0.2s;
+}
+.loading-content .loading .dot:nth-child(2) {
+  background: #f0cbaf;
+}
+.loading-content .loading .dot:nth-child(2)::before {
+  animation-delay: 0.4s;
+}
+.loading-content .loading .dot:nth-child(3) {
+  background: #e8b38b;
+}
+.loading-content .loading .dot:nth-child(3)::before {
+  animation-delay: 0.6s;
+}
+.loading-content .loading .dot:nth-child(4) {
+  background: #d6925d;
+}
+.loading-content .loading .dot:nth-child(4)::before {
+  animation-delay: 0.8s;
+}
+.loading-content .loading .dot:nth-child(5) {
+  background: #e77e2f;
+}
+.loading-content .loading .dot:nth-child(5)::before {
+  animation-delay: 1s;
+}
+
+@keyframes wave {
+  50%, 75% {
+    transform: scale(2.5);
+  }
+  80%, 100% {
+    opacity: 0;
+  }
 }/*# sourceMappingURL=style.css.map */

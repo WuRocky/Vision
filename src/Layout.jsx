@@ -12,7 +12,7 @@ import {
 
 import { getUser } from "./hooks/useFireAuthentication";
 import Nav from "./components/Nav";
-
+import Loading from "./components/message/Loading";
 const AppContext = React.createContext();
 
 const Layout = () => {
@@ -64,7 +64,8 @@ const Layout = () => {
             setIsLoading(false);
         });
     }, [currentTopics]);
-    if (isLoading) return <div>Loading...</div>;
+    // if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <Loading />;
 
     return (
         <AppContext.Provider

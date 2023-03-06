@@ -27,7 +27,7 @@ function changeStyle(className1, className2, setEditText) {
     setEditText(content);
 }
 
-function changeFontSize(className1, className2, setEditText) {
+function changeFontSize(className, setEditText) {
     // 獲取當前頁面中的選擇範圍對象
     const selection = window.getSelection();
     const range = selection.getRangeAt(0);
@@ -38,22 +38,23 @@ function changeFontSize(className1, className2, setEditText) {
         return;
     }
     const isBoldSelected =
-        commonAncestor.parentElement.classList.contains(className1);
-    if (isBoldSelected) {
-        const div = document.createElement("div");
-        const span = document.createElement("span");
-        span.textContent = range.toString();
+        commonAncestor.parentElement.classList.contains("edit-text");
 
-        span.classList.add(className2);
-        div.appendChild(span);
-        replaceSelection(div.outerHTML, true);
+    if (!isBoldSelected) {
+        const div = document.createElement("div");
+        div.textContent = range.toString();
+        div.classList.add(className);
+        const test = commonAncestor.parentElement;
+        if (commonAncestor.className == "edit-text") {
+            return;
+        }
+
+        test.remove();
+        replaceSelection(div.innerHTML, true);
     } else {
         const div = document.createElement("div");
-        const span = document.createElement("span");
-        span.textContent = range.toString();
-
-        span.classList.add(className1);
-        div.appendChild(span);
+        div.textContent = range.toString();
+        div.classList.add(className);
         replaceSelection(div.outerHTML, true);
     }
     const content = document.querySelector(".edit-text").innerHTML;

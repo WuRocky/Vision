@@ -11,15 +11,9 @@ import alignRight from "../../img/font-size/align-right.png";
 import { changeStyle, changeFontSize } from "../../hooks/useEditTextFun";
 
 const FontSize = ({ fontSizeRef, setEditText }) => {
-    const changeFontSizeHandler = (
-        e,
-        className
-        // style1,
-        // style2
-    ) => {
+    const changeFontSizeHandler = (e, className) => {
         e.preventDefault();
-        changeFontSize(className, "size-default", setEditText);
-        // changeFontSize(style1, style2);
+        changeFontSize(className, setEditText);
     };
 
     const options = [
@@ -29,6 +23,7 @@ const FontSize = ({ fontSizeRef, setEditText }) => {
             // style1: "24px",
             // style2: "",
             className: "size-default",
+            tag: "p",
         },
         {
             name: "Heading 1",
@@ -36,6 +31,7 @@ const FontSize = ({ fontSizeRef, setEditText }) => {
             // style1: "1.875em",
             // style2: "600",
             className: "size-h1",
+            tag: "h1",
         },
         {
             name: "Heading 2",
@@ -43,6 +39,7 @@ const FontSize = ({ fontSizeRef, setEditText }) => {
             // style1: "1.5em",
             // style2: "600",
             className: "size-h2",
+            tag: "h2",
         },
         {
             name: "Heading 3",
@@ -50,6 +47,7 @@ const FontSize = ({ fontSizeRef, setEditText }) => {
             // style1: "1.25em",
             // style2: "600",
             className: "size-h3",
+            tag: "h3",
         },
         // {
         //     name: "Align-Justify",
@@ -80,14 +78,7 @@ const FontSize = ({ fontSizeRef, setEditText }) => {
                 <div
                     key={index}
                     className="font-size-content"
-                    onClick={(e) =>
-                        changeFontSizeHandler(
-                            e,
-                            option.className
-                            // option.style1,
-                            // option.style2
-                        )
-                    }
+                    onClick={(e) => changeFontSizeHandler(e, option.className)}
                 >
                     <div className="font-size-content-item">
                         <img
