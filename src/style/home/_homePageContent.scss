@@ -84,6 +84,9 @@
                 align-items: center;
                 justify-content: center;
                 margin: 0 5px;
+                img {
+                    cursor: pointer;
+                }
             }
             .homepage-content-item-3-message {
                 display: flex;
@@ -91,6 +94,7 @@
                 justify-content: center;
                 img {
                     width: 2rem;
+                    cursor: pointer;
                 }
                 // margin: 0 25px;
             }

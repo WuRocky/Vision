@@ -619,6 +619,9 @@ a:active {
   justify-content: center;
   margin: 0 5px;
 }
+.homepage-content .homepage-content-item .homepage-content-item-3 .homepage-content-item-3-like img {
+  cursor: pointer;
+}
 .homepage-content .homepage-content-item .homepage-content-item-3 .homepage-content-item-3-message {
   display: flex;
   align-items: center;
@@ -626,6 +629,7 @@ a:active {
 }
 .homepage-content .homepage-content-item .homepage-content-item-3 .homepage-content-item-3-message img {
   width: 2rem;
+  cursor: pointer;
 }
 .homepage-content .homepage-content-item .homepage-content-item-3 div {
   margin: 0 25px;
