@@ -20,7 +20,7 @@ import addImage from "../../img/add-image.png";
 
 import colorDefault from "../../img/color/color-Default.png";
 
-import { changeStyle } from "../../hooks/useEditTextFun";
+import { changeStyle, changeUnderline } from "../../hooks/useEditTextFun";
 
 const EditText = ({ setEditText, editText }) => {
     const editTextRef = useRef(null);
@@ -53,7 +53,8 @@ const EditText = ({ setEditText, editText }) => {
     /// * 字體底線 * ///
     const changeUnderlineHandler = (e) => {
         e.preventDefault();
-        changeStyle("underline", "nounderline", setEditText);
+        // changeStyle("underline", "nounderline", setEditText);
+        changeUnderline("underline", setEditText);
     };
     /// * 字體顏色 * ///
     const [showFillColor, setShowFillColor] = useState(false);
@@ -104,21 +105,47 @@ const EditText = ({ setEditText, editText }) => {
     /// * 限制輸入字數長度 * ///
     const MAX_LENGTH = 3000;
 
-    /// * 取得輸入內容 * ///
+    // / * 取得輸入內容 * ///
+    // const writeHandler = (e) => {
+    //     const text = e.target.innerHTML;
+    //     if (text.length > MAX_LENGTH) {
+    //         e.target.innerHTML = text.slice(0, MAX_LENGTH);
+    //     }
+    //     setEditText(text);
+    // };
     const writeHandler = (e) => {
-        const text = e.target.innerHTML;
-        const replacedText = text
-            .replace(/<div>/g, "\n")
-            .replace(/<\/div>/g, "");
+        const text = e.target.innerHTML.replace(/<\/?div>/gi, "\n");
+        const replacedText = text.replace(/(<([^>]+)>)/gi, "");
         if (replacedText.length > MAX_LENGTH) {
-            e.target.innerHTML = replacedText
+            e.target.innerHTML = text
                 .slice(0, MAX_LENGTH)
                 .replace(/\n/g, "<div><br></div>");
         } else {
             setEditText(replacedText);
         }
     };
+
     /// * 監聽鍵盤 * ///
+    // const keyboardHander = (e) => {
+    //     if (e.shiftKey && e.keyCode === 13) {
+    //         e.preventDefault();
+    //         const range = window
+    //             .getSelection()
+    //             .getRangeAt(0).commonAncestorContainer;
+
+    //         if (range.className == "edit-text") {
+    //             return;
+    //         } else {
+    //             range.classList = "";
+    //         }
+    //     } else if (e.keyCode === 13) {
+    //         const range = window
+    //             .getSelection()
+    //             .getRangeAt(0).commonAncestorContainer;
+    //         range.classList = "";
+    //     }
+    // };
+
     const keyboardHander = (e) => {
         if (e.keyCode === 13) {
             const range = window.getSelection().getRangeAt(0);
@@ -134,12 +161,6 @@ const EditText = ({ setEditText, editText }) => {
             range.setStartAfter(div);
             range.collapse(true);
 
-            // 如果當前塊是標題，則將下一個塊設置為相同的標籤名稱
-            if (currentTagName.match(/h[1-6]/)) {
-                const nextBlock = document.createElement(currentTagName);
-                nextBlock.innerHTML = "<br>";
-                div.parentNode.insertBefore(nextBlock, div.nextSibling);
-            }
             e.preventDefault();
         }
     };
@@ -149,20 +170,18 @@ const EditText = ({ setEditText, editText }) => {
         e.preventDefault();
         // 獲取剪貼簿中的純文字內容
         const text = e.clipboardData.getData("text");
-
-        // 在這裡處理你的黏貼事件，可以將黏貼的內容以特定的格式插入到 `contentEditable` 元素中
-        // 插入純文字
+        // 將換行符替換成 <br> 標籤
+        const formattedText = text.replace(/\n/g, "<br>");
+        // 插入格式化後的文本
         const selection = window.getSelection();
         if (!selection.rangeCount) return false;
         const range = selection.getRangeAt(0);
         const newNode = document.createElement("p");
         newNode.innerHTML = "&nbsp;"; // 插入空段落
         range.insertNode(newNode);
-        newNode.innerHTML = text; // 設置新節點的內容
+        newNode.innerHTML = formattedText; // 設置新節點的內容
         range.setEndAfter(newNode); // 將選區的結束位置設置在新節點後面
         range.setStartAfter(newNode); // 將選區的開始位置設置在新節點後面
-        selection.removeAllRanges(); // 刪除原有選區
-        selection.addRange(range); // 添加新選區
         setEditText(text);
     };
 
@@ -265,7 +284,6 @@ const EditText = ({ setEditText, editText }) => {
             >
                 <div
                     ref={editTextRef}
-                    suppressContentEditableWarning={true}
                     contentEditable={true}
                     spellCheck={false}
                     className="edit-text"

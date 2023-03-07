@@ -22,7 +22,39 @@
             word-wrap: break-word;
             max-width: 800px; /* 設定最大寬度為 300px */
             border: 1px solid black; /* 加入邊框以示範 */
-            font-size: 24px;
+            // font-size: 24px;
+            line-height: 32px;
+            h1 {
+                margin: 1.5rem 0;
+                letter-spacing: -0.016em;
+                line-height: 40px;
+                color: rgb(41, 41, 41);
+            }
+            h2 {
+                margin: 1.2rem 0;
+
+                line-height: 24px;
+                letter-spacing: 0px;
+                // margin: 0;
+                color: rgba(41, 41, 41, 1);
+            }
+            h3 {
+                margin: 1rem 0;
+                color: rgba(41, 41, 41, 1);
+            }
+            ol,
+            ul {
+                padding: 0 0 0 20px;
+                li {
+                    margin: 0.8rem 0;
+                }
+            }
+            p {
+                letter-spacing: -0.003em;
+                line-height: 32px;
+                color: rgba(41, 41, 41, 1);
+                font-weight: 400;
+            }
         }
     }
 
@@ -182,7 +214,7 @@
     text-decoration: underline;
 }
 .nounderline {
-    text-decoration: none !important;
+    text-decoration: none;
 }
 
 .color-picker,

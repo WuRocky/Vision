@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-
+import Loading from "../message/Loading";
 import { signInUser } from "../../hooks/useFireAuthentication";
 const LoginUser = ({ setMessage }) => {
     const [loginError, setLoginError] = useState("");
     const [loginEmail, setLoginEmail] = useState("");
-    const [loginPasswrod, setLoginPassword] = useState("");
+    const [loginPassword, setLoginPassword] = useState("");
 
     const loginEmailHandler = (e) => {
         setLoginEmail(e.target.value);
@@ -17,12 +17,12 @@ const LoginUser = ({ setMessage }) => {
     const loginButtonHandler = (e) => {
         e.preventDefault();
 
-        if (loginEmail === "" || loginPasswrod === "") {
+        if (loginEmail === "" || loginPassword === "") {
             setMessage("請輸入信箱和密碼");
             return;
         }
 
-        signInUser(loginEmail, loginPasswrod, setMessage, setLoginError);
+        signInUser(loginEmail, loginPassword, setMessage, setLoginError);
         setLoginEmail("");
         setLoginPassword("");
     };
@@ -53,7 +53,7 @@ const LoginUser = ({ setMessage }) => {
                     placeholder="Password"
                     required=""
                     onChange={loginPasswrodHandler}
-                    value={loginPasswrod}
+                    value={loginPassword}
                 />
                 <button className="login-user" onClick={loginButtonHandler}>
                     Login

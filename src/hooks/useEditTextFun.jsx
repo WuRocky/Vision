@@ -61,6 +61,38 @@ function changeFontSize(className, setEditText) {
     setEditText(content);
 }
 
+function changeUnderline(className, setEditText) {
+    // 獲取當前頁面中的選擇範圍對象
+    const selection = window.getSelection();
+    const range = selection.getRangeAt(0);
+    const commonAncestor = range.commonAncestorContainer;
+
+    // 否存在選擇範圍
+    if (selection.rangeCount <= 0) {
+        return;
+    }
+    const isBoldSelected =
+        commonAncestor.parentElement.classList.contains(className);
+    if (isBoldSelected) {
+        // console.log(commonAncestor.parentElement);
+        // const span = document.createElement("span");
+
+        const span = commonAncestor.parentElement;
+        span.textContent = range.toString();
+
+        span.classList.remove(className);
+        // replaceSelection(span.innerHTML, true);
+    } else {
+        const span = document.createElement("span");
+        span.textContent = range.toString();
+
+        span.classList.add(className);
+        replaceSelection(span.outerHTML, true);
+    }
+    const content = document.querySelector(".edit-text").innerHTML;
+    setEditText(content);
+}
+
 function replaceSelection(html, selectInserted) {
     // 選擇範圍
     const selection = window.getSelection();
@@ -96,7 +128,7 @@ function replaceSelection(html, selectInserted) {
     }
 }
 
-export { changeStyle, changeFontSize };
+export { changeStyle, changeFontSize, changeUnderline };
 
 // function changeFontSize(className) {
 //     const selection = window.getSelection();
