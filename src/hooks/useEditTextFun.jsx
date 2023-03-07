@@ -74,14 +74,12 @@ function changeUnderline(className, setEditText) {
     const isBoldSelected =
         commonAncestor.parentElement.classList.contains(className);
     if (isBoldSelected) {
-        // console.log(commonAncestor.parentElement);
-        // const span = document.createElement("span");
-
-        const span = commonAncestor.parentElement;
+        const rem = commonAncestor.parentElement;
+        rem.classList.remove(className);
+        const span = document.createElement("span");
         span.textContent = range.toString();
-
-        span.classList.remove(className);
-        // replaceSelection(span.innerHTML, true);
+        span.classList.add(className);
+        replaceSelection(span.outerHTML, true);
     } else {
         const span = document.createElement("span");
         span.textContent = range.toString();
