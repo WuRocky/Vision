@@ -5,20 +5,25 @@ Vision - A multi-functional editorial platform for sharing articles.
 
 ![02](https://user-images.githubusercontent.com/84265782/223356512-cf306b27-7236-4406-b680-0254aa787709.png)
 
-# Technologies
+# Technologies / dependencies
 
 * React
-    * React Router
+    * React 18
     * React Redux
-    * React react-rom
-    * React react-markdown
+    * React Router - V6
 * Firebase 
-    * Cloud Firestore
-    * Realtime Database
-    * Authentication
     * Hosting
+    * Cloud Firestore
+    * Authentication
     * Storage
 * Tools for development
-    * Webpack
+    * Webpack 5
+    * EsLint
+    * Prettier
     * Babel
     * Git / GitHub
+* Other
+    * SCSS
+    * react-markdown
+
+# Features
