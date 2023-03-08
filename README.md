@@ -53,12 +53,12 @@ Like, follow, and leave comments on articles you enjoy.
 
 ![03](https://user-images.githubusercontent.com/84265782/223608590-29b50d53-e5a0-47c0-81fa-7e73cfba2757.gif)
 
-# Membership
+# Member System
 The membership system allows for modifying name, password, and profile picture, as well as managing published articles.
 
 ![04](https://user-images.githubusercontent.com/84265782/223608654-d4da810a-082d-4655-ac96-62d858c4091f.gif)
 
-# Member System
+# ogin system
 Users can sign in with their own email, or Google / Facebook and GitHub account.
 
 ![03](https://user-images.githubusercontent.com/84265782/223609089-286f64cf-1da8-4574-8df0-f87a46764feb.png)
