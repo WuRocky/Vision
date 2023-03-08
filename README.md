@@ -61,7 +61,7 @@ The membership system allows for modifying name, password, and profile picture, 
 # Member System
 Users can sign in with their own email, or Google / Facebook and GitHub account.
 
-![03](https://user-images.githubusercontent.com/84265782/223608699-f6d0af1f-f02d-4895-94ca-429dba8b3f53.png)
+![03](https://user-images.githubusercontent.com/84265782/223609089-286f64cf-1da8-4574-8df0-f87a46764feb.png)
 
 # Responsive Web Design
 It provides RWD for all sizes of popular device.
