@@ -234,22 +234,49 @@ const getPopularAuthor = (setPopularAuthor) => {
     const q = query(
         collection(db, "article"),
         where("likeUserId", "!=", false),
-        orderBy("likeUserId"),
-        limit(5)
+        orderBy("likeUserId", "desc")
     );
 
-    onSnapshot(q, (doc) => {
-        const authors = doc.docs.map((doc) => doc.data().author);
-        const uids = Array.from(new Set(authors.map((author) => author.uid)));
-
-        const filteredAuthors = [];
-        uids.forEach((uid) => {
-            const author = authors.find((author) => author.uid === uid);
-            if (author.displayName && author.photoURL) {
-                filteredAuthors.push(author);
+    onSnapshot(q, (querySnapshot) => {
+        const authors = [];
+        querySnapshot.forEach((doc) => {
+            const author = doc.data().author;
+            const likeUserId = doc.data().likeUserId;
+            if (
+                author.displayName &&
+                author.photoURL &&
+                Array.isArray(likeUserId) &&
+                likeUserId.length > 0
+            ) {
+                authors.push({
+                    uid: author.uid,
+                    likeCount: likeUserId.length,
+                    author: author,
+                });
             }
         });
-        setPopularAuthor(filteredAuthors);
+
+        const uniqueAuthors = authors.reduce((prev, cur) => {
+            if (!prev.some((author) => author.uid === cur.uid)) {
+                prev.push(cur);
+            } else {
+                const existingAuthor = prev.find(
+                    (author) => author.uid === cur.uid
+                );
+                existingAuthor.likeCount += cur.likeCount;
+            }
+            return prev;
+        }, []);
+
+        const sortedAuthors = uniqueAuthors.sort((a, b) =>
+            a.likeCount < b.likeCount ? 1 : -1
+        );
+
+        const popularAuthors = sortedAuthors
+            .slice(0, 5)
+            .map((author) => author.author);
+
+        setPopularAuthor(popularAuthors);
     });
 };
 

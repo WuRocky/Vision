@@ -27,3 +27,18 @@ Vision - A multi-functional editorial platform for sharing articles.
     * react-markdown
 
 # Features
+## Rich Text Editor (WYSIWYG)
+The text editor allows you to click on the image button to achieve the desired functionality and appearance. It also supports displaying in the preview pane using Markdown syntax.
+* Edit/Functionality
+    * Change Font-Size
+    * Change Font-Bold
+    * Change Font-Italic
+    * Change Font-Underline
+    * Change Font-color
+    * Change Font-Background Color
+    * Supports Markdown syntax
+
+# Post Article
+Publish the article in real-time for sharing with everyone.
+
+# Like Comment Follow
