@@ -1015,6 +1015,26 @@ a:active {
   cursor: pointer;
 }
 
+@media screen and (max-width: 750px) {
+  .article .article-content {
+    width: 65%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .article .article-content {
+    width: 75%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .article .article-content {
+    width: 95%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .article .article-content .article-author div {
+    margin: 20px 15px;
+  }
+}
 .write {
   background-color: var(--second-color);
   min-height: var(--height);
@@ -1227,7 +1247,15 @@ a:active {
     height: 15vh;
   }
 }
+@media screen and (max-width: 450px) {
+  .write .write-main .write-content .write-content-class-item .write-content-class-input .form-check .form-check-span {
+    width: 50px;
+  }
+}
 @media screen and (max-width: 400px) {
+  .write .write-main .write-content .write-content-title-item .write-content-title-input {
+    font-size: 18px;
+  }
   .write .write-main .write-content .write-content-file-item .write-content-file {
     width: 12vh;
     height: 12vh;
@@ -1448,7 +1476,15 @@ a:active {
     height: 15vh;
   }
 }
+@media screen and (max-width: 450px) {
+  .UpdateMarkdown .write-main .write-content .write-content-class-item .write-content-class-input .form-check .form-check-span {
+    width: 50px;
+  }
+}
 @media screen and (max-width: 400px) {
+  .UpdateMarkdown .write-main .write-content .write-content-title-item .write-content-title-input {
+    font-size: 18px;
+  }
   .UpdateMarkdown .write-main .write-content .write-content-file-item .write-content-file {
     width: 12vh;
     height: 12vh;

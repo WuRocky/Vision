@@ -26,10 +26,12 @@ const UpdateWrite = () => {
     useEffect(() => {
         getArticle(id, (data) => {
             setWriteTitle(data.title);
+            setEditTextValue(data.content);
             setEditText(data.content);
             setWriteFile(data.imageUrl);
         });
     }, [id]);
+
     /// * 共用分類 * ///
     const { topics } = useContext(AppContext);
 
@@ -41,6 +43,9 @@ const UpdateWrite = () => {
 
     /// * 編輯內容 * ///
     const [editText, setEditText] = useState("");
+
+    /// * 取得原始資料 * ///
+    const [editTextValue, setEditTextValue] = useState("");
 
     /// * 上傳照片內容 * ///
     const [writeFile, setWriteFile] = useState(null);
@@ -171,7 +176,8 @@ const UpdateWrite = () => {
                             <UpdateEditText
                                 setEditText={setEditText}
                                 editText={editText}
-                                value={editText}
+                                setEditTextValue={setEditTextValue}
+                                editTextValue={editTextValue}
                             />
                         </div>
 

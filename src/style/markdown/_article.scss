@@ -115,3 +115,35 @@
         }
     }
 }
+@media screen and (max-width: 750px) {
+    .article {
+        .article-content {
+            width: 65%;
+        }
+    }
+}
+@media screen and (max-width: 600px) {
+    .article {
+        .article-content {
+            width: 75%;
+        }
+    }
+}
+@media screen and (max-width: 500px) {
+    .article {
+        .article-content {
+            width: 95%;
+        }
+    }
+}
+@media screen and (max-width: 400px) {
+    .article {
+        .article-content {
+            .article-author {
+                div {
+                    margin: 20px 15px;
+                }
+            }
+        }
+    }
+}

@@ -234,6 +234,13 @@
     .UpdateMarkdown {
         .write-main {
             .write-content {
+                .write-content-class-item {
+                    .write-content-class-input {
+                        .form-check {
+                            // width: 50px;
+                        }
+                    }
+                }
                 .write-content-file-item {
                     .write-content-file-button {
                         // width: 40%;
@@ -247,10 +254,34 @@
         }
     }
 }
+
+@media screen and (max-width: 450px) {
+    .UpdateMarkdown {
+        .write-main {
+            .write-content {
+                .write-content-class-item {
+                    .write-content-class-input {
+                        .form-check {
+                            .form-check-span {
+                                width: 50px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 400px) {
     .UpdateMarkdown {
         .write-main {
             .write-content {
+                .write-content-title-item {
+                    .write-content-title-input {
+                        font-size: 18px;
+                    }
+                }
                 .write-content-file-item {
                     .write-content-file-button {
                         // width: 40%;
