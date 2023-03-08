@@ -40,23 +40,29 @@ The text editor allows you to click on the image button to achieve the desired f
     -   Change Font-color
     -   Change Font-Background Color
     -   Supports Markdown syntax
+
 ![01](https://user-images.githubusercontent.com/84265782/223608484-b6ba8d9b-f2a5-472b-9d17-a208486e97e8.gif)
 
 # Post Article
 Publish the article in real-time for sharing with everyone.
+
 ![02](https://user-images.githubusercontent.com/84265782/223608505-398d02ce-b0e0-4ba6-8505-5b64429aeb8a.gif)
 
 # Like Comment Follow
 Like, follow, and leave comments on articles you enjoy.
+
 ![03](https://user-images.githubusercontent.com/84265782/223608590-29b50d53-e5a0-47c0-81fa-7e73cfba2757.gif)
 
 # Membership
 The membership system allows for modifying name, password, and profile picture, as well as managing published articles.
+
 ![04](https://user-images.githubusercontent.com/84265782/223608654-d4da810a-082d-4655-ac96-62d858c4091f.gif)
 
 # Member System
 Users can sign in with their own email, or Google / Facebook and GitHub account.
+
 ![03](https://user-images.githubusercontent.com/84265782/223608699-f6d0af1f-f02d-4895-94ca-429dba8b3f53.png)
 
 # Responsive Web Design
 It provides RWD for all sizes of popular device.
+
