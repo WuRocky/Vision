@@ -1,0 +1,260 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Register with '密碼應至少為 6 個字符' message correctly 1`] = `
+<div>
+  <div
+    class="register"
+  >
+    <form>
+      <label
+        aria-hidden="true"
+        for="chk"
+      >
+        Register
+      </label>
+      <input
+        name="email"
+        placeholder="Email"
+        type="email"
+        value="test@test"
+      />
+      <input
+        name="pswd"
+        placeholder="Password"
+        type="password"
+        value="123"
+      />
+      <button
+        class="register-button"
+      >
+        Sign up
+      </button>
+      <div
+        class="signInMessage"
+      />
+    </form>
+  </div>
+</div>
+`;
+
+exports[`Render Register with '註冊成功' message correctly 1`] = `
+<div>
+  <div
+    class="register"
+  >
+    <form>
+      <label
+        aria-hidden="true"
+        for="chk"
+      >
+        Register
+      </label>
+      <input
+        name="email"
+        placeholder="Email"
+        type="email"
+        value="test100@test"
+      />
+      <input
+        name="pswd"
+        placeholder="Password"
+        type="password"
+        value="123456"
+      />
+      <button
+        class="register-button"
+      >
+        Sign up
+      </button>
+      <div
+        class="signInMessage"
+      />
+    </form>
+  </div>
+</div>
+`;
+
+exports[`Render Register with '請輸入姓名、信箱和密碼' message correctly 1`] = `
+<div>
+  <div
+    class="register"
+  >
+    <form>
+      <label
+        aria-hidden="true"
+        for="chk"
+      >
+        Register
+      </label>
+      <input
+        name="email"
+        placeholder="Email"
+        type="email"
+        value=""
+      />
+      <input
+        name="pswd"
+        placeholder="Password"
+        type="password"
+        value=""
+      />
+      <button
+        class="register-button"
+      >
+        Sign up
+      </button>
+      <div
+        class="signInMessage"
+      />
+    </form>
+  </div>
+</div>
+`;
+
+exports[`Render Register with '請輸入姓名、信箱和密碼' message correctly 2`] = `
+<div>
+  <div
+    class="register"
+  >
+    <form>
+      <label
+        aria-hidden="true"
+        for="chk"
+      >
+        Register
+      </label>
+      <input
+        name="email"
+        placeholder="Email"
+        type="email"
+        value=""
+      />
+      <input
+        name="pswd"
+        placeholder="Password"
+        type="password"
+        value="asdasasdasd"
+      />
+      <button
+        class="register-button"
+      >
+        Sign up
+      </button>
+      <div
+        class="signInMessage"
+      />
+    </form>
+  </div>
+</div>
+`;
+
+exports[`Render Register with '請輸入姓名、信箱和密碼' message correctly 3`] = `
+<div>
+  <div
+    class="register"
+  >
+    <form>
+      <label
+        aria-hidden="true"
+        for="chk"
+      >
+        Register
+      </label>
+      <input
+        name="email"
+        placeholder="Email"
+        type="email"
+        value="asdasdasd"
+      />
+      <input
+        name="pswd"
+        placeholder="Password"
+        type="password"
+        value=""
+      />
+      <button
+        class="register-button"
+      >
+        Sign up
+      </button>
+      <div
+        class="signInMessage"
+      />
+    </form>
+  </div>
+</div>
+`;
+
+exports[`Render Register with '電子信箱已有存在' message correctly 1`] = `
+<div>
+  <div
+    class="register"
+  >
+    <form>
+      <label
+        aria-hidden="true"
+        for="chk"
+      >
+        Register
+      </label>
+      <input
+        name="email"
+        placeholder="Email"
+        type="email"
+        value="test@test"
+      />
+      <input
+        name="pswd"
+        placeholder="Password"
+        type="password"
+        value="123456"
+      />
+      <button
+        class="register-button"
+      >
+        Sign up
+      </button>
+      <div
+        class="signInMessage"
+      />
+    </form>
+  </div>
+</div>
+`;
+
+exports[`Render Register with '電子信箱格式不正確' message correctly 1`] = `
+<div>
+  <div
+    class="register"
+  >
+    <form>
+      <label
+        aria-hidden="true"
+        for="chk"
+      >
+        Register
+      </label>
+      <input
+        name="email"
+        placeholder="Email"
+        type="email"
+        value="asdasdasd"
+      />
+      <input
+        name="pswd"
+        placeholder="Password"
+        type="password"
+        value="123456"
+      />
+      <button
+        class="register-button"
+      >
+        Sign up
+      </button>
+      <div
+        class="signInMessage"
+      />
+    </form>
+  </div>
+</div>
+`;
