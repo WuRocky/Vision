@@ -25,6 +25,7 @@ Vision - A multi-functional editorial platform for sharing articles.
 -   Other
     -   SCSS
     -   react-markdown
+    -   Unit Test
 
 # Features
 
