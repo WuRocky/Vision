@@ -57,11 +57,29 @@
             .homepage-content-item-2-article {
                 grid-area: item-2-article;
                 display: -webkit-box;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: -webkit-flex;
+                display: flex;
                 -webkit-box-orient: vertical;
-                -webkit-line-clamp: 2;
+                -moz-box-orient: vertical;
+                -webkit-flex-direction: column;
+                -ms-flex-direction: column;
+                flex-direction: column;
                 overflow: hidden;
                 font-size: 16px;
                 font-weight: 300;
+                line-height: 1.2em;
+                max-height: 2.4em; // 2 行文本，line-height * 2
+                text-overflow: ellipsis;
+
+                // grid-area: item-2-article;
+                // display: -webkit-box;
+                // -webkit-box-orient: vertical;
+                // -webkit-line-clamp: 2;
+                // overflow: hidden;
+                // font-size: 16px;
+                // font-weight: 300;
             }
             .homepage-content-item-2-img {
                 grid-area: item-2-img;
