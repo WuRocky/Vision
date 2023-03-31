@@ -27,7 +27,10 @@ const Write = () => {
     const [writeTitel, setWriteTitle] = useState("");
 
     /// * 分類內容 * ///
-    const [writeClass, setWriteClass] = useState("");
+    // const [writeClass, setWriteClass] = useState("");
+    const [writeClass, setWriteClass] = useState(
+        topics.length > 0 ? topics[0].name : ""
+    );
 
     /// * 編輯內容 * ///
     const [editText, setEditText] = useState("");
@@ -37,6 +40,12 @@ const Write = () => {
 
     /// * 顯示輸入訊息 * ///
     const [message, setMessage] = useState(null);
+
+    /// * 禁止按鈕 * ///
+    const [buttonDisabled, setButtonDisabled] = useState(false);
+
+    /// * 加載中 * ///
+    const [isLoading, setIsLoading] = useState(false);
 
     /// * 得到輸入照片 * ///
     const fileInput = useRef(null);
@@ -77,6 +86,9 @@ const Write = () => {
             return;
         }
 
+        setIsLoading(true);
+        setButtonDisabled(true);
+
         const success = await addData(
             writeTitel,
             editText,
@@ -91,17 +103,19 @@ const Write = () => {
             addStorage(fileId, writeFile, fileType);
         }
 
-        /// * 清除輸入內容 * ///
-        setEditText("");
-        setWriteTitle("");
-        setWriteFile(null);
-
+        setIsLoading(false);
         /// * 成功導向首頁 * ///
         if (success) {
             setTimeout(() => {
                 navigate("/");
-            }, 2000);
+            }, 1000);
+        } else {
+            setButtonDisabled(false);
         }
+        /// * 清除輸入內容 * ///
+        setEditText("");
+        setWriteTitle("");
+        setWriteFile(null);
     };
     return (
         <>
@@ -144,6 +158,9 @@ const Write = () => {
                                                     name="edit-text-class"
                                                     id={data.name}
                                                     value={data.name}
+                                                    checked={
+                                                        data.name === writeClass
+                                                    }
                                                     onChange={inputWriteClass}
                                                 />
                                                 <span className="form-check-span">
@@ -189,8 +206,9 @@ const Write = () => {
                             <button
                                 onClick={buttonHandler}
                                 className="write-content-button"
+                                disabled={buttonDisabled}
                             >
-                                送出文章
+                                {isLoading ? "isLoading..." : "送出文章"}
                             </button>
                         </div>
                     </form>

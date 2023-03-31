@@ -41,7 +41,6 @@
                 align-items: center;
                 flex-direction: column;
                 height: 100%;
-
                 .comments-content-item-1-title {
                     margin: 15px 0 10px 0;
                     font-size: 1.2rem;
@@ -102,6 +101,7 @@
                     resize: none;
                     width: 30vw;
                     height: 80px;
+                    padding: 10px;
                 }
                 display: flex;
                 justify-content: center;

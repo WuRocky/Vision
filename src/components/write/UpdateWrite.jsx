@@ -53,6 +53,12 @@ const UpdateWrite = () => {
     /// * 顯示輸入訊息 * ///
     const [message, setMessage] = useState(null);
 
+    /// * 禁止按鈕 * ///
+    const [buttonDisabled, setButtonDisabled] = useState(false);
+
+    /// * 加載中 * ///
+    const [isLoading, setIsLoading] = useState(false);
+
     /// * 得到輸入照片 * ///
     const fileInput = useRef(null);
 
@@ -94,6 +100,9 @@ const UpdateWrite = () => {
             return;
         }
 
+        setIsLoading(true);
+        setButtonDisabled(true);
+
         if (writeFile && typeof writeFile !== "string") {
             const fileType = writeFile.type;
             await upDataStorage(id, writeFile, fileType);
@@ -115,7 +124,9 @@ const UpdateWrite = () => {
         if (success) {
             setTimeout(() => {
                 navigate("/");
-            }, 2000);
+            }, 1000);
+        } else {
+            setButtonDisabled(false);
         }
     };
     return (
@@ -206,8 +217,9 @@ const UpdateWrite = () => {
                             <button
                                 onClick={buttonHandler}
                                 className="write-content-button"
+                                disabled={buttonDisabled}
                             >
-                                更新文章
+                                {isLoading ? "isLoading..." : "更新文章"}
                             </button>
                         </div>
                     </form>

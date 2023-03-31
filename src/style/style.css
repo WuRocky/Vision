@@ -349,6 +349,7 @@ a:active {
   resize: none;
   width: 30vw;
   height: 80px;
+  padding: 10px;
 }
 .comments .comments-div .comments-content form .comments-content-item-2 {
   display: flex;
@@ -1496,6 +1497,7 @@ a:active {
   }
 }
 .member {
+  height: var(--height);
   background-color: var(--second-color);
 }
 .member .member-item {

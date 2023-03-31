@@ -9,7 +9,7 @@ const Nav = () => {
         userSignOut();
         window.location.reload();
     };
-    console.log(user);
+
     return (
         <div className="navContainer">
             <div>
